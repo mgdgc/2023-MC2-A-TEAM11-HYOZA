@@ -23,6 +23,7 @@
 		79D7C5E02A00ED3700AC8B6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		79D7C5E22A00ED3700AC8B6F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		79D7C5E52A00ED3700AC8B6F /* Oroji.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Oroji.xcdatamodel; sourceTree = "<group>"; };
+		79D7C5EC2A00ED5A00AC8B6F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +40,7 @@
 		79D7C5CD2A00ED3500AC8B6F = {
 			isa = PBXGroup;
 			children = (
+				79D7C5EC2A00ED5A00AC8B6F /* README.md */,
 				79D7C5D82A00ED3500AC8B6F /* Oroji */,
 				79D7C5D72A00ED3500AC8B6F /* Products */,
 			);
