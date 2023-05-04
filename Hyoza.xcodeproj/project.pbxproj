@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		79D7C5DA2A00ED3500AC8B6F /* OrojiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7C5D92A00ED3500AC8B6F /* OrojiApp.swift */; };
+		79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */; };
 		79D7C5DC2A00ED3500AC8B6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7C5DB2A00ED3500AC8B6F /* ContentView.swift */; };
 		79D7C5DE2A00ED3700AC8B6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */; };
 		79D7C5E12A00ED3700AC8B6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D7C5E02A00ED3700AC8B6F /* Preview Assets.xcassets */; };
 		79D7C5E32A00ED3700AC8B6F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7C5E22A00ED3700AC8B6F /* Persistence.swift */; };
-		79D7C5E62A00ED3700AC8B6F /* Oroji.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79D7C5E42A00ED3700AC8B6F /* Oroji.xcdatamodeld */; };
+		79D7C5E62A00ED3700AC8B6F /* Hyoza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79D7C5E42A00ED3700AC8B6F /* Hyoza.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		79D7C5D62A00ED3500AC8B6F /* Oroji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oroji.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		79D7C5D92A00ED3500AC8B6F /* OrojiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrojiApp.swift; sourceTree = "<group>"; };
+		79D7C5D62A00ED3500AC8B6F /* Hyoza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hyoza.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyozaApp.swift; sourceTree = "<group>"; };
 		79D7C5DB2A00ED3500AC8B6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79D7C5E02A00ED3700AC8B6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -41,7 +41,7 @@
 			isa = PBXGroup;
 			children = (
 				79D7C5EC2A00ED5A00AC8B6F /* README.md */,
-				79D7C5D82A00ED3500AC8B6F /* Oroji */,
+				79D7C5D82A00ED3500AC8B6F /* Hyoza */,
 				79D7C5D72A00ED3500AC8B6F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,22 +49,22 @@
 		79D7C5D72A00ED3500AC8B6F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				79D7C5D62A00ED3500AC8B6F /* Oroji.app */,
+				79D7C5D62A00ED3500AC8B6F /* Hyoza.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		79D7C5D82A00ED3500AC8B6F /* Oroji */ = {
+		79D7C5D82A00ED3500AC8B6F /* Hyoza */ = {
 			isa = PBXGroup;
 			children = (
-				79D7C5D92A00ED3500AC8B6F /* OrojiApp.swift */,
+				79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */,
 				79D7C5DB2A00ED3500AC8B6F /* ContentView.swift */,
 				79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */,
 				79D7C5E22A00ED3700AC8B6F /* Persistence.swift */,
-				79D7C5E42A00ED3700AC8B6F /* Oroji.xcdatamodeld */,
+				79D7C5E42A00ED3700AC8B6F /* Hyoza.xcdatamodeld */,
 				79D7C5DF2A00ED3700AC8B6F /* Preview Content */,
 			);
-			path = Oroji;
+			path = Hyoza;
 			sourceTree = "<group>";
 		};
 		79D7C5DF2A00ED3700AC8B6F /* Preview Content */ = {
@@ -78,9 +78,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		79D7C5D52A00ED3500AC8B6F /* Oroji */ = {
+		79D7C5D52A00ED3500AC8B6F /* Hyoza */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 79D7C5E92A00ED3700AC8B6F /* Build configuration list for PBXNativeTarget "Oroji" */;
+			buildConfigurationList = 79D7C5E92A00ED3700AC8B6F /* Build configuration list for PBXNativeTarget "Hyoza" */;
 			buildPhases = (
 				79D7C5D22A00ED3500AC8B6F /* Sources */,
 				79D7C5D32A00ED3500AC8B6F /* Frameworks */,
@@ -90,9 +90,9 @@
 			);
 			dependencies = (
 			);
-			name = Oroji;
+			name = Hyoza;
 			productName = Oroji;
-			productReference = 79D7C5D62A00ED3500AC8B6F /* Oroji.app */;
+			productReference = 79D7C5D62A00ED3500AC8B6F /* Hyoza.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -110,7 +110,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 79D7C5D12A00ED3500AC8B6F /* Build configuration list for PBXProject "Oroji" */;
+			buildConfigurationList = 79D7C5D12A00ED3500AC8B6F /* Build configuration list for PBXProject "Hyoza" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -123,7 +123,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				79D7C5D52A00ED3500AC8B6F /* Oroji */,
+				79D7C5D52A00ED3500AC8B6F /* Hyoza */,
 			);
 		};
 /* End PBXProject section */
@@ -146,9 +146,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				79D7C5E32A00ED3700AC8B6F /* Persistence.swift in Sources */,
-				79D7C5E62A00ED3700AC8B6F /* Oroji.xcdatamodeld in Sources */,
+				79D7C5E62A00ED3700AC8B6F /* Hyoza.xcdatamodeld in Sources */,
 				79D7C5DC2A00ED3500AC8B6F /* ContentView.swift in Sources */,
-				79D7C5DA2A00ED3500AC8B6F /* OrojiApp.swift in Sources */,
+				79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +276,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Oroji/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Hyoza/Preview Content\"";
 				DEVELOPMENT_TEAM = BDU85ET24K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -306,7 +306,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Oroji/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Hyoza/Preview Content\"";
 				DEVELOPMENT_TEAM = BDU85ET24K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -332,7 +332,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		79D7C5D12A00ED3500AC8B6F /* Build configuration list for PBXProject "Oroji" */ = {
+		79D7C5D12A00ED3500AC8B6F /* Build configuration list for PBXProject "Hyoza" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				79D7C5E72A00ED3700AC8B6F /* Debug */,
@@ -341,7 +341,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		79D7C5E92A00ED3700AC8B6F /* Build configuration list for PBXNativeTarget "Oroji" */ = {
+		79D7C5E92A00ED3700AC8B6F /* Build configuration list for PBXNativeTarget "Hyoza" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				79D7C5EA2A00ED3700AC8B6F /* Debug */,
@@ -353,13 +353,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		79D7C5E42A00ED3700AC8B6F /* Oroji.xcdatamodeld */ = {
+		79D7C5E42A00ED3700AC8B6F /* Hyoza.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				79D7C5E52A00ED3700AC8B6F /* Oroji.xcdatamodel */,
 			);
 			currentVersion = 79D7C5E52A00ED3700AC8B6F /* Oroji.xcdatamodel */;
-			path = Oroji.xcdatamodeld;
+			path = Hyoza.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

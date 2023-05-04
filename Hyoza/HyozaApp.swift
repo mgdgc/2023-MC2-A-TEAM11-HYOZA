@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct OrojiApp: App {
+struct HyozaApp: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
