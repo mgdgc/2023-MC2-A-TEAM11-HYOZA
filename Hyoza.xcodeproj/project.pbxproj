@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		791029D92A039C58009A5590 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791029D82A039C58009A5590 /* MainTabView.swift */; };
 		794EB6AA2A03F92600DA52B5 /* Hyoza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 794EB6A72A03F92600DA52B5 /* Hyoza.xcdatamodeld */; };
+		794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EB6AB2A03FF8900DA52B5 /* Question+CoreDataClass.swift */; };
+		794EB6AE2A03FF8900DA52B5 /* Question+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EB6AC2A03FF8900DA52B5 /* Question+CoreDataProperties.swift */; };
+		794EB6B12A03FFCB00DA52B5 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EB6B02A03FFCB00DA52B5 /* Persistence.swift */; };
 		79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */; };
 		79D7C5DC2A00ED3500AC8B6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7C5DB2A00ED3500AC8B6F /* ContentView.swift */; };
 		79D7C5DE2A00ED3700AC8B6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */; };
@@ -19,6 +22,9 @@
 		791029D82A039C58009A5590 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		794EB6A82A03F92600DA52B5 /* Hyoza.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hyoza.xcdatamodel; sourceTree = "<group>"; };
 		794EB6A92A03F92600DA52B5 /* Oroji.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Oroji.xcdatamodel; sourceTree = "<group>"; };
+		794EB6AB2A03FF8900DA52B5 /* Question+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Question+CoreDataClass.swift"; sourceTree = "<group>"; };
+		794EB6AC2A03FF8900DA52B5 /* Question+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Question+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		794EB6B02A03FFCB00DA52B5 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		79D7C5D62A00ED3500AC8B6F /* Hyoza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hyoza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyozaApp.swift; sourceTree = "<group>"; };
 		79D7C5DB2A00ED3500AC8B6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +44,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		794DB9E72A07E07B00635B58 /* tabToday */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = tabToday;
+			sourceTree = "<group>";
+		};
+		794DB9E82A07E11200635B58 /* tabList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = tabList;
+			sourceTree = "<group>";
+		};
+		794DB9E92A07E11A00635B58 /* tabExport */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = tabExport;
+			sourceTree = "<group>";
+		};
+		794EB6AF2A03FF8E00DA52B5 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				794EB6AB2A03FF8900DA52B5 /* Question+CoreDataClass.swift */,
+				794EB6AC2A03FF8900DA52B5 /* Question+CoreDataProperties.swift */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
 		79D7C5CD2A00ED3500AC8B6F = {
 			isa = PBXGroup;
 			children = (
@@ -58,12 +94,17 @@
 		79D7C5D82A00ED3500AC8B6F /* Hyoza */ = {
 			isa = PBXGroup;
 			children = (
+				794DB9E92A07E11A00635B58 /* tabExport */,
+				794DB9E82A07E11200635B58 /* tabList */,
+				794DB9E72A07E07B00635B58 /* tabToday */,
 				79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */,
 				79D7C5DB2A00ED3500AC8B6F /* ContentView.swift */,
 				79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */,
 				79D7C5DF2A00ED3700AC8B6F /* Preview Content */,
 				791029D82A039C58009A5590 /* MainTabView.swift */,
 				794EB6A72A03F92600DA52B5 /* Hyoza.xcdatamodeld */,
+				794EB6AF2A03FF8E00DA52B5 /* data */,
+				794EB6B02A03FFCB00DA52B5 /* Persistence.swift */,
 			);
 			path = Hyoza;
 			sourceTree = "<group>";
@@ -147,9 +188,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				79D7C5DC2A00ED3500AC8B6F /* ContentView.swift in Sources */,
+				794EB6AE2A03FF8900DA52B5 /* Question+CoreDataProperties.swift in Sources */,
 				794EB6AA2A03F92600DA52B5 /* Hyoza.xcdatamodeld in Sources */,
+				794EB6B12A03FFCB00DA52B5 /* Persistence.swift in Sources */,
 				79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */,
 				791029D92A039C58009A5590 /* MainTabView.swift in Sources */,
+				794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
