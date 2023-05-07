@@ -13,8 +13,26 @@ struct MainTabView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            ContentView()
-                .id(0)
+            TodayView()
+                .tabItem {
+                    Image(systemName: "heart.square.fill")
+                    Text("Today")
+                }
+                .tag(0)
+            
+            ListView()
+                .tabItem {
+                    Image(systemName: "books.vertical.fill")
+                    Text("Today")
+                }
+                .tag(1)
+            
+            PublishView()
+                .tabItem {
+                    Image(systemName: "text.book.closed.fill")
+                    Text("Today")
+                }
+                .tag(2)
         }
     }
 }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		791029D92A039C58009A5590 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791029D82A039C58009A5590 /* MainTabView.swift */; };
+		794DB9EB2A07E38600635B58 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DB9EA2A07E38600635B58 /* TodayView.swift */; };
+		794DB9ED2A07E38E00635B58 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DB9EC2A07E38E00635B58 /* ListView.swift */; };
+		794DB9EF2A07E3A500635B58 /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DB9EE2A07E3A500635B58 /* PublishView.swift */; };
 		794EB6AA2A03F92600DA52B5 /* Hyoza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 794EB6A72A03F92600DA52B5 /* Hyoza.xcdatamodeld */; };
 		794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EB6AB2A03FF8900DA52B5 /* Question+CoreDataClass.swift */; };
 		794EB6AE2A03FF8900DA52B5 /* Question+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EB6AC2A03FF8900DA52B5 /* Question+CoreDataProperties.swift */; };
@@ -20,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		791029D82A039C58009A5590 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		794DB9EA2A07E38600635B58 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		794DB9EC2A07E38E00635B58 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		794DB9EE2A07E3A500635B58 /* PublishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
 		794EB6A82A03F92600DA52B5 /* Hyoza.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hyoza.xcdatamodel; sourceTree = "<group>"; };
 		794EB6A92A03F92600DA52B5 /* Oroji.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Oroji.xcdatamodel; sourceTree = "<group>"; };
 		794EB6AB2A03FF8900DA52B5 /* Question+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Question+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -47,6 +53,7 @@
 		794DB9E72A07E07B00635B58 /* tabToday */ = {
 			isa = PBXGroup;
 			children = (
+				794DB9EA2A07E38600635B58 /* TodayView.swift */,
 			);
 			path = tabToday;
 			sourceTree = "<group>";
@@ -54,15 +61,17 @@
 		794DB9E82A07E11200635B58 /* tabList */ = {
 			isa = PBXGroup;
 			children = (
+				794DB9EC2A07E38E00635B58 /* ListView.swift */,
 			);
 			path = tabList;
 			sourceTree = "<group>";
 		};
-		794DB9E92A07E11A00635B58 /* tabExport */ = {
+		794DB9E92A07E11A00635B58 /* tabPublish */ = {
 			isa = PBXGroup;
 			children = (
+				794DB9EE2A07E3A500635B58 /* PublishView.swift */,
 			);
-			path = tabExport;
+			path = tabPublish;
 			sourceTree = "<group>";
 		};
 		794EB6AF2A03FF8E00DA52B5 /* data */ = {
@@ -94,7 +103,7 @@
 		79D7C5D82A00ED3500AC8B6F /* Hyoza */ = {
 			isa = PBXGroup;
 			children = (
-				794DB9E92A07E11A00635B58 /* tabExport */,
+				794DB9E92A07E11A00635B58 /* tabPublish */,
 				794DB9E82A07E11200635B58 /* tabList */,
 				794DB9E72A07E07B00635B58 /* tabToday */,
 				79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */,
@@ -193,7 +202,10 @@
 				794EB6B12A03FFCB00DA52B5 /* Persistence.swift in Sources */,
 				79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */,
 				791029D92A039C58009A5590 /* MainTabView.swift in Sources */,
+				794DB9EF2A07E3A500635B58 /* PublishView.swift in Sources */,
+				794DB9EB2A07E38600635B58 /* TodayView.swift in Sources */,
 				794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */,
+				794DB9ED2A07E38E00635B58 /* ListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
