@@ -75,13 +75,11 @@ struct ListView: View {
         .padding(.top, 43)
     }
     
-    // var CellContents : some View {
     private struct CellContents : View {
         
         @State private var appear = false
         var item : Question
         // TODO : 더 나은 방식으로 개선할 수 없나?
-        
         var body : some View{
             VStack(alignment : .leading) {
                 Text(item.timestamp!, formatter : itemFormatter)
@@ -113,8 +111,8 @@ struct ListView: View {
   
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
+    formatter.dateFormat = "yyyy년 MM월 dd일"
+    formatter.locale = Locale(identifier: "ko_KR")
     return formatter
 }()
     
