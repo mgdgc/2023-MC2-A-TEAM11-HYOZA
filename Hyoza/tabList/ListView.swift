@@ -24,12 +24,12 @@ struct ListView: View {
                     header
 //                    ForEach(items) { item in
                     ForEach(0..<100) { item in
-                        Rectangle()
+                        RoundedRectangle(cornerRadius : 15)
                         //TODO : 프레임 스크린 넓이에서 가져오기
                             .frame(width: 350, height: 160)
                             .foregroundColor(.white)
-                            .cornerRadius(15)
-                            .shadow(radius: 5)
+                            .shadow( color : .gray, radius: 5, y :5)
+                            .opacity(0.3)
                             .overlay{CellContents}
                             .padding(.bottom, 20)
                         
@@ -55,7 +55,7 @@ struct ListView: View {
     }
     
     var CellContents : some View{
-        //TODO : 더 나은 방식으로 개선할 수 없나?
+        // TODO : 더 나은 방식으로 개선할 수 없나?
         VStack(alignment : .leading) {
             Text("2023년 5월 5일")
                 .font(.caption)
@@ -65,12 +65,14 @@ struct ListView: View {
             
             Text("최근에 가장 재미있게 본 유튜브 영상은 무엇인가요?")
                 .fontWeight(.bold)
+                .font(.headline)
                 .frame(width: 320, alignment: .leading)
                 .lineLimit(2)
                 .padding(.top, 5)
             
             Text("최근에 귀여운 강아지가 나오는 000 채널의 영상을 봤어요. 요새 동네들 산책하다보면 아주 귀여운 강아지가 ")
                 .fontWeight(.regular)
+                .font(.subheadline)
                 .frame(width: 320, alignment: .leading)
                 .lineLimit(2)
                 .padding(.top, 5)
