@@ -10,9 +10,9 @@ import CoreData
 
 struct ListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-//    @FetchRequest(
-//        sortDescriptors: [NSSortDescriptor(keyPath: \Question.timestamp, ascending: true)],
-//        animation: .default)
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Question.timestamp, ascending: true)],
+        animation: .default)
     
     private var items : FetchedResults<Question>
 
@@ -23,11 +23,18 @@ struct ListView: View {
                 LazyVStack {
                     header
 //                    ForEach(items) { item in
+                    ForEach(0..<100) { item in
+                        Rectangle()
+                        //TODO : 프레임 스크린 넓이에서 가져오기
+                            .frame(width: 350, height: 160)
+                            .foregroundColor(.white)
+                            .cornerRadius(15)
+                            .shadow(radius: 5)
+                            .overlay{CellContents}
+                            .padding(.bottom, 20)
                         
                     }
-                   
-                    
-                    
+                  
                 }
                
             }
@@ -44,10 +51,41 @@ struct ListView: View {
             Spacer()
         }
         .padding(.leading, 20)
-        .padding(.top, 50)
+        .padding(.top, 43)
     }
     
+    var CellContents : some View{
+        //TODO : 더 나은 방식으로 개선할 수 없나?
+        VStack(alignment : .leading) {
+            Text("2023년 5월 5일")
+                .font(.caption)
+                .frame(width: 320, alignment: .leading)
+                .lineLimit(1)
+                .padding(.top, 15)
+            
+            Text("최근에 가장 재미있게 본 유튜브 영상은 무엇인가요?")
+                .fontWeight(.bold)
+                .frame(width: 320, alignment: .leading)
+                .lineLimit(2)
+                .padding(.top, 5)
+            
+            Text("최근에 귀여운 강아지가 나오는 000 채널의 영상을 봤어요. 요새 동네들 산책하다보면 아주 귀여운 강아지가 ")
+                .fontWeight(.regular)
+                .frame(width: 320, alignment: .leading)
+                .lineLimit(2)
+                .padding(.top, 5)
+            Spacer()
+
+        }
+    }
 }
+    
+    
+
+
+
+
+
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
