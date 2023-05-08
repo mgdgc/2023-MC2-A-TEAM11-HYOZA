@@ -50,6 +50,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66D1E6AA2A090C830028AA57 /* SubConponents */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SubConponents;
+			sourceTree = "<group>";
+		};
 		794DB9E72A07E07B00635B58 /* tabToday */ = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +68,7 @@
 		794DB9E82A07E11200635B58 /* tabList */ = {
 			isa = PBXGroup;
 			children = (
+				66D1E6AA2A090C830028AA57 /* SubConponents */,
 				794DB9EC2A07E38E00635B58 /* ListView.swift */,
 			);
 			path = tabList;
