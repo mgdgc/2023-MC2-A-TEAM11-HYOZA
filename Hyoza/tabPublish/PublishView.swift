@@ -10,12 +10,15 @@ import CoreData
 
 struct PublishView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
+    @State var segmentationSelection: PeriodSelection = .custom
     
     var body: some View {
         ZStack {
             Color.backgroundColor
             VStack(alignment: .leading, spacing: .zero) {
                 header
+                PeriodSegmentView(selection: $segmentationSelection)
+                Spacer()
             }
         }
         .ignoresSafeArea(edges: .top)
