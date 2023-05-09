@@ -34,6 +34,7 @@
 		B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97ED2A0912AD00ECD178 /* PeriodView.swift */; };
 		C9DD7BEB2A0A3F3F007C1973 /* QnAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */; };
 		B256C8C92A0A5D9800B0C62E /* UIScreenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */; };
+		B256C8CD2A0A64D500B0C62E /* PublishCardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8CC2A0A64D500B0C62E /* PublishCardify.swift */; };
 		B256C8CF2A0A6A2D00B0C62E /* ResultBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		B22A97ED2A0912AD00ECD178 /* PeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
 		C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAView.swift; sourceTree = "<group>"; };
 		B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtension.swift; sourceTree = "<group>"; };
+		B256C8CC2A0A64D500B0C62E /* PublishCardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishCardify.swift; sourceTree = "<group>"; };
 		B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBookView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +130,7 @@
 				794DB9EE2A07E3A500635B58 /* PublishView.swift */,
 				B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */,
 				B22A97ED2A0912AD00ECD178 /* PeriodView.swift */,
+				B256C8CC2A0A64D500B0C62E /* PublishCardify.swift */,
 				B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */,
 			);
 			path = tabPublish;
@@ -294,6 +297,7 @@
 				794EB6B12A03FFCB00DA52B5 /* Persistence.swift in Sources */,
 				9809A3082A09898D00AB8995 /* ClosedQuestionsView.swift in Sources */,
 				79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */,
+				B256C8CD2A0A64D500B0C62E /* PublishCardify.swift in Sources */,
 				791C24572A08EA520009E4EA /* NotificationManager.swift in Sources */,
 				9809A30A2A098C3600AB8995 /* ClosedQuestionCardView.swift in Sources */,
 				B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */,
