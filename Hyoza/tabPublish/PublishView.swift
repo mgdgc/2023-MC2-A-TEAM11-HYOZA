@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import UIKit
 import CoreData
 
 struct PublishView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.displayScale) var displayScale
+    @State var text = ""
     @State var segmentationSelection: PeriodSelection = .custom
     @State var startDate: Date = Date()
     @State var endDate: Date = Date()
@@ -21,8 +24,10 @@ struct PublishView: View {
             VStack(alignment: .leading, spacing: .zero) {
                 header
                 PeriodSegmentView(selection: $segmentationSelection)
+                titleTextField
                 periodView
                 Spacer()
+                publishButton
             }
         }
         .ignoresSafeArea(edges: .top)
@@ -41,6 +46,15 @@ struct PublishView: View {
         .padding(.top, 90)
     }
     
+    var titleTextField: some View {
+        CardView(shadowColor: .black.opacity(0.1)) {
+            TextField("제목", text: $text)
+                .background(.white)
+                .cornerRadius(cornerRadius)
+        }
+        .padding()
+    }
+    
     var periodView: some View {
         CardView(shadowColor: .black.opacity(0.1)) {
             PeriodView(
@@ -50,7 +64,31 @@ struct PublishView: View {
             )
         }
         .padding()
+    }
     
+    var publishButton: some View {
+        HStack {
+            Spacer()
+            Button {
+                print("출판하기 button did tap")
+                Task {
+                    if let image = await periodView.render(scale: displayScale) {
+                        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                    }
+                }
+            } label: {
+                ZStack {
+                    Color.buttonColor
+                    Text("출판하기")
+                        .foregroundColor(Color.buttonTextColor)
+                        .bold()
+                }
+                .frame(width: 310, height: 57)
+                .cornerRadius(50)
+            }
+            Spacer()
+        }
+        .padding()
     }
 }
 
