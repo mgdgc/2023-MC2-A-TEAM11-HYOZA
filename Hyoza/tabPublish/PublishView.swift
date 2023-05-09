@@ -82,16 +82,18 @@ struct PublishView: View {
     
     @ViewBuilder
     var periodView: some View {
-        switch periodSelection {
-        case .custom, .whole:
+        ZStack(alignment: .top) {
             PeriodView(
                 cornerRadius: cornerRadius,
                 periodSelection: periodSelection,
                 startDate: $startDate,
                 endDate: $endDate
-            ).publishCardify()
-        case .oneMonth:
-            MonthPickerView(selectedMonth: $selectedMonth).publishCardify()
+            )
+                .publishCardify()
+                .opacity(periodSelection == .oneMonth ? 0 : 1)
+            MonthPickerView(selectedMonth: $selectedMonth)
+                .publishCardify()
+                .opacity(periodSelection == .oneMonth ? 1 : 0)
         }
     }
     
