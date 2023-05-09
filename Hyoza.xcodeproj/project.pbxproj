@@ -33,6 +33,7 @@
 		B22A97EC2A09117700ECD178 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97EB2A09117700ECD178 /* ColorExtension.swift */; };
 		B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97ED2A0912AD00ECD178 /* PeriodView.swift */; };
 		C9DD7BEB2A0A3F3F007C1973 /* QnAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */; };
+		B256C8C92A0A5D9800B0C62E /* UIScreenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		B22A97EB2A09117700ECD178 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		B22A97ED2A0912AD00ECD178 /* PeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
 		C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAView.swift; sourceTree = "<group>"; };
+		B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */,
 				791C24592A0933DE0009E4EA /* DateExtension.swift */,
 				791C245D2A09530F0009E4EA /* ViewExtension.swift */,
+				B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */,
 				B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */,
 				B22A97EC2A09117700ECD178 /* ColorExtension.swift in Sources */,
+				B256C8C92A0A5D9800B0C62E /* UIScreenExtension.swift in Sources */,
 				794DB9F22A07EE6000635B58 /* CardView.swift in Sources */,
 				791029D92A039C58009A5590 /* MainTabView.swift in Sources */,
 				794DB9EF2A07E3A500635B58 /* PublishView.swift in Sources */,
