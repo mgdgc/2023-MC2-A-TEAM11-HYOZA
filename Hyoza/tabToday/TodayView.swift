@@ -14,12 +14,13 @@ struct TodayView: View {
     @State var isQuestionBoxOpen: Bool = false
     @State var zIndexQuestionBox: Double = 1
     @State var zIndexClosedQuestions: Double = 0
+    @State var zIndexOpenQuestionCard: Double = 0
     
     var body: some View {
         ZStack {
             Color.backGroundWhite
                 .edgesIgnoringSafeArea(.all)
-            VStack(alignment: .leading, spacing: 30) {
+            VStack(alignment: .leading, spacing: 20) {
                 Text("5월 5일 금요일")
                     .font(.system(.footnote))
                 HStack {
@@ -31,14 +32,18 @@ struct TodayView: View {
                 }
                 Spacer()
                 ZStack {
-                    CardView {
+                    CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
                         QuestionBoxView(zIndexQuestionBox: $zIndexQuestionBox, zIndexClosedQuestions: $zIndexClosedQuestions)
                     }
                     .zIndex(zIndexQuestionBox)
-                    CardView {
+                    CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
                         ClosedQuestionsView()
                     }
                     .zIndex(zIndexClosedQuestions)
+//                    CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
+//                        QuestionBoxView(zIndexQuestionBox: $zIndexQuestionBox, zIndexClosedQuestions: $zIndexOpenQuestionCard)
+//                    }
+//                    .zIndex(zIndexOpenQuestionCard)
                     //                    Image("sampleQuestionCard")
                     //                        .resizable()
                     //                        .scaledToFit()
