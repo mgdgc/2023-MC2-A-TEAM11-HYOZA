@@ -11,6 +11,9 @@ import CoreData
 struct PublishView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @State var segmentationSelection: PeriodSelection = .custom
+    @State var startDate: Date = Date()
+    @State var endDate: Date = Date()
+    let cornerRadius: CGFloat = 10
     
     var body: some View {
         ZStack {
@@ -18,6 +21,7 @@ struct PublishView: View {
             VStack(alignment: .leading, spacing: .zero) {
                 header
                 PeriodSegmentView(selection: $segmentationSelection)
+                periodView
                 Spacer()
             }
         }
@@ -35,9 +39,21 @@ struct PublishView: View {
         }
         .padding(.leading, 20)
         .padding(.top, 90)
+    }
+    
+    var periodView: some View {
+        CardView(shadowColor: .black.opacity(0.1)) {
+            PeriodView(
+                cornerRadius: cornerRadius,
+            startDate: $startDate,
+            endDate: $endDate
+            )
+        }
+        .padding()
     
     }
 }
+
 
 struct PublishView_Previews: PreviewProvider {
     static var previews: some View {

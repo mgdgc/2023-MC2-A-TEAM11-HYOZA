@@ -31,6 +31,7 @@
 		B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */; };
 		B22A97EA2A0910C000ECD178 /* PeriodSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */; };
 		B22A97EC2A09117700ECD178 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97EB2A09117700ECD178 /* ColorExtension.swift */; };
+		B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97ED2A0912AD00ECD178 /* PeriodView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodSegmentView.swift; sourceTree = "<group>"; };
 		B22A97EB2A09117700ECD178 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		B22A97ED2A0912AD00ECD178 /* PeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				794DB9EE2A07E3A500635B58 /* PublishView.swift */,
 				B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */,
+				B22A97ED2A0912AD00ECD178 /* PeriodView.swift */,
 			);
 			path = tabPublish;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				791C24572A08EA520009E4EA /* NotificationManager.swift in Sources */,
 				9809A30A2A098C3600AB8995 /* ClosedQuestionCardView.swift in Sources */,
 				B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */,
+				B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */,
 				B22A97EC2A09117700ECD178 /* ColorExtension.swift in Sources */,
 				794DB9F22A07EE6000635B58 /* CardView.swift in Sources */,
 				791029D92A039C58009A5590 /* MainTabView.swift in Sources */,
@@ -417,6 +421,7 @@
 				DEVELOPMENT_TEAM = BDU85ET24K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "아무거나";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -447,6 +452,7 @@
 				DEVELOPMENT_TEAM = BDU85ET24K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "아무거나";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
