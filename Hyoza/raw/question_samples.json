@@ -1,0 +1,13 @@
+
+[
+  {
+    "id": 1,
+    "question": "엄마 돈 많아?",
+    "difficulty": 1
+  },
+  {
+    "id": 2,
+    "question": "엄마 차 있어?",
+    "difficulty": 0
+  }
+]
