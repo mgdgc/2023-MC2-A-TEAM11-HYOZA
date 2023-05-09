@@ -29,4 +29,7 @@ extension Date {
         return Calendar.current.component(.minute, from: self)
     }
     
+    static func - (lhs: Date, rhs: Int) -> Date {
+        return Calendar.current.date(byAdding: .day, value: -rhs, to: lhs)!
+    }
 }
