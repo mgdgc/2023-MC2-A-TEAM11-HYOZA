@@ -15,7 +15,7 @@ struct QnAView: View {
     @State var commentTextField = ""
     @State var comment : String = ""
     @State var isComment : Bool = false
-    @State private var showing = false
+    @State private var showingAlert = false
     @State var isTextFieldEmpty : Bool = true
     
     
@@ -23,41 +23,57 @@ struct QnAView: View {
         ZStack {
             Color(red: 255 / 255, green: 253 / 255, blue: 250 / 255)
                 .ignoresSafeArea()
+            
             VStack(alignment: .leading, spacing: 15) {
                 
                 HStack{
                     
                     Button(action: {
-                        showing = true
+                        showingAlert = true
                         
                     }) {
                         
                         Image(systemName: "chevron.backward")
                             .foregroundColor(.orange)
                     }
-                    .alert(isPresented: $showing) {
-                        Alert(
-                            title: Text("이전 페이지로 이동 시,\n 작성하신 내용은 삭제됩니다."),
-                            message: Text("그래도 나가시겠습니까?"),
-                            primaryButton: .default(Text("머무르기")),
-                            secondaryButton: .destructive(Text("나가기"))
-                        )
+                    .alert(isPresented: $showingAlert) {
+                        let stayButton = Alert.Button.default(Text("머무르기")) {
+                            // 머무르기 버튼 눌렀을 때 발생할 이벤트
+                        }
+                        let exitButton = Alert.Button.destructive(Text("나가기")) {
+                            // 나가기 버튼 눌렀을 때 발생할 이벤트
+                        }
+                        return Alert(title: Text("이전 페이지로 이동 시,\n 작성하신 내용은 삭제됩니다."), message: Text("그래도 나가시겠습니까?"), primaryButton: stayButton, secondaryButton: exitButton)
+                        
                     }
                     
                     Spacer()
                     
-                    Text("오늘의 질문")
+                    if isEditing {
+                        Text("오늘의 질문")
+                            .padding(.leading, 15)
+                    } else {
+                        Text("오늘의 질문")
+                            .padding(.leading, 45)
+                    }
+                        
                         
                     
                     Spacer()
                     
                     if isEditing {
                         Button(action: {
-                            isEditing = false
-                            commentTextField = ""
+                            if !isTextFieldEmpty {
+                                isEditing = false
+                                commentTextField = ""
+                            } else {
+                                print("텍스트를 입력해주세요.")
+                            }
+                            
                         }) {
                             Text("완료")
                                 .foregroundColor(isTextFieldEmpty ? .gray : .orange)
+                                
                         }
                     } else {
                        HStack {
