@@ -34,6 +34,7 @@
 		B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97ED2A0912AD00ECD178 /* PeriodView.swift */; };
 		C9DD7BEB2A0A3F3F007C1973 /* QnAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */; };
 		B256C8C92A0A5D9800B0C62E /* UIScreenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */; };
+		B256C8CF2A0A6A2D00B0C62E /* ResultBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		B22A97ED2A0912AD00ECD178 /* PeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
 		C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAView.swift; sourceTree = "<group>"; };
 		B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtension.swift; sourceTree = "<group>"; };
+		B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBookView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				794DB9EE2A07E3A500635B58 /* PublishView.swift */,
 				B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */,
 				B22A97ED2A0912AD00ECD178 /* PeriodView.swift */,
+				B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */,
 			);
 			path = tabPublish;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B256C8CF2A0A6A2D00B0C62E /* ResultBookView.swift in Sources */,
 				794EB6AE2A03FF8900DA52B5 /* Question+CoreDataProperties.swift in Sources */,
 				791C245A2A0933DE0009E4EA /* DateExtension.swift in Sources */,
 				794EB6AA2A03F92600DA52B5 /* Hyoza.xcdatamodeld in Sources */,

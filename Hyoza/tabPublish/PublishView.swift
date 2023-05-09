@@ -12,20 +12,25 @@ import CoreData
 struct PublishView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.displayScale) var displayScale
-    @State var text = ""
-    @State var segmentationSelection: PeriodSelection = .custom
+    
+    @State var titleText = ""
+    @State var periodSelection: PeriodSelection = .custom
     @State var startDate: Date = Date()
     @State var endDate: Date = Date()
+    
     let cornerRadius: CGFloat = 10
+    var count: Int { 10 }
     
     var body: some View {
         ZStack {
             Color.backgroundColor
-            VStack(alignment: .leading, spacing: .zero) {
+            VStack(alignment: .center, spacing: .zero) {
                 header
-                PeriodSegmentView(selection: $segmentationSelection)
+                PeriodSegmentView(selection: $periodSelection)
                 titleTextField
                 periodView
+                ResultBookView(count: count, title: titleText)
+                    .padding()
                 Spacer()
                 publishButton
             }
@@ -48,7 +53,7 @@ struct PublishView: View {
     
     var titleTextField: some View {
         CardView(shadowColor: .black.opacity(0.1)) {
-            TextField("제목", text: $text)
+            TextField("제목", text: $titleText)
                 .background(.white)
                 .cornerRadius(cornerRadius)
         }
