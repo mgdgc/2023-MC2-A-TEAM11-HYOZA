@@ -43,7 +43,6 @@ struct PublishView: View {
             }
         }
         .ignoresSafeArea(edges: .top)
-        
     }
     
     var header: some View {
@@ -80,7 +79,6 @@ struct PublishView: View {
         .padding()
     }
     
-    @ViewBuilder
     var periodView: some View {
         ZStack(alignment: .top) {
             PeriodView(
