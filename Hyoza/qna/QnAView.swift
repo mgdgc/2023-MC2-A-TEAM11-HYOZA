@@ -21,7 +21,7 @@ struct QnAView: View {
     
     var body: some View {
         ZStack {
-            Color(red: 255 / 255, green: 253 / 255, blue: 250 / 255)
+            Color("backgroundColor")
                 .ignoresSafeArea()
             
             VStack(alignment: .leading, spacing: 15) {
