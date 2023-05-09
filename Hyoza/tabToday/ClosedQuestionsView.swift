@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ClosedQuestionsView: View {
     @State var isQuestionPicked: Bool = false
-    @State var closedQuestionsDegree: Double = -90.0
+    @State var closedQuestionsDegree: Double = -90
     @State var question1Degree: Double = 0.0
     @State var question2Degree: Double = 0.0
     @State var question3Degree: Double = 0.0
@@ -26,9 +26,9 @@ struct ClosedQuestionsView: View {
                     }
                     .onTapGesture {
                         withAnimation(.linear(duration: 0.3)){
-                            closedQuestionsDegree = 0
+                            closedQuestionsDegree = 0.0
                         }
-                        withAnimation(.linear(duration: 0.3)){
+                        withAnimation(.linear(duration: 0.3).delay(0.3)){
                             question1Degree = 90
                         }
                     }
@@ -37,9 +37,9 @@ struct ClosedQuestionsView: View {
                     }
                     .onTapGesture {
                         withAnimation(.linear(duration: 0.3)){
-                            closedQuestionsDegree = 0
+                            closedQuestionsDegree = 0.0
                         }
-                        withAnimation(.linear(duration: 0.3)){
+                        withAnimation(.linear(duration: 0.3).delay(0.3)){
                             question2Degree = 90
                         }
                     }
@@ -50,7 +50,7 @@ struct ClosedQuestionsView: View {
                         withAnimation(.linear(duration: 0.3)){
                             closedQuestionsDegree = 0
                         }
-                        withAnimation(.linear(duration: 0.3)){
+                        withAnimation(.linear(duration: 0.3).delay(0.3)){
                             question3Degree = 90
                         }
                     }
@@ -61,16 +61,16 @@ struct ClosedQuestionsView: View {
             OpenQuestionCardView(difficulty: .constant("쉬움"), questionNumber: .constant(1), closedQuestionsDegree: $closedQuestionsDegree, question1Degree: $question1Degree, question2Degree: $question2Degree, question3Degree: $question3Degree)
                 .onTapGesture {
                     withAnimation(.linear(duration: 0.3)){
-                        closedQuestionsDegree = -90
+                        closedQuestionsDegree = 0
                     }
-                    withAnimation(.linear(duration: 0.3)){
-                        question1Degree = 0
+                    withAnimation(.linear(duration: 0.3).delay(0.3)){
+                        question1Degree = 90
                     }
-                    withAnimation(.linear(duration: 0.3)){
-                        question2Degree = 0
+                    withAnimation(.linear(duration: 0.3).delay(0.3)){
+                        question2Degree = 90
                     }
-                    withAnimation(.linear(duration: 0.3)){
-                        question3Degree = 0
+                    withAnimation(.linear(duration: 0.3).delay(0.3)){
+                        question3Degree = 90
                     }
                 }
                 .rotation3DEffect(Angle(degrees: question1Degree), axis: (x:0, y:1, z:0))

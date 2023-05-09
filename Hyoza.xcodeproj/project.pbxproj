@@ -28,6 +28,7 @@
 		9809A3082A09898D00AB8995 /* ClosedQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3072A09898D00AB8995 /* ClosedQuestionsView.swift */; };
 		9809A30A2A098C3600AB8995 /* ClosedQuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3092A098C3600AB8995 /* ClosedQuestionCardView.swift */; };
 		989C52F72A0A1DF900F92F38 /* OpenQuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989C52F62A0A1DF900F92F38 /* OpenQuestionCardView.swift */; };
+		98EE907D2A0A750A0042E7B0 /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EE907C2A0A750A0042E7B0 /* QuestionCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		9809A3072A09898D00AB8995 /* ClosedQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedQuestionsView.swift; sourceTree = "<group>"; };
 		9809A3092A098C3600AB8995 /* ClosedQuestionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedQuestionCardView.swift; sourceTree = "<group>"; };
 		989C52F62A0A1DF900F92F38 /* OpenQuestionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenQuestionCardView.swift; sourceTree = "<group>"; };
+		98EE907C2A0A750A0042E7B0 /* QuestionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				9809A3072A09898D00AB8995 /* ClosedQuestionsView.swift */,
 				9809A3092A098C3600AB8995 /* ClosedQuestionCardView.swift */,
 				989C52F62A0A1DF900F92F38 /* OpenQuestionCardView.swift */,
+				98EE907C2A0A750A0042E7B0 /* QuestionCardView.swift */,
 			);
 			path = tabToday;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				794DB9EB2A07E38600635B58 /* TodayView.swift in Sources */,
 				791C24602A0A10BB0009E4EA /* CapsuleView.swift in Sources */,
 				794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */,
+				98EE907D2A0A750A0042E7B0 /* QuestionCardView.swift in Sources */,
 				989C52F72A0A1DF900F92F38 /* OpenQuestionCardView.swift in Sources */,
 				9809A3042A097AD100AB8995 /* ColorWithHex.swift in Sources */,
 				794DB9ED2A07E38E00635B58 /* ListView.swift in Sources */,
