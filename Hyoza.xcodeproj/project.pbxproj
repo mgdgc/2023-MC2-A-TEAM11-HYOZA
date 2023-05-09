@@ -90,8 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				B22A97EB2A09117700ECD178 /* ColorExtension.swift */,
-				B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */,
 				791C24592A0933DE0009E4EA /* DateExtension.swift */,
+				B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */,
 				791C245D2A09530F0009E4EA /* ViewExtension.swift */,
 			);
 			path = extensions;
