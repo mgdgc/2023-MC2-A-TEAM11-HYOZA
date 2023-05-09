@@ -27,6 +27,9 @@
 		9809A3062A0988A600AB8995 /* QuestionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3052A0988A600AB8995 /* QuestionBoxView.swift */; };
 		9809A3082A09898D00AB8995 /* ClosedQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3072A09898D00AB8995 /* ClosedQuestionsView.swift */; };
 		9809A30A2A098C3600AB8995 /* ClosedQuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3092A098C3600AB8995 /* ClosedQuestionCardView.swift */; };
+		B22A97E52A08ED2900ECD178 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E32A08EC3C00ECD178 /* CustomColor.swift */; };
+		B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */; };
+		B22A97EC2A09117700ECD178 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97EB2A09117700ECD178 /* ColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,9 @@
 		9809A3052A0988A600AB8995 /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
 		9809A3072A09898D00AB8995 /* ClosedQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedQuestionsView.swift; sourceTree = "<group>"; };
 		9809A3092A098C3600AB8995 /* ClosedQuestionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedQuestionCardView.swift; sourceTree = "<group>"; };
+		B22A97E32A08EC3C00ECD178 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		B22A97EB2A09117700ECD178 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,8 @@
 		791C24582A0933CA0009E4EA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B22A97EB2A09117700ECD178 /* ColorExtension.swift */,
+				B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */,
 				791C24592A0933DE0009E4EA /* DateExtension.swift */,
 				791C245D2A09530F0009E4EA /* ViewExtension.swift */,
 			);
@@ -150,6 +158,7 @@
 		79D7C5D82A00ED3500AC8B6F /* Hyoza */ = {
 			isa = PBXGroup;
 			children = (
+				B22A97E42A08EC4A00ECD178 /* constant */,
 				79D7C5DF2A00ED3700AC8B6F /* Preview Content */,
 				79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */,
 				79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */,
@@ -172,6 +181,14 @@
 				79D7C5E02A00ED3700AC8B6F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B22A97E42A08EC4A00ECD178 /* constant */ = {
+			isa = PBXGroup;
+			children = (
+				B22A97E32A08EC3C00ECD178 /* CustomColor.swift */,
+			);
+			path = constant;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,11 +264,14 @@
 				794EB6AE2A03FF8900DA52B5 /* Question+CoreDataProperties.swift in Sources */,
 				791C245A2A0933DE0009E4EA /* DateExtension.swift in Sources */,
 				794EB6AA2A03F92600DA52B5 /* Hyoza.xcdatamodeld in Sources */,
+				B22A97E52A08ED2900ECD178 /* CustomColor.swift in Sources */,
 				794EB6B12A03FFCB00DA52B5 /* Persistence.swift in Sources */,
 				9809A3082A09898D00AB8995 /* ClosedQuestionsView.swift in Sources */,
 				79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */,
 				791C24572A08EA520009E4EA /* NotificationManager.swift in Sources */,
 				9809A30A2A098C3600AB8995 /* ClosedQuestionCardView.swift in Sources */,
+				B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */,
+				B22A97EC2A09117700ECD178 /* ColorExtension.swift in Sources */,
 				794DB9F22A07EE6000635B58 /* CardView.swift in Sources */,
 				791029D92A039C58009A5590 /* MainTabView.swift in Sources */,
 				794DB9EF2A07E3A500635B58 /* PublishView.swift in Sources */,
