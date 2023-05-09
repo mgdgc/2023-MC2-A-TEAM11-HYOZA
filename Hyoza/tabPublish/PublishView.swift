@@ -12,20 +12,32 @@ import CoreData
 struct PublishView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.displayScale) var displayScale
-    @State var text = ""
-    @State var segmentationSelection: PeriodSelection = .custom
+    
+    @State var titleText = ""
+    @State var periodSelection: PeriodSelection = .custom
+    
     @State var startDate: Date = Date()
     @State var endDate: Date = Date()
+    @State var selectedMonth: Month = .may
+    
     let cornerRadius: CGFloat = 10
+    var count: Int { 10 }
     
     var body: some View {
         ZStack {
             Color.backgroundColor
-            VStack(alignment: .leading, spacing: .zero) {
+            VStack(alignment: .center, spacing: .zero) {
                 header
-                PeriodSegmentView(selection: $segmentationSelection)
+                PeriodSegmentView(selection: $periodSelection)
+                    .onChange(
+                        of: periodSelection,
+                        perform: segmentedSelectionDidChange
+                    )
                 titleTextField
                 periodView
+                ResultBookView(count: count, title: titleText)
+                    .padding()
+                countLabel
                 Spacer()
                 publishButton
             }
@@ -46,24 +58,47 @@ struct PublishView: View {
         .padding(.top, 90)
     }
     
+    func segmentedSelectionDidChange(newValue: PeriodSelection) {
+        switch newValue {
+        case .custom:
+            startDate = Date()
+            endDate = Date()
+        case .oneMonth:
+            print("oneMonth")
+        case .whole:
+            startDate = Date() - 130
+            endDate = Date() - 10
+        }
+    }
+    
     var titleTextField: some View {
         CardView(shadowColor: .black.opacity(0.1)) {
-            TextField("제목", text: $text)
+            TextField("제목", text: $titleText)
                 .background(.white)
                 .cornerRadius(cornerRadius)
         }
         .padding()
     }
     
+    @ViewBuilder
     var periodView: some View {
-        CardView(shadowColor: .black.opacity(0.1)) {
+        switch periodSelection {
+        case .custom, .whole:
             PeriodView(
                 cornerRadius: cornerRadius,
-            startDate: $startDate,
-            endDate: $endDate
-            )
+                periodSelection: periodSelection,
+                startDate: $startDate,
+                endDate: $endDate
+            ).publishCardify()
+        case .oneMonth:
+            MonthPickerView(selectedMonth: $selectedMonth).publishCardify()
         }
-        .padding()
+    }
+    
+    var countLabel: some View {
+        Text("\(count)개의 질문")
+            .font(.callout)
+            .foregroundColor(.gray)
     }
     
     var publishButton: some View {

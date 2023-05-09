@@ -33,6 +33,10 @@
 		B22A97EC2A09117700ECD178 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97EB2A09117700ECD178 /* ColorExtension.swift */; };
 		B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97ED2A0912AD00ECD178 /* PeriodView.swift */; };
 		C9DD7BEB2A0A3F3F007C1973 /* QnAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */; };
+		B256C8C92A0A5D9800B0C62E /* UIScreenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */; };
+		B256C8CB2A0A621D00B0C62E /* MonthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8CA2A0A621D00B0C62E /* MonthPickerView.swift */; };
+		B256C8CD2A0A64D500B0C62E /* PublishCardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8CC2A0A64D500B0C62E /* PublishCardify.swift */; };
+		B256C8CF2A0A6A2D00B0C62E /* ResultBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +69,10 @@
 		B22A97EB2A09117700ECD178 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		B22A97ED2A0912AD00ECD178 /* PeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
 		C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAView.swift; sourceTree = "<group>"; };
+		B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtension.swift; sourceTree = "<group>"; };
+		B256C8CA2A0A621D00B0C62E /* MonthPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthPickerView.swift; sourceTree = "<group>"; };
+		B256C8CC2A0A64D500B0C62E /* PublishCardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishCardify.swift; sourceTree = "<group>"; };
+		B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBookView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +101,7 @@
 				B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */,
 				791C24592A0933DE0009E4EA /* DateExtension.swift */,
 				791C245D2A09530F0009E4EA /* ViewExtension.swift */,
+				B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -123,6 +132,9 @@
 				794DB9EE2A07E3A500635B58 /* PublishView.swift */,
 				B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */,
 				B22A97ED2A0912AD00ECD178 /* PeriodView.swift */,
+				B256C8CA2A0A621D00B0C62E /* MonthPickerView.swift */,
+				B256C8CC2A0A64D500B0C62E /* PublishCardify.swift */,
+				B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */,
 			);
 			path = tabPublish;
 			sourceTree = "<group>";
@@ -278,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B256C8CF2A0A6A2D00B0C62E /* ResultBookView.swift in Sources */,
 				794EB6AE2A03FF8900DA52B5 /* Question+CoreDataProperties.swift in Sources */,
 				791C245A2A0933DE0009E4EA /* DateExtension.swift in Sources */,
 				794EB6AA2A03F92600DA52B5 /* Hyoza.xcdatamodeld in Sources */,
@@ -287,17 +300,20 @@
 				794EB6B12A03FFCB00DA52B5 /* Persistence.swift in Sources */,
 				9809A3082A09898D00AB8995 /* ClosedQuestionsView.swift in Sources */,
 				79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */,
+				B256C8CD2A0A64D500B0C62E /* PublishCardify.swift in Sources */,
 				791C24572A08EA520009E4EA /* NotificationManager.swift in Sources */,
 				9809A30A2A098C3600AB8995 /* ClosedQuestionCardView.swift in Sources */,
 				B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */,
 				B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */,
 				B22A97EC2A09117700ECD178 /* ColorExtension.swift in Sources */,
+				B256C8C92A0A5D9800B0C62E /* UIScreenExtension.swift in Sources */,
 				794DB9F22A07EE6000635B58 /* CardView.swift in Sources */,
 				791029D92A039C58009A5590 /* MainTabView.swift in Sources */,
 				794DB9EF2A07E3A500635B58 /* PublishView.swift in Sources */,
 				794DB9EB2A07E38600635B58 /* TodayView.swift in Sources */,
 				791C24602A0A10BB0009E4EA /* CapsuleView.swift in Sources */,
 				794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */,
+				B256C8CB2A0A621D00B0C62E /* MonthPickerView.swift in Sources */,
 				9809A3042A097AD100AB8995 /* ColorWithHex.swift in Sources */,
 				794DB9ED2A07E38E00635B58 /* ListView.swift in Sources */,
 				9809A3062A0988A600AB8995 /* QuestionBoxView.swift in Sources */,
