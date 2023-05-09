@@ -3,4 +3,54 @@
    uuid = "820CB682-AA78-4E2B-8E47-93E063142BA6"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B22C740D-2500-48F3-902D-3878DF728668"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hyoza/tabList/ListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "CellContents"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "B22C740D-2500-48F3-902D-3878DF728668 - b2db45fc48b796de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hyoza.CellContents.init(item: Hyoza.Question) -&gt; Hyoza.CellContents"
+                  moduleName = "Hyoza"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/semini/WorkPlace/ADA/2023-MC2-A-TEAM11-HYOZA/Hyoza/tabList/ListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "B22C740D-2500-48F3-902D-3878DF728668 - df6825cc5683d864"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of Hyoza.CellContents.appear : Swift.Bool"
+                  moduleName = "Hyoza"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/semini/WorkPlace/ADA/2023-MC2-A-TEAM11-HYOZA/Hyoza/tabList/ListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
