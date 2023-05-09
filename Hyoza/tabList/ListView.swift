@@ -11,7 +11,7 @@ import CoreData
 struct ListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Question.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Question.timestamp, ascending:false)],
         animation: .default)
     
     private var items : FetchedResults<Question>
@@ -22,9 +22,9 @@ struct ListView: View {
             LazyVStack {
                     header
                 //MARK: 삭제예정 : 코어데이터 생성을 위해 임의 배치
-//                Button(action : addItem){
-//                    Label("Add Item", systemImage: "plus")
-//                }
+                Button(action : addItem){
+                    Label("Add Item", systemImage: "plus")
+                }
                 //MARK: 삭제예정 :코어데이터 생성을 위해 임의 배치
                 ForEach(items) { item in
                     RoundedRectangle(cornerRadius : 15)
@@ -109,10 +109,16 @@ private struct CellContents : View {
 }
   
 private let itemFormatter: DateFormatter = {
+//    let formatter = DateFormatter()
+//    formatter.dateFormat = "yyyy년 MM월 dd일"
+//    formatter.locale = Locale(identifier: "ko_KR")
+//    return formatter
+    //MARK: 삭제예정 : 다른점을 보기 위한 타임스탬프
     let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy년 MM월 dd일"
-    formatter.locale = Locale(identifier: "ko_KR")
+    formatter.dateStyle = .short
+    formatter.timeStyle = .medium
     return formatter
+    //MARK: 삭제예정 : 다른점을 보기 위한 타임스탬프
 }()
     
     
