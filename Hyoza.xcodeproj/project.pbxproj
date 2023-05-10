@@ -28,8 +28,7 @@
 		79D7C5E12A00ED3700AC8B6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D7C5E02A00ED3700AC8B6F /* Preview Assets.xcassets */; };
 		9809A3042A097AD100AB8995 /* ColorWithHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3032A097AD100AB8995 /* ColorWithHex.swift */; };
 		9809A3062A0988A600AB8995 /* QuestionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3052A0988A600AB8995 /* QuestionBoxView.swift */; };
-		9809A3082A09898D00AB8995 /* ClosedQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3072A09898D00AB8995 /* ClosedQuestionsView.swift */; };
-		9809A30A2A098C3600AB8995 /* ClosedQuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3092A098C3600AB8995 /* ClosedQuestionCardView.swift */; };
+		98EE907D2A0A750A0042E7B0 /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EE907C2A0A750A0042E7B0 /* QuestionCardView.swift */; };
 		B22A97E52A08ED2900ECD178 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E32A08EC3C00ECD178 /* CustomColor.swift */; };
 		B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */; };
 		B22A97EA2A0910C000ECD178 /* PeriodSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */; };
@@ -67,8 +66,7 @@
 		79D7C5EC2A00ED5A00AC8B6F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9809A3032A097AD100AB8995 /* ColorWithHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorWithHex.swift; sourceTree = "<group>"; };
 		9809A3052A0988A600AB8995 /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
-		9809A3072A09898D00AB8995 /* ClosedQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedQuestionsView.swift; sourceTree = "<group>"; };
-		9809A3092A098C3600AB8995 /* ClosedQuestionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedQuestionCardView.swift; sourceTree = "<group>"; };
+		98EE907C2A0A750A0042E7B0 /* QuestionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCardView.swift; sourceTree = "<group>"; };
 		B22A97E32A08EC3C00ECD178 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodSegmentView.swift; sourceTree = "<group>"; };
@@ -104,8 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				B22A97EB2A09117700ECD178 /* ColorExtension.swift */,
-				B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */,
 				791C24592A0933DE0009E4EA /* DateExtension.swift */,
+				B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */,
 				791C245D2A09530F0009E4EA /* ViewExtension.swift */,
 				B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */,
 			);
@@ -118,8 +116,7 @@
 				794DB9EA2A07E38600635B58 /* TodayView.swift */,
 				9809A3032A097AD100AB8995 /* ColorWithHex.swift */,
 				9809A3052A0988A600AB8995 /* QuestionBoxView.swift */,
-				9809A3072A09898D00AB8995 /* ClosedQuestionsView.swift */,
-				9809A3092A098C3600AB8995 /* ClosedQuestionCardView.swift */,
+				98EE907C2A0A750A0042E7B0 /* QuestionCardView.swift */,
 			);
 			path = tabToday;
 			sourceTree = "<group>";
@@ -324,11 +321,9 @@
 				B22A97EA2A0910C000ECD178 /* PeriodSegmentView.swift in Sources */,
 				B22A97E52A08ED2900ECD178 /* CustomColor.swift in Sources */,
 				794EB6B12A03FFCB00DA52B5 /* Persistence.swift in Sources */,
-				9809A3082A09898D00AB8995 /* ClosedQuestionsView.swift in Sources */,
 				79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */,
 				B256C8CD2A0A64D500B0C62E /* PublishCardify.swift in Sources */,
 				791C24572A08EA520009E4EA /* NotificationManager.swift in Sources */,
-				9809A30A2A098C3600AB8995 /* ClosedQuestionCardView.swift in Sources */,
 				799E8FA22A0A9508003F78F2 /* QuerySentenceManager.swift in Sources */,
 				B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */,
 				B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */,
@@ -340,6 +335,7 @@
 				794DB9EB2A07E38600635B58 /* TodayView.swift in Sources */,
 				791C24602A0A10BB0009E4EA /* CapsuleView.swift in Sources */,
 				794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */,
+				98EE907D2A0A750A0042E7B0 /* QuestionCardView.swift in Sources */,
 				B256C8CB2A0A621D00B0C62E /* MonthPickerView.swift in Sources */,
 				9809A3042A097AD100AB8995 /* ColorWithHex.swift in Sources */,
 				794DB9ED2A07E38E00635B58 /* ListView.swift in Sources */,
