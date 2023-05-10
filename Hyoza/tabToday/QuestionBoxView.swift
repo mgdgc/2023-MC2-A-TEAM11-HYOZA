@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QuestionBoxView: View {
     @Binding var zIndexQuestionBox: Double
-    @Binding var zIndexClosedQuestions: Double
+    @Binding var zIndexQuestionCard: Double
     
     var body: some View {
         ZStack{
@@ -20,7 +20,7 @@ struct QuestionBoxView: View {
                 Button(action: {
                     withAnimation(.easeInOut(duration: 2)){
                         zIndexQuestionBox = 0
-                        zIndexClosedQuestions = 1
+                        zIndexQuestionCard = 1
                     }
                 })
                 {
@@ -37,6 +37,6 @@ struct QuestionBoxView: View {
 
 struct QuestionBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionBoxView(zIndexQuestionBox: .constant(1), zIndexClosedQuestions: .constant(0))
+        QuestionBoxView(zIndexQuestionBox: .constant(1), zIndexQuestionCard: .constant(0))
     }
 }
