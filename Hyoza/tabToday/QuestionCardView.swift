@@ -13,6 +13,8 @@ struct QuestionCardView: View {
     @Binding var question1Difficulty: String
     @Binding var question2Difficulty: String
     @Binding var question3Difficulty: String
+    @Binding var easyQuestions: [QuerySentence]
+    @Binding var hardQuestions: [QuerySentence]
     
     var body: some View {
         ZStack {
@@ -25,7 +27,7 @@ struct QuestionCardView: View {
                         closedDegree = 0
                     }
                 }
-            ClosedCardListView(degree: $closedDegree, question1Difficulty: $question1Difficulty, question2Difficulty: $question2Difficulty, question3Difficulty: $question3Difficulty)
+            ClosedCardListView(degree: $closedDegree, question1Difficulty: $question1Difficulty, question2Difficulty: $question2Difficulty, question3Difficulty: $question3Difficulty, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions)
                 .onTapGesture {
                     withAnimation(.linear(duration: 0.3)) {
                         closedDegree = 90
@@ -63,6 +65,17 @@ struct ClosedCardView: View {
             Spacer()
         }
     }
+    
+    init(difficulty: QuestionDifficulty, questionNumber: Int) {
+        if difficulty == .easy {
+            self.difficulty = "쉬움"
+        } else {
+            self.difficulty = "어려움"
+        }
+        self.questionNumber = questionNumber
+    }
+    
+    
 }
 
 struct ClosedCardListView: View {
@@ -70,6 +83,12 @@ struct ClosedCardListView: View {
     @Binding var question1Difficulty: String
     @Binding var question2Difficulty: String
     @Binding var question3Difficulty: String
+    @Binding var easyQuestions: [QuerySentence]
+    @Binding var hardQuestions: [QuerySentence]
+    
+//    var easyQuestion1 = QuerySentenceManager.shared.filtered(difficulty: .easy)[0]
+//    var easyQuestion2 = QuerySentenceManager.shared.filtered(difficulty: .easy)[0]
+//    var hardQuestion = QuerySentenceManager.shared.filtered(difficulty: .hard)[0]
     
     var body: some View {
         ZStack{
@@ -78,13 +97,13 @@ struct ClosedCardListView: View {
                 Text("오늘의 질문을 고르세요")
                     .font(.title)
                 CardView(backgroundColor: .cardLightOrange, cornerRadius: 15, shadowColor: .black.opacity(0.1), shadowRadius: 8){
-                    ClosedCardView(difficulty: question1Difficulty, questionNumber: 1)
+                    ClosedCardView(difficulty: easyQuestions[0].difficulty, questionNumber: 1)
                 }
                 CardView(backgroundColor: .cardLightOrange, cornerRadius: 15, shadowColor: .black.opacity(0.1), shadowRadius: 8){
-                    ClosedCardView(difficulty: question2Difficulty, questionNumber: 2)
+                    ClosedCardView(difficulty: hardQuestions[0].difficulty, questionNumber: 2)
                 }
                 CardView(backgroundColor: .cardLightOrange, cornerRadius: 15, shadowColor: .black.opacity(0.1), shadowRadius: 8){
-                    ClosedCardView(difficulty: question3Difficulty, questionNumber: 3)
+                    ClosedCardView(difficulty: easyQuestions[0].difficulty, questionNumber: 3)
                 }
             }
             .padding(20)
@@ -141,6 +160,6 @@ struct OpenCardView: View {
 
 struct QuestionCardView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionCardView(openDegree: .constant(-90), closedDegree: .constant(0), question1Difficulty: .constant("쉬움"), question2Difficulty: .constant("어려움"), question3Difficulty: .constant("쉬움"))
+        QuestionCardView(openDegree: .constant(-90), closedDegree: .constant(0), question1Difficulty: .constant("쉬움"), question2Difficulty: .constant("어려움"), question3Difficulty: .constant("쉬움"), easyQuestions: .constant([QuerySentence(id: 1, question: "최근에 재미있게 본 유튜브 채널에 대해 말해주세요~", difficulty: .easy), QuerySentence(id: 2, question: "강아지가 좋나요, 고양이가 좋나요?", difficulty: .easy)]), hardQuestions: .constant([QuerySentence(id: 3, question: "인생에서 가장 중요시하는 가치가 무엇이신가요?", difficulty: .hard), QuerySentence(id: 4, question: "부모님에게 '부모님'이란 어떤 존재였나요?", difficulty: .hard)]))
     }
 }
