@@ -33,6 +33,7 @@
 		B22A97EC2A09117700ECD178 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97EB2A09117700ECD178 /* ColorExtension.swift */; };
 		B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97ED2A0912AD00ECD178 /* PeriodView.swift */; };
 		C9DD7BEB2A0A3F3F007C1973 /* QnAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */; };
+		C9DD7C272A0B790C007C1973 /* ActivityViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		B22A97EB2A09117700ECD178 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		B22A97ED2A0912AD00ECD178 /* PeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
 		C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAView.swift; sourceTree = "<group>"; };
+		C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewControllerWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			children = (
 				794DB9F12A07EE6000635B58 /* CardView.swift */,
 				791C245F2A0A10BB0009E4EA /* CapsuleView.swift */,
+				C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				791C24602A0A10BB0009E4EA /* CapsuleView.swift in Sources */,
 				794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */,
 				9809A3042A097AD100AB8995 /* ColorWithHex.swift in Sources */,
+				C9DD7C272A0B790C007C1973 /* ActivityViewControllerWrapper.swift in Sources */,
 				794DB9ED2A07E38E00635B58 /* ListView.swift in Sources */,
 				9809A3062A0988A600AB8995 /* QuestionBoxView.swift in Sources */,
 				791C245E2A09530F0009E4EA /* ViewExtension.swift in Sources */,
@@ -430,7 +434,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hyoza/Preview Content\"";
-				DEVELOPMENT_TEAM = BDU85ET24K;
+				DEVELOPMENT_TEAM = RXYS3YJ24P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "아무거나";
@@ -461,7 +465,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hyoza/Preview Content\"";
-				DEVELOPMENT_TEAM = BDU85ET24K;
+				DEVELOPMENT_TEAM = RXYS3YJ24P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "아무거나";
