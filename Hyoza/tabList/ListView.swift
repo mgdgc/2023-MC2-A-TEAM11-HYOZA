@@ -31,40 +31,43 @@ struct ListView: View {
     var body: some View {
         let viewWidth = UIScreen.main.bounds.size.width - 40
         NavigationView {
-            ScrollView{
-                ZStack{
-                    Color.backgroundColor
-                LazyVStack {
-                    //MARK: 삭제예정 : 코어데이터 생성을 위해 임의 배치
-                    Button(action : addItem1){
-                        Label("Add Item1", systemImage: "plus")
-                    }
-                    Button(action : addItem2){
-                        Label("Add Item2", systemImage: "plus")
-                    }
-                    Button(action : addItem3){
-                        Label("Add Item3", systemImage: "plus")
-                    }
-                    //MARK: 삭제예정 :코어데이터 생성을 위해 임의 배치
-                    ForEach(items) { item in
-                        RoundedRectangle(cornerRadius : 15)
-                            .frame(width: viewWidth, height: 160)
-                            .foregroundColor(.white)
-                            .shadow( color : .gray, radius: 5, y :5)
-                            .opacity(0.3)
-                            .overlay(CellContents(item : item))
-                            .padding(.bottom, 20)
+            ZStack{
+                Color.backgroundColor.ignoresSafeArea(edges: .top)
+                ScrollView{
+                    LazyVStack {
+                        //MARK: 삭제예정 : 코어데이터 생성을 위해 임의 배치
+                        Button(action : addItem1){
+                            Label("Add Item1", systemImage: "plus")
+                        }
+                        Button(action : addItem2){
+                            Label("Add Item2", systemImage: "plus")
+                        }
+                        Button(action : addItem3){
+                            Label("Add Item3", systemImage: "plus")
+                        }
+                        //MARK: 삭제예정 :코어데이터 생성을 위해 임의 배치
+                        //아이템을 만들어주기 위한 RoundedRectangle
+                        ForEach(items) { item in
+                            RoundedRectangle(cornerRadius : 15)
+                                .frame(width: viewWidth, height: 160)
+                                .foregroundColor(.white)
+                                .shadow( color : .gray, radius: 5, y :5)
+                                .opacity(0.3)
+                                .overlay(CellContents(item : item))
+                                .padding(.bottom, 20)
+                        }
                     }
                 }
-            }.ignoresSafeArea(edges: .top)
             }
             .navigationTitle("질문 리스트")
             .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleTextColor(.textColor)
         }
         .searchable(text: query,
-                    placement: .navigationBarDrawer,
+                    placement: .navigationBarDrawer(displayMode: .automatic),
                     prompt: "검색")
     }
+    
     // MARK: 삭제예정 :데이터가 들어오면 삭제될 부분
     private func addItem1() {
         withAnimation {
@@ -126,9 +129,12 @@ struct ListView: View {
         }
     }
     //MARK: 삭제예정 :데이터가 들어오면 삭제될 부분
+
 }
 
 
+
+//RoundedRectangle에 overlay 되는 텍스트
 private struct CellContents : View {
     var item : Question
     let viewWidth = UIScreen.main.bounds.size.width - 60
@@ -137,6 +143,7 @@ private struct CellContents : View {
         VStack(alignment : .leading) {
             Text(item.timestamp!, formatter : itemFormatter)
                 .font(.caption)
+                .foregroundColor(.textColor)
                 .frame(width: viewWidth , alignment: .leading)
                 .lineLimit(1)
                 .padding(.top, 15)
@@ -144,6 +151,7 @@ private struct CellContents : View {
             Text(item.question!)
                 .fontWeight(.bold)
                 .font(.headline)
+                .foregroundColor(.textColor)
                 .frame(width: viewWidth, alignment: .leading)
                 .lineLimit(2)
                 .padding(.top, 5)
@@ -151,6 +159,7 @@ private struct CellContents : View {
             Text(item.answer!)
                 .fontWeight(.regular)
                 .font(.subheadline)
+                .foregroundColor(.textColor)
                 .frame(width: viewWidth, alignment: .leading)
                 .lineLimit(2)
                 .padding(.top, 5)
