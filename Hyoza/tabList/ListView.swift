@@ -48,13 +48,16 @@ struct ListView: View {
                         //MARK: 삭제예정 :코어데이터 생성을 위해 임의 배치
                         //아이템을 만들어주기 위한 RoundedRectangle
                         ForEach(items) { item in
-                            RoundedRectangle(cornerRadius : 15)
-                                .frame(width: viewWidth, height: 160)
-                                .foregroundColor(.white)
-                                .shadow( color : .gray, radius: 5, y :5)
-                                .opacity(0.3)
-                                .overlay(CellContents(item : item))
-                                .padding(.bottom, 20)
+                            NavigationLink(destination : QnAView(textValue: item.question!, comment: item.comment!)){
+                                RoundedRectangle(cornerRadius : 15)
+                                    .frame(width: viewWidth, height: 160)
+                                    .foregroundColor(.white)
+                                    .shadow( color : .gray, radius: 5, y :5)
+                                    .opacity(0.3)
+                                    .overlay(CellContents(item : item))
+                                    .padding(.bottom, 20)
+                            }
+                            
                         }
                     }
                 }
@@ -129,7 +132,7 @@ struct ListView: View {
         }
     }
     //MARK: 삭제예정 :데이터가 들어오면 삭제될 부분
-
+    
 }
 
 
