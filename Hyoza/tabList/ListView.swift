@@ -24,7 +24,7 @@ struct ListView: View {
             searchText = newValue
             items.nsPredicate = newValue.isEmpty
             ? nil
-            : NSPredicate(format : "question CONTAINS %@", newValue)
+            : NSPredicate(format : "answer CONTAINS[cd] %@ OR question CONTAINS[cd] %@ ", newValue, newValue)
         }
     }
     
@@ -32,6 +32,8 @@ struct ListView: View {
         let viewWidth = UIScreen.main.bounds.size.width - 40
         NavigationView {
             ScrollView{
+                ZStack{
+                    Color.backgroundColor
                 LazyVStack {
                     //MARK: 삭제예정 : 코어데이터 생성을 위해 임의 배치
                     Button(action : addItem1){
@@ -54,6 +56,7 @@ struct ListView: View {
                             .padding(.bottom, 20)
                     }
                 }
+            }.ignoresSafeArea(edges: .top)
             }
             .navigationTitle("질문 리스트")
             .navigationBarTitleDisplayMode(.large)
