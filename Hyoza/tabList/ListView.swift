@@ -50,7 +50,9 @@ struct ListView: View {
                         ForEach(items) { item in
                             NavigationLink(destination : QnAView(textValue: item.question!, comment: item.comment!)){
                                 RoundedRectangle(cornerRadius : 15)
+                                //viewWidth하는
                                     .frame(width: viewWidth, height: 160)
+                                
                                     .foregroundColor(.white)
                                     .shadow( color : .gray, radius: 5, y :5)
                                     .opacity(0.3)
@@ -157,6 +159,7 @@ private struct CellContents : View {
                 .foregroundColor(.textColor)
                 .frame(width: viewWidth, alignment: .leading)
                 .lineLimit(2)
+                .multilineTextAlignment(.leading)
                 .padding(.top, 5)
             
             Text(item.answer!)
@@ -165,6 +168,7 @@ private struct CellContents : View {
                 .foregroundColor(.textColor)
                 .frame(width: viewWidth, alignment: .leading)
                 .lineLimit(2)
+                .multilineTextAlignment(.leading)
                 .padding(.top, 5)
             Spacer()
             
