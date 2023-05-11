@@ -18,7 +18,9 @@ struct TodayView: View {
     
     @State var easyQuestions: [QuerySentence] = QuerySentenceManager.shared.filtered(difficulty: .easy)
     @State var hardQuestions: [QuerySentence] = QuerySentenceManager.shared.filtered(difficulty: .hard)
-    @State var isContinueIconShrunk: Bool = false
+    @State var isContinueIconSmall: Bool = false
+    @State var continueText: String? = "연속 작성 12일 돌파!"
+    @State var continueTextOpacity: Double = 1.0
     
     var body: some View {
         ZStack {
@@ -33,8 +35,7 @@ struct TodayView: View {
                         .bold()
                         .foregroundColor(.textBlack)
                     Spacer()
-                    Image(systemName: "flame.fill")
-                    Text("+12")
+                    ContinueIconView(text: $continueText, textOpacity: $continueTextOpacity)
                 }
                 Spacer()
                 ZStack {
@@ -59,19 +60,31 @@ struct TodayView: View {
         }
         .onAppear() {
             Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-                
+                continueTextOpacity = 0
+                withAnimation(.easeInOut(duration: 0.7)) {
+                    continueText = nil
+                }
             }
         }
     }
 }
 
 struct ContinueIconView: View {
+    @Binding var text: String?
+    @Binding var textOpacity: Double
+    
     var body: some View {
-        HStack {
-            Image(systemName: "flame.fill")
-            Text("+12")
+        CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
+            HStack {
+                Image(systemName: "flame.fill")
+                if let text {
+                    Text(text)
+                        .font(.caption)
+                        .bold()
+                        .opacity(textOpacity)
+                }
+            }
         }
-        
     }
 }
 
