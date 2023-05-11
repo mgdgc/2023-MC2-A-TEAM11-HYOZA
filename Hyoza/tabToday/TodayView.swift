@@ -39,10 +39,7 @@ struct TodayView: View {
                     ContinueIconView(text: $continueText, textOpacity: $continueTextOpacity)
                         .onTapGesture {
                             if !isContinueIconAnimating {
-                                makeContinueIconLarge()
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                    makeContinueIconSmall()
-                                }
+                                makeCoutinueIconLargeAndSmall()
                             }
                         }
                 }
@@ -68,8 +65,11 @@ struct TodayView: View {
             
         }
         .onAppear() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                makeContinueIconSmall()
+            if !isContinueIconAnimating {
+                self.isContinueIconAnimating = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    makeContinueIconSmall()
+                }
             }
         }
     }
@@ -86,13 +86,19 @@ struct TodayView: View {
     }
     
     func makeContinueIconLarge() {
-        self.isContinueIconAnimating = true
         withAnimation(.easeInOut(duration: 0.7)) {
             self.continueText = "연속 작성 12일째 돌파!"
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.continueTextOpacity = 1
-            self.isContinueIconAnimating = false
+        }
+    }
+    
+    func makeCoutinueIconLargeAndSmall() {
+        self.isContinueIconAnimating = true
+        makeContinueIconLarge()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            makeContinueIconSmall()
         }
     }
 }
