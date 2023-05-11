@@ -40,6 +40,7 @@
 		B256C8CD2A0A64D500B0C62E /* PublishCardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8CC2A0A64D500B0C62E /* PublishCardify.swift */; };
 		B256C8CF2A0A6A2D00B0C62E /* ResultBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */; };
 		C9DD7BEB2A0A3F3F007C1973 /* QnAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */; };
+		C9DD7C272A0B790C007C1973 /* ActivityViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		B256C8CC2A0A64D500B0C62E /* PublishCardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishCardify.swift; sourceTree = "<group>"; };
 		B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBookView.swift; sourceTree = "<group>"; };
 		C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAView.swift; sourceTree = "<group>"; };
+		C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewControllerWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				B22A97EB2A09117700ECD178 /* ColorExtension.swift */,
-				B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */,
 				791C24592A0933DE0009E4EA /* DateExtension.swift */,
+				B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */,
 				791C245D2A09530F0009E4EA /* ViewExtension.swift */,
 				B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */,
 			);
@@ -149,7 +151,8 @@
 			children = (
 				794DB9F12A07EE6000635B58 /* CardView.swift */,
 				791C245F2A0A10BB0009E4EA /* CapsuleView.swift */,
-				799E8FBE2A0CBDD7003F78F2 /* PDFGenerator.swift */,
+        799E8FBE2A0CBDD7003F78F2 /* PDFGenerator.swift */,
+        C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				98EE907D2A0A750A0042E7B0 /* QuestionCardView.swift in Sources */,
 				B256C8CB2A0A621D00B0C62E /* MonthPickerView.swift in Sources */,
 				9809A3042A097AD100AB8995 /* ColorWithHex.swift in Sources */,
+				C9DD7C272A0B790C007C1973 /* ActivityViewControllerWrapper.swift in Sources */,
 				794DB9ED2A07E38E00635B58 /* ListView.swift in Sources */,
 				799E8FBF2A0CBDD7003F78F2 /* PDFGenerator.swift in Sources */,
 				9809A3062A0988A600AB8995 /* QuestionBoxView.swift in Sources */,
@@ -474,7 +478,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hyoza/Preview Content\"";
-				DEVELOPMENT_TEAM = BDU85ET24K;
+				DEVELOPMENT_TEAM = RXYS3YJ24P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "아무거나";
@@ -505,7 +509,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hyoza/Preview Content\"";
-				DEVELOPMENT_TEAM = BDU85ET24K;
+				DEVELOPMENT_TEAM = RXYS3YJ24P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "아무거나";
