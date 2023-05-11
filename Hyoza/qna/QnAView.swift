@@ -70,10 +70,10 @@ struct QnAView: View {
                 showingAlert = true
                 
 //                if let data = data {
-//                    
+//
 //                    // 값 변경 혹은 저장 혹은 수정
 //                    data.answer = textValue
-//                    
+//
 //                    do {
 //                        try managedObjectContext.save()
 //                    } catch {
@@ -234,23 +234,19 @@ struct QnAView: View {
             
             if isComment {
                 HStack {
-                    Spacer()
                     Text(comment)
                         .padding(.all)
                         .background(
                             RoundedRectangle(cornerRadius: 20)
                                 .foregroundColor(.white)
                                 .shadow(radius: 1)
-                            
+
                         )
+                    Spacer()
                 }
                 .padding(.horizontal, 15)
                 .padding(.bottom, 30)
                 .opacity(isEditing ? 0.5 : 1)
-                
-                
-            } else {
-                
             }
             
         }
