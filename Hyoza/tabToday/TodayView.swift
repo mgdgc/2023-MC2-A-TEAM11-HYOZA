@@ -21,6 +21,7 @@ struct TodayView: View {
     @State var isContinueIconSmall: Bool = false
     @State var continueText: String? = "연속 작성 12일 돌파!"
     @State var continueTextOpacity: Double = 1.0
+    @State var isContinueIconAnimating: Bool = false
     
     var body: some View {
         ZStack {
@@ -36,6 +37,14 @@ struct TodayView: View {
                         .foregroundColor(.textBlack)
                     Spacer()
                     ContinueIconView(text: $continueText, textOpacity: $continueTextOpacity)
+                        .onTapGesture {
+                            if !isContinueIconAnimating {
+                                makeContinueIconLarge()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    makeContinueIconSmall()
+                                }
+                            }
+                        }
                 }
                 Spacer()
                 ZStack {
@@ -59,12 +68,31 @@ struct TodayView: View {
             
         }
         .onAppear() {
-            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-                continueTextOpacity = 0
-                withAnimation(.easeInOut(duration: 0.7)) {
-                    continueText = nil
-                }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                makeContinueIconSmall()
             }
+        }
+    }
+    
+    func makeContinueIconSmall() {
+        self.isContinueIconAnimating = true
+        self.continueTextOpacity = 0
+        withAnimation(.easeInOut(duration: 0.7)) {
+            self.continueText = nil
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7){
+            self.isContinueIconAnimating = false
+        }
+    }
+    
+    func makeContinueIconLarge() {
+        self.isContinueIconAnimating = true
+        withAnimation(.easeInOut(duration: 0.7)) {
+            self.continueText = "연속 작성 12일째 돌파!"
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            self.continueTextOpacity = 1
+            self.isContinueIconAnimating = false
         }
     }
 }
@@ -85,6 +113,7 @@ struct ContinueIconView: View {
                 }
             }
         }
+        
     }
 }
 
