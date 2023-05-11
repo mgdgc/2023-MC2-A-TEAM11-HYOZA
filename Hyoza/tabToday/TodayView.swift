@@ -69,19 +69,18 @@ struct TodayView: View {
                 self.isContinueIconAnimating = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     makeContinueIconSmall()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                        self.isContinueIconAnimating = false
+                    }
                 }
             }
         }
     }
     
     func makeContinueIconSmall() {
-        self.isContinueIconAnimating = true
         self.continueTextOpacity = 0
         withAnimation(.easeInOut(duration: 0.7)) {
             self.continueText = nil
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7){
-            self.isContinueIconAnimating = false
         }
     }
     
@@ -99,6 +98,9 @@ struct TodayView: View {
         makeContinueIconLarge()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             makeContinueIconSmall()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                self.isContinueIconAnimating = false
+            }
         }
     }
 }
