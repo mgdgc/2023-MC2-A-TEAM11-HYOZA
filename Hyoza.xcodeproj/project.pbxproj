@@ -23,6 +23,7 @@
 		799E8F9D2A0A94D7003F78F2 /* question_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = 799E8F9C2A0A94D7003F78F2 /* question_samples.json */; };
 		799E8FA02A0A94FA003F78F2 /* QuerySentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8F9F2A0A94FA003F78F2 /* QuerySentence.swift */; };
 		799E8FA22A0A9508003F78F2 /* QuerySentenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8FA12A0A9508003F78F2 /* QuerySentenceManager.swift */; };
+		799E8FBF2A0CBDD7003F78F2 /* PDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8FBE2A0CBDD7003F78F2 /* PDFGenerator.swift */; };
 		79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */; };
 		79D7C5DE2A00ED3700AC8B6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */; };
 		79D7C5E12A00ED3700AC8B6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D7C5E02A00ED3700AC8B6F /* Preview Assets.xcassets */; };
@@ -60,6 +61,7 @@
 		799E8F9C2A0A94D7003F78F2 /* question_samples.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = question_samples.json; sourceTree = "<group>"; };
 		799E8F9F2A0A94FA003F78F2 /* QuerySentence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuerySentence.swift; sourceTree = "<group>"; };
 		799E8FA12A0A9508003F78F2 /* QuerySentenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuerySentenceManager.swift; sourceTree = "<group>"; };
+		799E8FBE2A0CBDD7003F78F2 /* PDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGenerator.swift; sourceTree = "<group>"; };
 		79D7C5D62A00ED3500AC8B6F /* Hyoza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hyoza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyozaApp.swift; sourceTree = "<group>"; };
 		79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -149,7 +151,8 @@
 			children = (
 				794DB9F12A07EE6000635B58 /* CardView.swift */,
 				791C245F2A0A10BB0009E4EA /* CapsuleView.swift */,
-				C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */,
+        799E8FBE2A0CBDD7003F78F2 /* PDFGenerator.swift */,
+        C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				9809A3042A097AD100AB8995 /* ColorWithHex.swift in Sources */,
 				C9DD7C272A0B790C007C1973 /* ActivityViewControllerWrapper.swift in Sources */,
 				794DB9ED2A07E38E00635B58 /* ListView.swift in Sources */,
+				799E8FBF2A0CBDD7003F78F2 /* PDFGenerator.swift in Sources */,
 				9809A3062A0988A600AB8995 /* QuestionBoxView.swift in Sources */,
 				791C245E2A09530F0009E4EA /* ViewExtension.swift in Sources */,
 				799E8FA02A0A94FA003F78F2 /* QuerySentence.swift in Sources */,
