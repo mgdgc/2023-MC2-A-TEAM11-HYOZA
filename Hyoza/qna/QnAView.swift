@@ -240,8 +240,9 @@ struct QnAView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .foregroundColor(.white)
                                 .shadow(radius: 1)
-
+                                
                         )
+                        .padding(.all, 16)
                     Spacer()
                 }
                 .padding(.horizontal, 15)
