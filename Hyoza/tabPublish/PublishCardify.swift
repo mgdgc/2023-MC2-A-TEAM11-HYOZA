@@ -9,8 +9,10 @@ import Foundation
 import SwiftUI
 
 struct PublishCardify: ViewModifier {
+    let opacity: CGFloat = 0.1
+    
     func body(content: Content) -> some View {
-        CardView(shadowColor: .black.opacity(0.1)) {
+        CardView(shadowColor: .black.opacity(opacity)) {
             content
         }
         .padding()
