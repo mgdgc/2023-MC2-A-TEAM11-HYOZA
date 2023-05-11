@@ -177,16 +177,10 @@ private struct CellContents : View {
 }
 
 private let itemFormatter: DateFormatter = {
-    //    let formatter = DateFormatter()
-    //    formatter.dateFormat = "yyyy년 MM월 dd일"
-    //    formatter.locale = Locale(identifier: "ko_KR")
-    //    return formatter
-    //MARK: 삭제예정 : 다른점을 보기 위한 타임스탬프
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-    //MARK: 삭제예정 : 다른점을 보기 위한 타임스탬프
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter
 }()
 
 
