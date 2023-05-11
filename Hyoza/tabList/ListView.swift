@@ -46,7 +46,7 @@ struct ListView: View {
                         //MARK: 삭제예정 :코어데이터 생성을 위해 임의 배치
                         //아이템을 만들어주기 위한 RoundedRectangle
                         ForEach(items) { item in
-                            NavigationLink(destination : QnAView(isEditing: false, data:item)){
+                            NavigationLink(destination : QnAView(data:item, isEditing: false)){
                                 RoundedRectangle(cornerRadius : 15)
                                 //viewWidth하는
                                     .frame(width: viewWidth, height: 160)
