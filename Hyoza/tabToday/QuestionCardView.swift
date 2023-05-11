@@ -62,8 +62,14 @@ struct ClosedCardListView: View {
         ZStack{
             Color.backGroundWhite
             VStack(spacing: 20) {
-                Text("오늘의 질문을 고르세요")
+                Text("오늘의 질문을 골라주세요")
                     .font(.title)
+                    .bold()
+                    .foregroundColor(.textBlack)
+                Text("질문은 하루에 하나만 열어볼 수 있어요!")
+                    .font(.subheadline)
+                    .bold()
+                    .foregroundColor(.textLightGray)
                 CardView(backgroundColor: .cardLightOrange, cornerRadius: 15, shadowColor: .black.opacity(0.1), shadowRadius: 8){
                     ClosedCardView(question: easyQuestions[0], questionNumber: 1)
                 }

@@ -18,6 +18,8 @@ struct QuestionBoxView: View {
             VStack {
                 Text("오늘의 질문 꾸러미")
                     .font(.title)
+                    .bold()
+                    .foregroundColor(.textBlack)
                 Button(action: {
                     easyQuestions = QuerySentenceManager.shared.filtered(difficulty: .easy)
                     hardQuestions = QuerySentenceManager.shared.filtered(difficulty: .hard)

@@ -18,6 +18,7 @@ struct TodayView: View {
     
     @State var easyQuestions: [QuerySentence] = QuerySentenceManager.shared.filtered(difficulty: .easy)
     @State var hardQuestions: [QuerySentence] = QuerySentenceManager.shared.filtered(difficulty: .hard)
+    @State var isContinueIconShrunk: Bool = false
     
     var body: some View {
         ZStack {
@@ -29,6 +30,8 @@ struct TodayView: View {
                 HStack {
                     Text("오늘의 질문")
                         .font(.largeTitle)
+                        .bold()
+                        .foregroundColor(.textBlack)
                     Spacer()
                     Image(systemName: "flame.fill")
                     Text("+12")
@@ -54,6 +57,21 @@ struct TodayView: View {
             .padding(20)
             
         }
+        .onAppear() {
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+                
+            }
+        }
+    }
+}
+
+struct ContinueIconView: View {
+    var body: some View {
+        HStack {
+            Image(systemName: "flame.fill")
+            Text("+12")
+        }
+        
     }
 }
 
