@@ -13,34 +13,30 @@ struct ResultBookView: View {
         static let wideWidth: CGFloat = 20
         static let narrowWidth: CGFloat = 5
         static let scale = 0.7
+        static let maxHeight: CGFloat = 200
+        static let defaultHeight: CGFloat = 50
     }
     
-    var count: Int = 30
-    var title: String = "제목 블라블라"
+    var count: Int
+    var title: String
     
     var body: some View {
-        ZStack {
+        HStack {
+            bookLine
+                .padding(.leading, K.wideWidth)
+            Spacer()
+            titleText
+            Spacer()
+            bookLine
+                .padding(.trailing, .zero)
+            bookLine
+                .padding(.trailing, K.wideWidth)
+        }
+        .background {
             Color.brown
                 .cornerRadius(K.cornerRadius)
-            
-            HStack {
-                spacer(width: K.wideWidth)
-                bookLine
-                Spacer()
-                titleText
-                Spacer()
-                bookLine
-                spacer(width: K.narrowWidth)
-                bookLine
-                spacer(width: K.wideWidth)
-            }
         }
         .frame(width: UIScreen.screenWidth * K.scale, height: height)
-    }
-    
-    func spacer(width: CGFloat) -> some View {
-        Spacer()
-            .frame(width: width)
     }
     
     var bookLine: some View {
@@ -57,18 +53,18 @@ struct ResultBookView: View {
     
     var height: CGFloat {
         switch count{
-        case ...0:
-            return 0
-        case ...50:
-            return 50 + CGFloat(count)
+        case ...Int.zero:
+            return .zero
+        case ...(Int(K.maxHeight) - Int(K.defaultHeight)):
+            return K.defaultHeight + CGFloat(count)
         default:
-            return 100
+            return K.maxHeight
         }
     }
 }
 
 struct ResultBookView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultBookView(count: 50)
+        ResultBookView(count: 50, title: "제목")
     }
 }
