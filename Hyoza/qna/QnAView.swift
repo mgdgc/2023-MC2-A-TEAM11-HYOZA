@@ -24,13 +24,12 @@ struct QnAView: View {
     @State private var showingAlert = false
     @State var isTextFieldEmpty : Bool = true
     
-//    @State var navigateToPreviousView = false
-//    //navigateToPreviousView가 True이면 이전 뷰로 되돌아 감.
     
     @State private var imageToShare: ImageWrapper? = nil
     
     @Environment(\.displayScale) var displayScale
     @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -39,7 +38,7 @@ struct QnAView: View {
             
             VStack(alignment: .leading, spacing: 15) {
                 
-                topView
+                
                 
                 
                 
@@ -54,8 +53,105 @@ struct QnAView: View {
             }
             
         }
+        .navigationTitle("오늘의 질문")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            showingAlert = true
+
+        }) {
+            
+            Image(systemName: "chevron.backward")
+                .foregroundColor(.orange)
+        }
+            .alert(isPresented: $showingAlert) {
+                let stayButton = Alert.Button.default(Text("머무르기").foregroundColor(.blue)) {
+                    // 머무르기 버튼 눌렀을 때 발생할 이벤트
+                }
+                let exitButton = Alert.Button.destructive(Text("나가기")) {
+                    // 나가기 버튼 눌렀을 때 발생할 이벤트
+                    dismiss()
+                }
+                return Alert(title: Text("이전 페이지로 이동 시,\n 작성 중인 내용은 삭제됩니다."), message: Text("그래도 나가시겠습니까?"), primaryButton: stayButton, secondaryButton: exitButton)
+                
+            }, trailing: HStack {
+                if isEditing {
+                    Button(action: {
+                        if !isTextFieldEmpty {
+                            isEditing = false
+                            commentTextField = ""
+                        } else {
+                            print("텍스트를 입력해주세요.")
+                        }
+                        
+                    }) {
+                        Text("완료")
+                            .foregroundColor(isTextFieldEmpty ? .gray : .orange)
+                        
+                    }
+                } else {
+                    HStack {
+                        Button(action: {
+                            Task {
+                                var answerBackup = textValue
+                                var commentBackup = comment
+                                
+                                for i in 0..<textValue.count {
+                                    if i % 20 == 0 {
+                                        textValue.insert("\n", at: textValue.index(textValue.startIndex, offsetBy: i))
+                                    }
+                                }
+                                
+                                for i in 0..<comment.count {
+                                    if i % 20 == 0 {
+                                        comment.insert("\n", at: comment.index(comment.startIndex, offsetBy: i))
+                                    }
+                                }
+                                
+                                guard let image = await contentView.render(scale: displayScale) else {
+                                    return
+                                }
+                                
+                                imageToShare = ImageWrapper(image: image)
+                                
+                                textValue = answerBackup
+                                comment = commentBackup
+                            }
+                        }) {
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(.orange)
+                        }
+                        .padding(.trailing)
+                        .sheet(item: $imageToShare) { imageToShare in
+                            ActivityViewControllerWrapper(items: [imageToShare.image], activities: nil)
+                        }
+                        
+                        Button(action: {
+                            isEditing = true
+                            commentTextField = comment
+                            
+                            
+                        }) {
+                            Image(systemName: "pencil")
+                                .foregroundColor(.orange)
+                        } }
+                }
+            })
+        
     }
     
+    
+    //                if let data = data {
+    //
+    //                    // 값 변경 혹은 저장 혹은 수정
+    //                    data.answer = textValue
+    //
+    //                    do {
+    //                        try managedObjectContext.save()
+    //                    } catch {
+    //                        print(#function, error)
+    //                    }
+    //                }
     
     func saveItem() {
         
@@ -63,122 +159,7 @@ struct QnAView: View {
         commentTextField = ""
     }
     
-    var topView: some View {
-        HStack{
-            
-            Button(action: {
-                showingAlert = true
-                
-//                if let data = data {
-//
-//                    // 값 변경 혹은 저장 혹은 수정
-//                    data.answer = textValue
-//
-//                    do {
-//                        try managedObjectContext.save()
-//                    } catch {
-//                        print(#function, error)
-//                    }
-//                }
-                
-            }) {
-                
-                Image(systemName: "chevron.backward")
-                    .foregroundColor(.orange)
-            }
-            .alert(isPresented: $showingAlert) {
-                let stayButton = Alert.Button.default(Text("머무르기")) {
-                    // 머무르기 버튼 눌렀을 때 발생할 이벤트
-                }
-                let exitButton = Alert.Button.destructive(Text("나가기")) {
-//                    navigateToPreviousView = true
-                    // 나가기 버튼 눌렀을 때 발생할 이벤트
-                }
-                return Alert(title: Text("이전 페이지로 이동 시,\n 작성하신 내용은 삭제됩니다."), message: Text("그래도 나가시겠습니까?"), primaryButton: stayButton, secondaryButton: exitButton)
-                
-            }
-            
-            Spacer()
-            
-            if isEditing {
-                Text("오늘의 질문")
-                    .padding(.leading, 15)
-            } else {
-                Text("오늘의 질문")
-                    .padding(.leading, 45)
-            }
-            
-            
-            
-            Spacer()
-            
-            if isEditing {
-                Button(action: {
-                    if !isTextFieldEmpty {
-                        isEditing = false
-                        commentTextField = ""
-                    } else {
-                        print("텍스트를 입력해주세요.")
-                    }
-                    
-                }) {
-                    Text("완료")
-                        .foregroundColor(isTextFieldEmpty ? .gray : .orange)
-                    
-                }
-            } else {
-                HStack {
-                    Button(action: {
-                        Task {
-                            var answerBackup = textValue
-                            var commentBackup = comment
-                            
-                            for i in 0..<textValue.count {
-                                if i % 60 == 0 {
-                                    textValue.insert("\n", at: textValue.index(textValue.startIndex, offsetBy: i))
-                                }
-                            }
-                            
-                            for i in 0..<comment.count {
-                                if i % 60 == 0 {
-                                    comment.insert("\n", at: comment.index(comment.startIndex, offsetBy: i))
-                                }
-                            }
-                            
-                            guard let image = await contentView.render(scale: displayScale) else {
-                                return
-                            }
-                            
-                            imageToShare = ImageWrapper(image: image)
-                            
-                            textValue = answerBackup
-                            comment = commentBackup
-                        }
-                    }) {
-                        Image(systemName: "square.and.arrow.up")
-                            .foregroundColor(.orange)
-                    }
-                    .padding(.trailing)
-                    .sheet(item: $imageToShare) { imageToShare in
-                        ActivityViewControllerWrapper(items: [imageToShare.image], activities: nil)
-                    }
-                    
-                    Button(action: {
-                        isEditing = true
-                        commentTextField = comment
-                        
-                        
-                    }) {
-                        Image(systemName: "pencil")
-                            .foregroundColor(.orange)
-                    } }
-            }
-            
-        }
-        .padding(.horizontal, 25)
-    
-        
-    }
+    //
     
     var contentView: some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -240,8 +221,9 @@ struct QnAView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .foregroundColor(.white)
                                 .shadow(radius: 1)
-                                
+                            
                         )
+                        .textSelection(.enabled)
                         .padding(.all, 16)
                     Spacer()
                 }
