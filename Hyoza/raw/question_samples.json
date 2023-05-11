@@ -9,5 +9,15 @@
     "id": 2,
     "question": "엄마 차 있어?",
     "difficulty": 0
+  },
+  {
+      "id": 3,
+      "question": "인생이란 무엇인가",
+      "difficulty": 1
+  },
+  {
+      "id": 4,
+      "question": "강아지 vs 고양이",
+      "difficulty": 0
   }
 ]
