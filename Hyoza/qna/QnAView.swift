@@ -16,21 +16,19 @@ struct QnAView: View {
     
     var data: FetchedResults<Question>.Element? = nil
     
-    @State var isEditing: Bool
+    @State var isEditing: Bool = true
     @State var textValue = ""
     @State var commentTextField = ""
     @State var comment : String = ""
-    private let pastboard = UIPasteboard.general
     @State var isComment : Bool = false
     @State private var showingAlert = false
     @State var isTextFieldEmpty : Bool = true
-    @State var isCommetFieldEmpty : Bool = true
     
     
     @State private var imageToShare: ImageWrapper? = nil
     
     @Environment(\.displayScale) var displayScale
-//    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -161,6 +159,7 @@ struct QnAView: View {
         commentTextField = ""
     }
     
+    //
     
     var contentView: some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -219,29 +218,18 @@ struct QnAView: View {
                     Text(comment)
                         .padding(.all)
                         .background(
-                            Rectangle()
-                                .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight] )
+                            RoundedRectangle(cornerRadius: 20)
                                 .foregroundColor(.white)
                                 .shadow(radius: 1)
                             
                         )
+                        .textSelection(.enabled)
                         .padding(.all, 16)
-                        .contextMenu {
-                            Button("복사", role: .none) {
-                                pastboard.string = comment
-                            }
-                            
-                            Button("삭제", role: .destructive) {
-                                isComment = false
-                                isCommetFieldEmpty = true
-                                // 데이터 베이스 내 코멘트 값도 삭제해주어야 함.
-                            }
-                        }
                     Spacer()
                 }
                 .padding(.horizontal, 15)
                 .padding(.bottom, 30)
-                .opacity(1.0)
+                .opacity(isEditing ? 0.5 : 1)
             }
             
         }
@@ -252,7 +240,7 @@ struct QnAView: View {
     
     
     var commentEditView: some View {
-        ZStack { if !isComment {
+        ZStack {
             Rectangle()
                 .frame(width: .infinity, height: 40)
                 .cornerRadius(100)
@@ -266,31 +254,22 @@ struct QnAView: View {
             HStack {
                 TextField("나의 한 마디 작성하기", text: $commentTextField)
                     .padding(.leading, 40)
-                    .onChange(of: commentTextField) { newValue in
-                        isCommetFieldEmpty = newValue.isEmpty
-                    }
                 
                 Button(action: {
-                    if !isCommetFieldEmpty {
-                        saveItem()
-                        isComment = true
-                    } else {
-                        print("코멘트를 입력해주세요.")
-                    }
-                    
+                    saveItem()
+                    isComment = true
                 }) {
                     Text("게시")
-                        .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
+                        .foregroundColor(.orange)
                 }
                 .padding(.trailing, 35)
             }
         }
-        }
     }
 }
 
-struct QnA_Previews: PreviewProvider {
+struct BeforeAnswerView_Previews: PreviewProvider {
     static var previews: some View {
-        QnAView(isEditing: true, isTextFieldEmpty: true, isCommetFieldEmpty: true)
+        QnAView(isEditing: true)
     }
 }
