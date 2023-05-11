@@ -11,13 +11,19 @@ struct PeriodView: View {
     var cornerRadius: CGFloat
     var periodSelection: PeriodSelection
     
+    enum K {
+        static let startText: LocalizedStringKey = "시작"
+        static let endText: LocalizedStringKey = "종료"
+    }
+    
+    
     @Binding var startDate: Date
     @Binding var endDate: Date
     
     var body: some View {
         VStack {
-            datePicker("시작", selection: $startDate)
-            datePicker("종료", selection: $endDate)
+            datePicker(K.startText, selection: $startDate)
+            datePicker(K.endText, selection: $endDate)
         }
         .disabled(periodSelection == .whole)
     }
