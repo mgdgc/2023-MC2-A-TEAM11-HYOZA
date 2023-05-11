@@ -30,7 +30,6 @@ struct PeriodSegmentView: View {
         }
         .pickerStyle(.segmented)
         .padding()
-        
     }
 }
 
