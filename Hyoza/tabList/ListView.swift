@@ -42,9 +42,7 @@ struct ListView: View {
                         Button(action : addItem2){
                             Label("Add Item2", systemImage: "plus")
                         }
-                        Button(action : addItem3){
-                            Label("Add Item3", systemImage: "plus")
-                        }
+                        
                         //MARK: 삭제예정 :코어데이터 생성을 위해 임의 배치
                         //아이템을 만들어주기 위한 RoundedRectangle
                         ForEach(items) { item in
@@ -104,26 +102,6 @@ struct ListView: View {
             newItem2.difficulty = 2
             newItem2.question = "강아지강아지강아지강아지강아지강아지강아지아지강아지강아지강아강아지강아지강아지"
             newItem2.timestamp = Date()
-            
-            do {
-                try managedObjectContext.save()
-            }catch{
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-    private func addItem3() {
-        withAnimation {
-            
-            let newItem3 = Question(context: managedObjectContext)
-            newItem3.id = Int64(Int(UUID().hashValue))
-            newItem3.answer = "고양이고양이고양이고양이고양이고양이고양이고양이고양이고양이"
-            newItem3.answerTime = Date()
-            newItem3.comment = "동글이동글이"
-            newItem3.difficulty = 2
-            newItem3.question = "산타산타산타산타산타산타산타산타산타산타산타산타산타산타산타산타산타산타"
-            newItem3.timestamp = Date()
             
             do {
                 try managedObjectContext.save()
