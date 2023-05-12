@@ -12,10 +12,6 @@ struct TodayView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @State var isQuestionBoxViewTapped: Bool = false
-    
-    @State var openDegree: Double = 90
-    @State var closedDegree: Double = 0
-    
     @State var easyQuestions: [QuerySentence] = QuerySentenceManager.shared.filtered(difficulty: .easy)
     @State var hardQuestions: [QuerySentence] = QuerySentenceManager.shared.filtered(difficulty: .hard)
     @State var isContinueIconSmall: Bool = false
@@ -48,7 +44,7 @@ struct TodayView: View {
                 ZStack {
                     if isQuestionBoxViewTapped {
                         CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
-                            QuestionCardView(openDegree: $openDegree, closedDegree: $closedDegree,  easyQuestions: $easyQuestions, hardQuestions: $hardQuestions)
+                            QuestionCardView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions)
                         }
                     } else {
                         CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
@@ -113,7 +109,7 @@ struct ContinueIconView: View {
     var body: some View {
         CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
             HStack {
-//                Image(systemName: "flame.fill")
+                //                Image(systemName: "flame.fill")
                 switch continuousDayCount {
                 case 0:
                     Text("🤍")
