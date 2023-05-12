@@ -14,9 +14,9 @@ struct ImageWrapper: Identifiable {
 
 struct QnAView: View {
     
-    var data: FetchedResults<Question>.Element? = nil
+    var data: Question
     
-    @State var isEditing: Bool
+    @State var isEditing: Bool = false
     @State var textValue = ""
     @State var commentTextField = ""
     @State var comment : String = ""
@@ -26,11 +26,10 @@ struct QnAView: View {
     @State var isTextFieldEmpty : Bool = true
     @State var isCommetFieldEmpty : Bool = true
     
-    
     @State private var imageToShare: ImageWrapper? = nil
     
     @Environment(\.displayScale) var displayScale
-//    @Environment(\.managedObjectContext) var managedObjectContext
+    //    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -39,29 +38,19 @@ struct QnAView: View {
                 .ignoresSafeArea()
             
             VStack(alignment: .leading, spacing: 15) {
-                
-                
-                
-                
                 ScrollView {
                     contentView
                 }
-                
-                
                 Spacer()
-                
-                
                 commentEditView
-                
             }
-            
         }
         .navigationTitle("오늘의 질문")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {
             showingAlert = true
-
+            
         }) {
             
             Image(systemName: "chevron.backward")
@@ -96,7 +85,7 @@ struct QnAView: View {
                     HStack {
                         Button(action: {
                             Task {
-
+                                
                                 
                                 let viewToRender = contentView.frame(width: UIScreen.main.bounds.width)
                                 
@@ -106,7 +95,7 @@ struct QnAView: View {
                                 
                                 imageToShare = ImageWrapper(image: image)
                                 
-
+                                
                             }
                         }) {
                             Image(systemName: "square.and.arrow.up")
@@ -152,133 +141,133 @@ struct QnAView: View {
     
     
     var contentView: some View {
-            VStack(alignment: .leading, spacing: 15) {
-                HStack{
-                    Rectangle()
-                    
-                        .frame(width: 50, height: 30)
-                        .cornerRadius(30)
-                    
-                        .foregroundColor(.orange)
-                        .opacity(0.2)
-                        .overlay(
-                            Text("쉬움")
-                                .foregroundColor(.orange)
-                        )
-                        .padding(.leading, 30)
-                        .padding(.top, 30)
-                }
+        VStack(alignment: .leading, spacing: 15) {
+            HStack{
+                Rectangle()
                 
-                Text("최근에 가장 재미있게 본 유튜브 영상은 무엇인가요?")
-                    .font(.system(size: 25))
-                    .padding(.horizontal, 30)
+                    .frame(width: 50, height: 30)
+                    .cornerRadius(30)
                 
-                Text("2023년 5월 5일")
+                    .foregroundColor(.orange)
+                    .opacity(0.2)
+                    .overlay(
+                        Text(data.difficultyString)
+                            .foregroundColor(.orange)
+                    )
                     .padding(.leading, 30)
-                    .foregroundColor(.secondary)
+                    .padding(.top, 30)
+            }
+            
+            Text(data.wrappedQuestion)
+                .font(.system(size: 25))
+                .padding(.horizontal, 30)
+            
+            Text(data.wrappedTimestamp.fullString)
+                .padding(.leading, 30)
+                .foregroundColor(.secondary)
+            
+            
+            ZStack {
+                RoundedRectangle(cornerRadius: 30)
+                    .frame(height: 60)
+                    .foregroundColor(.clear)
                 
-                
-                ZStack {
-                    RoundedRectangle(cornerRadius: 30)
-                        .frame(height: 60)
-                        .foregroundColor(.clear)
-                    
-                    if isEditing {
-                        TextField("답변을 입력해 주세요.", text: $textValue, axis: .vertical)
-                            .onChange(of: textValue) { newValue in
-                                isTextFieldEmpty = newValue.isEmpty
-                            }
-                            .multilineTextAlignment(.leading)
-                            .opacity(isEditing ? 0.5 : 1)
-                            .padding(.horizontal, 15)
-                    }
-                    else {
-                        HStack {
-                            Text(textValue)
-                            Spacer()
+                if isEditing {
+                    TextField("답변을 입력해 주세요.", text: $textValue, axis: .vertical)
+                        .onChange(of: textValue) { newValue in
+                            isTextFieldEmpty = newValue.isEmpty
                         }
+                        .multilineTextAlignment(.leading)
+                        .opacity(isEditing ? 0.5 : 1)
                         .padding(.horizontal, 15)
-                    }
                 }
-                
-                .padding(.all)
-                
-                if isComment {
+                else {
                     HStack {
-                        Text(comment)
-                            .padding(.all)
-                            .background(
-                                Rectangle()
-                                    .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight] )
-                                    .foregroundColor(.white)
-                                    .shadow(radius: 1)
-                                
-                            )
-                            .padding(.all, 16)
-                            .contextMenu {
-                                Button("복사", role: .none) {
-                                    pastboard.string = comment
-                                }
-                                
-                                Button("삭제", role: .destructive) {
-                                    isComment = false
-                                    isCommetFieldEmpty = true
-                                    // 데이터 베이스 내 코멘트 값도 삭제해주어야 함.
-                                }
-                            }
+                        Text(data.wrappedAnswer.answerDetail)
                         Spacer()
                     }
                     .padding(.horizontal, 15)
-                    .padding(.bottom, 30)
-                    .opacity(1.0)
                 }
-                
             }
+            
+            .padding(.all)
+            
+            if isComment {
+                HStack {
+                    Text(comment)
+                        .padding(.all)
+                        .background(
+                            Rectangle()
+                                .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight] )
+                                .foregroundColor(.white)
+                                .shadow(radius: 1)
+                            
+                        )
+                        .padding(.all, 16)
+                        .contextMenu {
+                            Button("복사", role: .none) {
+                                pastboard.string = comment
+                            }
+                            
+                            Button("삭제", role: .destructive) {
+                                isComment = false
+                                isCommetFieldEmpty = true
+                                // 데이터 베이스 내 코멘트 값도 삭제해주어야 함.
+                            }
+                        }
+                    Spacer()
+                }
+                .padding(.horizontal, 15)
+                .padding(.bottom, 30)
+            }
+            
+        }
     }
     
     
     
     
     var commentEditView: some View {
-        ZStack { if !isComment {
-            Rectangle()
-                .frame(width: .infinity, height: 40)
-                .cornerRadius(100)
-                .padding(.all)
-                .foregroundColor(.white)
-                .shadow(radius: 5)
-                .opacity(0.5)
-            
-            
-            
-            HStack {
-                TextField("나의 한 마디 작성하기", text: $commentTextField)
-                    .padding(.leading, 40)
-                    .onChange(of: commentTextField) { newValue in
-                        isCommetFieldEmpty = newValue.isEmpty
-                    }
+        ZStack {
+            if !isComment {
+                Rectangle()
+                    .frame(width: UIScreen.screenWidth-40, height: 40)
+                    .cornerRadius(100)
+                    .padding(.all)
+                    .foregroundColor(.white)
+                    .shadow(radius: 5)
+                    .opacity(0.5)
                 
-                Button(action: {
-                    if !isCommetFieldEmpty {
-                        saveItem()
-                        isComment = true
-                    } else {
-                        print("코멘트를 입력해주세요.")
-                    }
+                
+                
+                HStack {
+                    TextField("나의 한 마디 작성하기", text: $commentTextField)
+                        .padding(.leading, 40)
+                        .onChange(of: commentTextField) { newValue in
+                            isCommetFieldEmpty = newValue.isEmpty
+                        }
                     
-                }) {
-                    Text("게시")
-                        .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
+                    Button(action: {
+                        if !isCommetFieldEmpty {
+                            saveItem()
+                            isComment = true
+                        } else {
+                            print("코멘트를 입력해주세요.")
+                        }
+                        
+                    }) {
+                        Text("게시")
+                            .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
+                    }
+                    .padding(.trailing, 35)
                 }
-                .padding(.trailing, 35)
             }
         }
-        }
     }
 }
-
-struct QnA_Previews: PreviewProvider {
-    static var previews: some View {
-        QnAView(isEditing: true, isTextFieldEmpty: true, isCommetFieldEmpty: true)
-    }
-}
+//
+//struct QnA_Previews: PreviewProvider {
+//    static var previews: some View {
+////        QnAView(isEditing: true, isTextFieldEmpty: true, isCommetFieldEmpty: true)
+//    }
+//}

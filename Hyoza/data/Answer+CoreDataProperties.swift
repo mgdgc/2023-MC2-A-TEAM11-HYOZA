@@ -19,6 +19,11 @@ extension Answer {
     @NSManaged public var comment: String?
     @NSManaged public var question: Question?
 
+    
+    public var answerDetail: String {
+        answer ?? "Unknown Answer."
+    }
+    
 }
 
 extension Answer : Identifiable {
