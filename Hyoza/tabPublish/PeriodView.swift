@@ -22,21 +22,27 @@ struct PeriodView: View {
     
     var body: some View {
         VStack {
-            datePicker(K.startText, selection: $startDate)
-            datePicker(K.endText, selection: $endDate)
+            DatePicker(
+                K.startText,
+                selection: $startDate,
+                in: ...endDate,
+                displayedComponents: [.date]
+            )
+            .colorMultiply(Color.orange)
+            .datePickerStyle(CompactDatePickerStyle())
+            .environment(\.locale, Locale(identifier: "ko-KR"))
+            
+            DatePicker(
+                K.endText,
+                selection: $endDate,
+                in: startDate...,
+                displayedComponents: [.date]
+            )
+            .colorMultiply(Color.orange)
+            .datePickerStyle(CompactDatePickerStyle())
+            .environment(\.locale, Locale(identifier: "ko-KR"))
         }
         .disabled(periodSelection == .whole)
-    }
-    
-    func datePicker(_ titleKey: LocalizedStringKey, selection: Binding<Date>) -> some View {
-        DatePicker(
-            titleKey,
-            selection: selection,
-            displayedComponents: [.date]
-        )
-        .colorMultiply(Color.orange)
-        .datePickerStyle(CompactDatePickerStyle())
-        .environment(\.locale, Locale(identifier: "ko-KR"))
     }
 }
 
