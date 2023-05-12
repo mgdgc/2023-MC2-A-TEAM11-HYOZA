@@ -55,7 +55,7 @@ struct ListView: View {
                                     .shadow( color : .gray, radius: 5, y :5)
                                     .opacity(0.3)
                                     .overlay(CellContents(item : item))
-                                    .padding(.bottom, 20)
+                                    .padding(.bottom, 20) 
                             }
                             
                         }
