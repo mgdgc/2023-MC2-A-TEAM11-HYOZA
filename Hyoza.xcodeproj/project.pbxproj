@@ -53,6 +53,10 @@
 		B2A03E682A0D9054005BF71D /* QuestionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E672A0D9054005BF71D /* QuestionError.swift */; };
 		C9DD7BEB2A0A3F3F007C1973 /* QnAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */; };
 		C9DD7C272A0B790C007C1973 /* ActivityViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */; };
+		CD1E64092A0E265400BB3179 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1E64082A0E265400BB3179 /* OnboardingView.swift */; };
+		CD1E640B2A0E268500BB3179 /* Page1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1E640A2A0E268500BB3179 /* Page1View.swift */; };
+		CD1E640D2A0E26A900BB3179 /* Page2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1E640C2A0E26A900BB3179 /* Page2View.swift */; };
+		CD1E640F2A0E26C500BB3179 /* Page3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1E640E2A0E26C500BB3179 /* Page3View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +109,10 @@
 		B2A03E672A0D9054005BF71D /* QuestionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionError.swift; sourceTree = "<group>"; };
 		C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAView.swift; sourceTree = "<group>"; };
 		C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewControllerWrapper.swift; sourceTree = "<group>"; };
+		CD1E64082A0E265400BB3179 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		CD1E640A2A0E268500BB3179 /* Page1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page1View.swift; sourceTree = "<group>"; };
+		CD1E640C2A0E26A900BB3179 /* Page2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page2View.swift; sourceTree = "<group>"; };
+		CD1E640E2A0E26C500BB3179 /* Page3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +264,7 @@
 				794DB9E82A07E11200635B58 /* tabList */,
 				794DB9E72A07E07B00635B58 /* tabToday */,
 				C9DD7BE92A0A3E04007C1973 /* qna */,
+				CD1E64072A0E25EC00BB3179 /* onboard */,
 			);
 			path = Hyoza;
 			sourceTree = "<group>";
@@ -282,6 +291,17 @@
 				C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */,
 			);
 			path = qna;
+			sourceTree = "<group>";
+		};
+		CD1E64072A0E25EC00BB3179 /* onboard */ = {
+			isa = PBXGroup;
+			children = (
+				CD1E64082A0E265400BB3179 /* OnboardingView.swift */,
+				CD1E640A2A0E268500BB3179 /* Page1View.swift */,
+				CD1E640C2A0E26A900BB3179 /* Page2View.swift */,
+				CD1E640E2A0E26C500BB3179 /* Page3View.swift */,
+			);
+			path = onboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,9 +404,13 @@
 				791029D92A039C58009A5590 /* MainTabView.swift in Sources */,
 				B2A03E682A0D9054005BF71D /* QuestionError.swift in Sources */,
 				794DB9EF2A07E3A500635B58 /* PublishView.swift in Sources */,
+				CD1E64092A0E265400BB3179 /* OnboardingView.swift in Sources */,
+				CD1E640D2A0E26A900BB3179 /* Page2View.swift in Sources */,
+				CD1E640B2A0E268500BB3179 /* Page1View.swift in Sources */,
 				794DB9EB2A07E38600635B58 /* TodayView.swift in Sources */,
 				B2A03E5A2A0D75FC005BF71D /* Answer+CoreDataClass.swift in Sources */,
 				791C24602A0A10BB0009E4EA /* CapsuleView.swift in Sources */,
+				CD1E640F2A0E26C500BB3179 /* Page3View.swift in Sources */,
 				799E8FC32A0CCE2A003F78F2 /* Calendar.swift in Sources */,
 				794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */,
 				98EE907D2A0A750A0042E7B0 /* QuestionCardView.swift in Sources */,
