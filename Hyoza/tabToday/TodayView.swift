@@ -22,6 +22,7 @@ struct TodayView: View {
     @State var continueText: String? = "연속 작성 12일 돌파!"
     @State var continueTextOpacity: Double = 1.0
     @State var isContinueIconAnimating: Bool = false
+    @State var continuousDayCount: Int = 0
     
     var body: some View {
         ZStack {
@@ -36,7 +37,7 @@ struct TodayView: View {
                         .bold()
                         .foregroundColor(.textBlack)
                     Spacer()
-                    ContinueIconView(text: $continueText, textOpacity: $continueTextOpacity)
+                    ContinueIconView(text: $continueText, textOpacity: $continueTextOpacity, continuousDayCount: $continuousDayCount)
                         .onTapGesture {
                             if !isContinueIconAnimating {
                                 makeCoutinueIconLargeAndSmall()
@@ -57,7 +58,6 @@ struct TodayView: View {
                             self.isQuestionBoxViewTapped.toggle()
                         }
                     }
-                    
                 }
                 Spacer()
             }
@@ -108,11 +108,24 @@ struct TodayView: View {
 struct ContinueIconView: View {
     @Binding var text: String?
     @Binding var textOpacity: Double
+    @Binding var continuousDayCount: Int
     
     var body: some View {
         CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
             HStack {
-                Image(systemName: "flame.fill")
+//                Image(systemName: "flame.fill")
+                switch continuousDayCount {
+                case 0:
+                    Text("🤍")
+                case 1..<4:
+                    Text("💛")
+                case 4..<8:
+                    Text("🧡")
+                case 7..<14:
+                    Text("❤️")
+                default:
+                    Text("❤️‍🔥")
+                }
                 if let text {
                     Text(text)
                         .font(.caption)
@@ -120,6 +133,9 @@ struct ContinueIconView: View {
                         .opacity(textOpacity)
                 }
             }
+        }
+        .onAppear() {
+            continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
         }
         
     }
