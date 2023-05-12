@@ -35,14 +35,13 @@ struct OpenCardView: View {
                                 .foregroundColor(.tapBarDarkGray)
                             Spacer()
                             Button(action: {
-                                Task {
-                                    let viewToRender = self.frame(width: UIScreen.main.bounds.width)
-                                    
-                                    guard let image = await viewToRender.render(scale: displayScale) else {
-                                        return
-                                    }
-                                    imageToShareInQuestionCard = ImageWrapper(image: image)
+                                var tempView: some View = sharedCardView(question: selectedQuestion)
+                                let viewToRender = tempView.frame(width: UIScreen.main.bounds.width)
+                                
+                                guard let image = viewToRender.render(scale: displayScale) else {
+                                    return
                                 }
+                                imageToShareInQuestionCard = ImageWrapper(image: image)
                             }) {
                                 Image(systemName: "square.and.arrow.up")
                                     .foregroundColor(.textOrange)
@@ -74,6 +73,34 @@ struct OpenCardView: View {
         }
     }
     
+    private func sharedCardView(question: QuerySentence) -> some View {
+        ZStack {
+            Color.backGroundWhite
+            VStack{
+                HStack {
+                    CapsuleView(content: {
+                        Text(question.difficulty == .easy ? "쉬움" : "어려움")
+                            .font(.footnote)
+                            .foregroundColor(.textOrange)
+                            .padding([.leading, .trailing], 12)
+                            .padding([.top, .bottom], 4)
+                    }, capsuleColor: .backGroundLightOrange)
+                    Spacer()
+                    Text(Date().fullString)
+                        .font(.footnote)
+                        .foregroundColor(.tapBarDarkGray)
+                    Spacer()
+                    
+                }
+                Spacer()
+                Text(question.question)
+                    .font(.title)
+                    .foregroundColor(.textBlack)
+                    .bold()
+                Spacer()
+            }
+        }
+    }
 }
 
 struct OpenCardView_Previews: PreviewProvider {

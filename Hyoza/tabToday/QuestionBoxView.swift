@@ -20,6 +20,7 @@ struct QuestionBoxView: View {
                     .font(.title)
                     .bold()
                     .foregroundColor(.textBlack)
+//                Spacer()
                 Button(action: {
                     easyQuestions = QuerySentenceManager.shared.filtered(difficulty: .easy)
                     hardQuestions = QuerySentenceManager.shared.filtered(difficulty: .hard)
