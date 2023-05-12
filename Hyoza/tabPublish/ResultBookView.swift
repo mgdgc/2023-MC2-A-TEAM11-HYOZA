@@ -32,11 +32,11 @@ struct ResultBookView: View {
             bookLine
                 .padding(.trailing, K.wideWidth)
         }
+        .frame(width: UIScreen.screenWidth * K.scale, height: height)
         .background {
             Color.brown
                 .cornerRadius(K.cornerRadius)
         }
-        .frame(width: UIScreen.screenWidth * K.scale, height: height)
     }
     
     var bookLine: some View {
@@ -65,6 +65,6 @@ struct ResultBookView: View {
 
 struct ResultBookView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultBookView(count: 50, title: "제목")
+        ResultBookView(count: 0, title: "제목")
     }
 }

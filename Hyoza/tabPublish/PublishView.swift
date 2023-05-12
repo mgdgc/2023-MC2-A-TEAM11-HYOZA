@@ -13,6 +13,39 @@ struct PublishView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.displayScale) var displayScale
     
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Question.timestamp, ascending:false)],
+        animation: .default)
+    private var items: FetchedResults<Question>
+    @State var count: Int = 0
+    
+    
+    var fromDate: Binding<Date> {
+        Binding {
+            startDate
+        } set: { newValue in
+            startDate = newValue
+            items.nsPredicate = NSPredicate(
+                format: "timestamp >= %@ AND timestamp < %@",
+                Calendar.current.startOfDay(for: startDate) as NSDate,
+                Calendar.current.startOfDay(for: endDate) as NSDate)
+            count = items.count
+        }
+    }
+    
+    var toDate: Binding<Date> {
+        Binding {
+            endDate
+        } set: { newValue in
+            endDate = newValue
+            items.nsPredicate = NSPredicate(
+                format: "timestamp >= %@ AND timestamp < %@",
+                Calendar.current.startOfDay(for: startDate) as NSDate,
+                Calendar.current.startOfDay(for: endDate) as NSDate)
+            count = items.count
+        }
+    }
+    
     @State var titleText = ""
     @State var periodSelection: PeriodSelection = .custom
     
@@ -21,7 +54,6 @@ struct PublishView: View {
     @State var selectedMonth: Month = .may
     
     let cornerRadius: CGFloat = 10
-    var count: Int { 10 }
     
     enum K {
         static let title: String = "자서전 출판"
@@ -93,8 +125,8 @@ struct PublishView: View {
             PeriodView(
                 cornerRadius: cornerRadius,
                 periodSelection: periodSelection,
-                startDate: $startDate,
-                endDate: $endDate
+                startDate: fromDate,
+                endDate: toDate
             )
                 .publishCardify()
                 .opacity(periodSelection == .oneMonth ? 0 : 1)
@@ -115,11 +147,6 @@ struct PublishView: View {
             Spacer()
             Button {
                 print("출판하기 button did tap")
-                Task {
-                    if let image = await periodView.render(scale: displayScale) {
-                        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-                    }
-                }
             } label: {
                 ZStack {
                     Color.buttonColor
