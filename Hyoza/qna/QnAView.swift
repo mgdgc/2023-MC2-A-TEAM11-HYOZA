@@ -43,8 +43,9 @@ struct QnAView: View {
                 
                 
                 
-                
-                contentView
+                ScrollView {
+                    contentView
+                }
                 
                 
                 Spacer()
@@ -95,29 +96,17 @@ struct QnAView: View {
                     HStack {
                         Button(action: {
                             Task {
-                                var answerBackup = textValue
-                                var commentBackup = comment
+
                                 
-                                for i in 0..<textValue.count {
-                                    if i % 20 == 0 {
-                                        textValue.insert("\n", at: textValue.index(textValue.startIndex, offsetBy: i))
-                                    }
-                                }
+                                let viewToRender = contentView.frame(width: UIScreen.main.bounds.width)
                                 
-                                for i in 0..<comment.count {
-                                    if i % 20 == 0 {
-                                        comment.insert("\n", at: comment.index(comment.startIndex, offsetBy: i))
-                                    }
-                                }
-                                
-                                guard let image = await contentView.render(scale: displayScale) else {
+                                guard let image = await viewToRender.render(scale: displayScale) else {
                                     return
                                 }
                                 
                                 imageToShare = ImageWrapper(image: image)
                                 
-                                textValue = answerBackup
-                                comment = commentBackup
+
                             }
                         }) {
                             Image(systemName: "square.and.arrow.up")
@@ -163,89 +152,88 @@ struct QnAView: View {
     
     
     var contentView: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            HStack{
-                Rectangle()
-                
-                    .frame(width: 50, height: 30)
-                    .cornerRadius(30)
-                
-                    .foregroundColor(.orange)
-                    .opacity(0.2)
-                    .overlay(
-                        Text("쉬움")
-                            .foregroundColor(.orange)
-                    )
-                    .padding(.leading, 30)
-                    .padding(.top, 30)
-            }
-            
-            Text("최근에 가장 재미있게 본 유튜브 영상은 무엇인가요?")
-                .font(.system(size: 25))
-                .padding(.horizontal, 30)
-            
-            Text("2023년 5월 5일")
-                .padding(.leading, 30)
-                .foregroundColor(.secondary)
-            
-            
-            ZStack {
-                RoundedRectangle(cornerRadius: 30)
-                    .frame(height: 60)
-                    .foregroundColor(.clear)
-                
-                if isEditing {
-                    TextField("답변을 입력해 주세요.", text: $textValue, axis: .vertical)
-                        .onChange(of: textValue) { newValue in
-                            isTextFieldEmpty = newValue.isEmpty
-                        }
-                        .multilineTextAlignment(.leading)
-                        .opacity(isEditing ? 0.5 : 1)
-                        .padding(.horizontal, 15)
+            VStack(alignment: .leading, spacing: 15) {
+                HStack{
+                    Rectangle()
+                    
+                        .frame(width: 50, height: 30)
+                        .cornerRadius(30)
+                    
+                        .foregroundColor(.orange)
+                        .opacity(0.2)
+                        .overlay(
+                            Text("쉬움")
+                                .foregroundColor(.orange)
+                        )
+                        .padding(.leading, 30)
+                        .padding(.top, 30)
                 }
-                else {
+                
+                Text("최근에 가장 재미있게 본 유튜브 영상은 무엇인가요?")
+                    .font(.system(size: 25))
+                    .padding(.horizontal, 30)
+                
+                Text("2023년 5월 5일")
+                    .padding(.leading, 30)
+                    .foregroundColor(.secondary)
+                
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 30)
+                        .frame(height: 60)
+                        .foregroundColor(.clear)
+                    
+                    if isEditing {
+                        TextField("답변을 입력해 주세요.", text: $textValue, axis: .vertical)
+                            .onChange(of: textValue) { newValue in
+                                isTextFieldEmpty = newValue.isEmpty
+                            }
+                            .multilineTextAlignment(.leading)
+                            .opacity(isEditing ? 0.5 : 1)
+                            .padding(.horizontal, 15)
+                    }
+                    else {
+                        HStack {
+                            Text(textValue)
+                            Spacer()
+                        }
+                        .padding(.horizontal, 15)
+                    }
+                }
+                
+                .padding(.all)
+                
+                if isComment {
                     HStack {
-                        Text(textValue)
+                        Text(comment)
+                            .padding(.all)
+                            .background(
+                                Rectangle()
+                                    .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight] )
+                                    .foregroundColor(.white)
+                                    .shadow(radius: 1)
+                                
+                            )
+                            .padding(.all, 16)
+                            .contextMenu {
+                                Button("복사", role: .none) {
+                                    pastboard.string = comment
+                                }
+                                
+                                Button("삭제", role: .destructive) {
+                                    isComment = false
+                                    isCommetFieldEmpty = true
+                                    // 데이터 베이스 내 코멘트 값도 삭제해주어야 함.
+                                }
+                            }
                         Spacer()
                     }
                     .padding(.horizontal, 15)
+                    .padding(.bottom, 30)
+                    .opacity(1.0)
                 }
+                
             }
-            
-            .padding(.all)
-            
-            if isComment {
-                HStack {
-                    Text(comment)
-                        .padding(.all)
-                        .background(
-                            Rectangle()
-                                .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight] )
-                                .foregroundColor(.white)
-                                .shadow(radius: 1)
-                            
-                        )
-                        .padding(.all, 16)
-                        .contextMenu {
-                            Button("복사", role: .none) {
-                                pastboard.string = comment
-                            }
-                            
-                            Button("삭제", role: .destructive) {
-                                isComment = false
-                                isCommetFieldEmpty = true
-                                // 데이터 베이스 내 코멘트 값도 삭제해주어야 함.
-                            }
-                        }
-                    Spacer()
-                }
-                .padding(.horizontal, 15)
-                .padding(.bottom, 30)
-                .opacity(1.0)
-            }
-            
-        }
-        
     }
     
     
