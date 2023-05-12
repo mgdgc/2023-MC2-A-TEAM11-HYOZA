@@ -142,11 +142,45 @@ struct PublishView: View {
             .foregroundColor(.gray)
     }
     
+    // ShareSheet를 열기 위한 변수로 사용하기 위해 Identifiable을 구현한 Wrapper
+    struct PDFWrapper: Identifiable {
+        var id: UUID = UUID()
+        var data: Data
+    }
+    
+    // ShareSheet로 공유할 데이터
+    @State private var pdfToShare: PDFWrapper? = nil
+    
     var publishButton: some View {
         HStack {
             Spacer()
             Button {
-                print("출판하기 button did tap")
+                
+                // 질문과 답변을 PDF Text로 변환
+                var pdfTexts: [PDFText] = []
+                
+                pdfTexts.append(PDFText(string: titleText, attributes: PDFTextStyle.title, alignment: .center, indent: 0, spacing: .title))
+                
+                for item in items {
+                    pdfTexts.append(PDFText(string: item.wrappedQuestion, attributes: PDFTextStyle.question, alignment: .left, spacing: .question))
+                    
+                    if let answer = item.answer?.answer, let date = item.answer?.answerTime {
+                        pdfTexts.append(PDFText(string: answer, attributes: PDFTextStyle.answer, alignment: .left, spacing: .answer))
+                        pdfTexts.append(PDFText(string: date.fullString, attributes: PDFTextStyle.date, alignment: .left, spacing: .date))
+                    }
+                    
+                    if let comment = item.answer?.comment {
+                        pdfTexts.append(PDFText(string: comment, attributes: PDFTextStyle.comment, alignment: .left, spacing: .comment))
+                    }
+                }
+                
+                // PDF Text를 PDF로 변환
+                let generator = PDFGenerator()
+                let pdfData = generator.generatePDF(title: titleText, texts: pdfTexts)
+                
+                // PDF 공유
+                pdfToShare = PDFWrapper(data: pdfData)
+                
             } label: {
                 ZStack {
                     Color.buttonColor
@@ -156,6 +190,9 @@ struct PublishView: View {
                 }
                 .frame(width: UIScreen.screenWidth * 0.8, height: 57)
                 .cornerRadius(50)
+            }
+            .sheet(item: $pdfToShare) { data in
+                ActivityViewControllerWrapper(items: [data.data], activities: [])
             }
             Spacer()
         }
