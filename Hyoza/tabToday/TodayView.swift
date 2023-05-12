@@ -15,10 +15,12 @@ struct TodayView: View {
     @State var easyQuestions: [QuerySentence] = QuerySentenceManager.shared.filtered(difficulty: .easy)
     @State var hardQuestions: [QuerySentence] = QuerySentenceManager.shared.filtered(difficulty: .hard)
     @State var isContinueIconSmall: Bool = false
-    @State var continueText: String? = "연속 작성 12일 돌파!"
+    @State var continueText: String? = nil
     @State var continueTextOpacity: Double = 1.0
     @State var isContinueIconAnimating: Bool = false
     @State var continuousDayCount: Int = 0
+    
+    @State var tempTextStorage: String? = nil
     
     var body: some View {
         ZStack {
@@ -61,6 +63,20 @@ struct TodayView: View {
             
         }
         .onAppear() {
+            continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
+            
+            switch continuousDayCount {
+            case 0:
+                tempTextStorage = "작성을 시작해보세요!"
+                continueText = tempTextStorage
+            case 1...:
+                tempTextStorage = "연속 작성 \(continuousDayCount)일째 돌파!"
+                continueText = tempTextStorage
+            default:
+                tempTextStorage = "무언가 잘못됐어요 :("
+                continueText = tempTextStorage
+            }
+            
             if !isContinueIconAnimating {
                 self.isContinueIconAnimating = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -73,23 +89,23 @@ struct TodayView: View {
         }
     }
     
-    func makeContinueIconSmall() {
+    private func makeContinueIconSmall() {
         self.continueTextOpacity = 0
         withAnimation(.easeInOut(duration: 0.7)) {
             self.continueText = nil
         }
     }
     
-    func makeContinueIconLarge() {
+    private func makeContinueIconLarge() {
         withAnimation(.easeInOut(duration: 0.7)) {
-            self.continueText = "연속 작성 12일째 돌파!"
+            self.continueText = tempTextStorage
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.continueTextOpacity = 1
         }
     }
     
-    func makeCoutinueIconLargeAndSmall() {
+    private func makeCoutinueIconLargeAndSmall() {
         self.isContinueIconAnimating = true
         makeContinueIconLarge()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -109,18 +125,17 @@ struct ContinueIconView: View {
     var body: some View {
         CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
             HStack {
-                //                Image(systemName: "flame.fill")
                 switch continuousDayCount {
-                case 0:
-                    Text("🤍")
                 case 1..<4:
                     Text("💛")
                 case 4..<8:
                     Text("🧡")
-                case 7..<14:
+                case 8..<15:
                     Text("❤️")
-                default:
+                case 15...:
                     Text("❤️‍🔥")
+                default:
+                    Text("🤍")
                 }
                 if let text {
                     Text(text)
@@ -130,9 +145,9 @@ struct ContinueIconView: View {
                 }
             }
         }
-        .onAppear() {
-            continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
-        }
+//        .onAppear() {
+//            continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
+//        }
         
     }
 }

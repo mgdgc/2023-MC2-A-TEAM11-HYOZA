@@ -57,7 +57,7 @@ struct OpenCardView: View {
                             .foregroundColor(.textBlack)
                             .bold()
                         Spacer()
-                        NavigationLink(destination: QnAView(isEditing: true)) {
+//                        NavigationLink(destination: QnAView(isEditing: true)) {
                             CapsuleView(content: {
                                 Text("답변하기")
                                     .bold()
@@ -66,7 +66,7 @@ struct OpenCardView: View {
                                     .padding([.top, .bottom], 20)
                                     .frame(width: geo.size.width)
                             }, capsuleColor: .backGroundOrange)
-                        }
+//                        }
                     }
                 }
                 .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
