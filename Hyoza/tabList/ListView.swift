@@ -63,7 +63,6 @@ struct ListView: View {
                 }
             }
             .navigationTitle("질문 리스트")
-
             .navigationBarTitleDisplayMode(.large)
             .navigationBarTitleTextColor(.textColor)
         }

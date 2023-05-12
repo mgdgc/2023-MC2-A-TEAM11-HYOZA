@@ -23,6 +23,17 @@ struct PublishView: View {
     let cornerRadius: CGFloat = 10
     var count: Int { 10 }
     
+    enum K {
+        static let title: String = "자서전 출판"
+        static let leadingPadding: CGFloat = 20
+        static let topPadding: CGFloat = 90
+        static let textFieldTitle: String = "제목"
+        static func countLabel(_ count: Int) -> String {
+            "\(count)개의 질문"
+        }
+        static let publishButtonTitle: String = "출판하기"
+    }
+    
     var body: some View {
         ZStack {
             Color.backgroundColor
@@ -35,27 +46,26 @@ struct PublishView: View {
                     )
                 titleTextField
                 periodView
+                Spacer()
                 ResultBookView(count: count, title: titleText)
                     .padding()
                 countLabel
-                Spacer()
                 publishButton
             }
         }
         .ignoresSafeArea(edges: .top)
-        
     }
     
     var header: some View {
         HStack {
-            Text("자서전 출판")
+            Text(K.title)
                 .font(.largeTitle)
                 .bold()
                 .foregroundColor(Color.textColor)
             Spacer()
         }
-        .padding(.leading, 20)
-        .padding(.top, 90)
+        .padding(.leading, K.leadingPadding)
+        .padding(.top, K.topPadding)
     }
     
     func segmentedSelectionDidChange(newValue: PeriodSelection) {
@@ -72,31 +82,30 @@ struct PublishView: View {
     }
     
     var titleTextField: some View {
-        CardView(shadowColor: .black.opacity(0.1)) {
-            TextField("제목", text: $titleText)
-                .background(.white)
-                .cornerRadius(cornerRadius)
-        }
-        .padding()
+        TextField(K.textFieldTitle, text: $titleText)
+            .background(.white)
+            .cornerRadius(cornerRadius)
+            .publishCardify()
     }
     
-    @ViewBuilder
     var periodView: some View {
-        switch periodSelection {
-        case .custom, .whole:
+        ZStack(alignment: .top) {
             PeriodView(
                 cornerRadius: cornerRadius,
                 periodSelection: periodSelection,
                 startDate: $startDate,
                 endDate: $endDate
-            ).publishCardify()
-        case .oneMonth:
-            MonthPickerView(selectedMonth: $selectedMonth).publishCardify()
+            )
+                .publishCardify()
+                .opacity(periodSelection == .oneMonth ? 0 : 1)
+            MonthPickerView(selectedMonth: $selectedMonth)
+                .publishCardify()
+                .opacity(periodSelection == .oneMonth ? 1 : 0)
         }
     }
     
     var countLabel: some View {
-        Text("\(count)개의 질문")
+        Text(K.countLabel(count))
             .font(.callout)
             .foregroundColor(.gray)
     }
@@ -114,11 +123,11 @@ struct PublishView: View {
             } label: {
                 ZStack {
                     Color.buttonColor
-                    Text("출판하기")
+                    Text(K.publishButtonTitle)
                         .foregroundColor(Color.buttonTextColor)
                         .bold()
                 }
-                .frame(width: 310, height: 57)
+                .frame(width: UIScreen.screenWidth * 0.8, height: 57)
                 .cornerRadius(50)
             }
             Spacer()
