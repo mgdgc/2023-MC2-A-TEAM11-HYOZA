@@ -30,7 +30,7 @@ struct QuestionBoxView: View {
                         .resizable()
                         .scaledToFit()
                         .foregroundColor(.backGroundLightOrange)
-                        .padding(20)
+                        .padding(30)
                 }
             }
         }
