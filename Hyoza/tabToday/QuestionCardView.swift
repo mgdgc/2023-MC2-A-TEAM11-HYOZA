@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct QuestionCardView: View {
-    @State var openDegree: Double = 90
-    @State var closedDegree: Double = 0
+    @Binding var openDegree: Double
+    @Binding var closedDegree: Double
+//    @State var openDegree: Double = 90
+//    @State var closedDegree: Double = 0
     @Binding var easyQuestions: [Question]
     @Binding var hardQuestions: [Question]
     @Binding var selectedQuestion: Question?
