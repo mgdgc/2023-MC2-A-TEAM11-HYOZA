@@ -9,11 +9,10 @@ import SwiftUI
 import CoreData
 
 struct TodayView: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
     
     @State var isQuestionBoxViewTapped: Bool = false
-    @State var easyQuestions: [QuerySentence] = QuerySentenceManager.shared.filtered(difficulty: .easy)
-    @State var hardQuestions: [QuerySentence] = QuerySentenceManager.shared.filtered(difficulty: .hard)
+    @State var easyQuestions: [Question] = []
+    @State var hardQuestions: [Question] = []
     @State var isContinueIconSmall: Bool = false
     @State var continueText: String? = nil
     @State var continueTextOpacity: Double = 1.0
@@ -42,18 +41,34 @@ struct TodayView: View {
                             }
                         }
                 }
+//                ZStack {
+//                    CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
+//                        QuestionCardView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions)
+//                    }
+//                    .zIndex(isQuestionBoxViewTapped ? 1 : 0)
+//                    CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
+//                        QuestionBoxView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, isQuestionBoxViewTapped: $isQuestionBoxViewTapped)
+//                    }
+//                    .onTapGesture {
+//                        self.isQuestionBoxViewTapped.toggle()
+//                    }
+//                    .zIndex(isQuestionBoxViewTapped ? 0 : 1)
+//                }
                 ZStack {
-                    CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
-                        QuestionCardView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions)
+                    if isQuestionBoxViewTapped {
+                        CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
+                            QuestionCardView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions)
+                        }
+//                        .zIndex(isQuestionBoxViewTapped ? 1 : 0)
+                    } else {
+                        CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
+                            QuestionBoxView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, isQuestionBoxViewTapped: $isQuestionBoxViewTapped)
+                        }
+                        .onTapGesture {
+                            self.isQuestionBoxViewTapped.toggle()
+                        }
+//                        .zIndex(isQuestionBoxViewTapped ? 0 : 1)
                     }
-                    .zIndex(isQuestionBoxViewTapped ? 1 : 0)
-                    CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
-                        QuestionBoxView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, isQuestionBoxViewTapped: $isQuestionBoxViewTapped)
-                    }
-                    .onTapGesture {
-                        self.isQuestionBoxViewTapped.toggle()
-                    }
-                    .zIndex(isQuestionBoxViewTapped ? 0 : 1)
                 }
                 Spacer()
             }

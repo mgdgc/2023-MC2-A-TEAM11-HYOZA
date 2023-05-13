@@ -25,7 +25,7 @@ struct ListView: View {
             searchText = newValue
             items.nsPredicate = newValue.isEmpty
             ? .hasAnswer
-            : .hasAnswerAndContains(key: newValue)
+            : .hasAnswer && .contains(key: newValue)
         }
     }
     
