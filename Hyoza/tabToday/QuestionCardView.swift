@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct QuestionCardView: View {
+//    @Environment(\.managedObjectContext) var managedObjectContext
+    
     @Binding var openDegree: Double
     @Binding var closedDegree: Double
-    @Binding var easyQuestions: [QuerySentence]
-    @Binding var hardQuestions: [QuerySentence]
+    @Binding var easyQuestions: [Question]
+    @Binding var hardQuestions: [Question]
     
-    @State var selectedQuestion: QuerySentence = QuerySentence(id: 0, question: "", difficulty: .easy)
+    @State var selectedQuestion: Question? = nil
     
     var body: some View {
         ZStack {
@@ -24,7 +26,7 @@ struct QuestionCardView: View {
 }
 
 struct ClosedCardView: View {
-    let question: QuerySentence
+    let question: Question
     let questionNumber: Int
     
     var body: some View {
@@ -32,7 +34,7 @@ struct ClosedCardView: View {
             Spacer()
             HStack{
                 CapsuleView(content: {
-                    Text(question.difficulty == .easy ? "쉬움" : "어려움")
+                    Text(question.difficultyString)
                         .font(.footnote)
                         .foregroundColor(.textOrange)
                         .padding([.leading, .trailing], 12)
@@ -54,9 +56,9 @@ struct ClosedCardView: View {
 struct ClosedCardListView: View {
     @Binding var openDegree: Double
     @Binding var closedDegree: Double
-    @Binding var easyQuestions: [QuerySentence]
-    @Binding var hardQuestions: [QuerySentence]
-    @Binding var selectedQuestion: QuerySentence
+    @Binding var easyQuestions: [Question]
+    @Binding var hardQuestions: [Question]
+    @Binding var selectedQuestion: Question?
     
     var body: some View {
         ZStack{
@@ -115,43 +117,45 @@ struct ClosedCardListView: View {
 
 struct OpenCardView: View {
     @Binding var degree: Double
-    @Binding var selectedQuestion: QuerySentence
+    @Binding var selectedQuestion: Question?
     
     var body: some View {
         GeometryReader { geo in
             ZStack {
                 Color.backGroundWhite
-                VStack{
-                    HStack {
-                        CapsuleView(content: {
-                            Text(selectedQuestion.difficulty == .easy ? "쉬움" : "어려움")
+                if let selectedQuestion {
+                    VStack{
+                        HStack {
+                            CapsuleView(content: {
+                                Text(selectedQuestion.difficultyString)
+                                    .font(.footnote)
+                                    .foregroundColor(.textOrange)
+                                    .padding([.leading, .trailing], 12)
+                                    .padding([.top, .bottom], 4)
+                            }, capsuleColor: .backGroundLightOrange)
+                            Spacer()
+                            Text(Date().fullString)
                                 .font(.footnote)
+                                .foregroundColor(.tapBarDarkGray)
+                            Spacer()
+                            Image(systemName: "square.and.arrow.up")
                                 .foregroundColor(.textOrange)
-                                .padding([.leading, .trailing], 12)
-                                .padding([.top, .bottom], 4)
-                        }, capsuleColor: .backGroundLightOrange)
+                        }
                         Spacer()
-                        Text(Date().fullString)
-                            .font(.footnote)
-                            .foregroundColor(.tapBarDarkGray)
-                        Spacer()
-                        Image(systemName: "square.and.arrow.up")
-                            .foregroundColor(.textOrange)
-                    }
-                    Spacer()
-                    Text(selectedQuestion.question)
-                        .font(.title)
-                        .foregroundColor(.textBlack)
-                        .bold()
-                    Spacer()
-                    CapsuleView(content: {
-                        Text("답변하기")
+                        Text(selectedQuestion.wrappedQuestion)
+                            .font(.title)
+                            .foregroundColor(.textBlack)
                             .bold()
-                            .font(.title2)
-                            .foregroundColor(.textWhite)
-                            .padding([.top, .bottom], 20)
-                            .frame(width: geo.size.width)
-                    }, capsuleColor: .backGroundOrange)
+                        Spacer()
+                        CapsuleView(content: {
+                            Text("답변하기")
+                                .bold()
+                                .font(.title2)
+                                .foregroundColor(.textWhite)
+                                .padding([.top, .bottom], 20)
+                                .frame(width: geo.size.width)
+                        }, capsuleColor: .backGroundOrange)
+                    }
                 }
             }
             .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
@@ -160,8 +164,8 @@ struct OpenCardView: View {
     
 }
 
-struct QuestionCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        QuestionCardView(openDegree: .constant(-90), closedDegree: .constant(0), easyQuestions: .constant([QuerySentence(id: 1, question: "최근에 재미있게 본 유튜브 채널에 대해 말해주세요~", difficulty: .easy), QuerySentence(id: 2, question: "강아지가 좋나요, 고양이가 좋나요?", difficulty: .easy)]), hardQuestions: .constant([QuerySentence(id: 3, question: "인생에서 가장 중요시하는 가치가 무엇이신가요?", difficulty: .hard), QuerySentence(id: 4, question: "부모님에게 '부모님'이란 어떤 존재였나요?", difficulty: .hard)]), selectedQuestion: QuerySentence(id: 3, question: "인생에서 가장 중요시하는 가치가 무엇이신가요?", difficulty: .hard))
-    }
-}
+//struct QuestionCardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        QuestionCardView(openDegree: .constant(-90), closedDegree: .constant(0), easyQuestions: .constant([QuerySentence(id: 1, question: "최근에 재미있게 본 유튜브 채널에 대해 말해주세요~", difficulty: 0), QuerySentence(id: 2, question: "강아지가 좋나요, 고양이가 좋나요?", difficulty: .easy)]), hardQuestions: .constant([QuerySentence(id: 3, question: "인생에서 가장 중요시하는 가치가 무엇이신가요?", difficulty: .hard), QuerySentence(id: 4, question: "부모님에게 '부모님'이란 어떤 존재였나요?", difficulty: .hard)]), selectedQuestion: QuerySentence(id: 3, question: "인생에서 가장 중요시하는 가치가 무엇이신가요?", difficulty: .hard))
+//    }
+//}
