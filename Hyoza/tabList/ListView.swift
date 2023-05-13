@@ -11,7 +11,7 @@ import CoreData
 struct ListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Question.timestamp, ascending:false)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Question.timestamp, ascending:true)],
         predicate: .hasAnswer,
         animation: .default)
     
