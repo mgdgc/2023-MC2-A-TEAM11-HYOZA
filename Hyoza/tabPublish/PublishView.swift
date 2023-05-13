@@ -179,7 +179,7 @@ struct PublishView: View {
                 
             } label: {
                 ZStack {
-                    Color.buttonColor
+                    questions.count == 0 ? Color.textThirdColor : Color.buttonColor
                     Text(K.publishButtonTitle)
                         .foregroundColor(Color.buttonTextColor)
                         .bold()
