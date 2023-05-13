@@ -28,35 +28,8 @@ struct ClosedCardListView: View {
                     .foregroundColor(.textLightGray)
                 if easyQuestions.count >= 2 && hardQuestions.count >= 1 {
                     closedCardView(question: easyQuestions[0], questionNumber: 1)
-                        .onTapGesture {
-                            selectedQuestion = easyQuestions[0]
-                            withAnimation(.linear(duration: 0.3)) {
-                                closedDegree = -90
-                            }
-                            withAnimation(.linear(duration: 0.3).delay(0.3)){
-                                openDegree = 0
-                            }
-                        }
                     closedCardView(question: hardQuestions[0], questionNumber: 2)
-                        .onTapGesture {
-                            selectedQuestion = hardQuestions[0]
-                            withAnimation(.linear(duration: 0.3)) {
-                                closedDegree = -90
-                            }
-                            withAnimation(.linear(duration: 0.3).delay(0.3)){
-                                openDegree = 0
-                            }
-                        }
                     closedCardView(question: easyQuestions[1], questionNumber: 3)
-                        .onTapGesture {
-                            selectedQuestion = easyQuestions[1]
-                            withAnimation(.linear(duration: 0.3)) {
-                                closedDegree = -90
-                            }
-                            withAnimation(.linear(duration: 0.3).delay(0.3)){
-                                openDegree = 0
-                            }
-                        }
                 }
             }
             .padding(20)
@@ -85,6 +58,18 @@ struct ClosedCardListView: View {
                     Spacer()
                     Text("")
                     Spacer()
+                }
+            }
+            .onTapGesture {
+                PersistenceController.shared.addTimestamp(to: question)
+                if selectedQuestion == nil {
+                    selectedQuestion = PersistenceController.shared.selectedQuestion
+                }
+                withAnimation(.linear(duration: 0.3)) {
+                    closedDegree = -90
+                }
+                withAnimation(.linear(duration: 0.3).delay(0.3)){
+                    openDegree = 0
                 }
             }
         }
