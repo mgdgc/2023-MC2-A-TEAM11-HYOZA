@@ -16,28 +16,27 @@ struct PeriodView: View {
         static let endText: LocalizedStringKey = "종료"
     }
     
-    
     @Binding var startDate: Date
     @Binding var endDate: Date
     
+    
     var body: some View {
         VStack {
-            DatePicker(
-                K.startText,
-                selection: $startDate,
-                in: ...endDate,
-                displayedComponents: [.date]
-            )
-            .colorMultiply(Color.orange)
-            .datePickerStyle(CompactDatePickerStyle())
-            .environment(\.locale, Locale(identifier: "ko-KR"))
-            
-            DatePicker(
-                K.endText,
-                selection: $endDate,
-                in: startDate...,
-                displayedComponents: [.date]
-            )
+            Group {
+                DatePicker(
+                    K.startText,
+                    selection: $startDate,
+                    in: ...endDate,
+                    displayedComponents: [.date]
+                )
+                
+                DatePicker(
+                    K.endText,
+                    selection: $endDate,
+                    in: startDate...,
+                    displayedComponents: [.date]
+                )
+            }
             .colorMultiply(Color.orange)
             .datePickerStyle(CompactDatePickerStyle())
             .environment(\.locale, Locale(identifier: "ko-KR"))

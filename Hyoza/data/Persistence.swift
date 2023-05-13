@@ -114,12 +114,12 @@ extension PersistenceController {
                 answerRequest.predicate = NSPredicate(format: "answer == %@", argumentArray: [answer])
                 
                 let questionResults = try context.fetch(questionRequest)
-                let allAnswers = try context.fetch(Answer.fetchRequest())
+//                let allAnswers = try context.fetch(Answer.fetchRequest())
                 let answerResults = try context.fetch(answerRequest)
                 
-                print(questionResults)
-                print(allAnswers)
-                print(answerResults)
+//                print(questionResults)
+//                print(allAnswers)
+//                print(answerResults)
                 questionResults.first!.answer = answerResults.first!
             }
             
