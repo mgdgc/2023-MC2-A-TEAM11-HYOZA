@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		791029D92A039C58009A5590 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791029D82A039C58009A5590 /* MainTabView.swift */; };
+		791C24572A08EA520009E4EA /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C24562A08EA520009E4EA /* NotificationManager.swift */; };
+		791C245A2A0933DE0009E4EA /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C24592A0933DE0009E4EA /* DateExtension.swift */; };
+		791C245E2A09530F0009E4EA /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C245D2A09530F0009E4EA /* ViewExtension.swift */; };
+		791C24602A0A10BB0009E4EA /* CapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C245F2A0A10BB0009E4EA /* CapsuleView.swift */; };
 		794DB9EB2A07E38600635B58 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DB9EA2A07E38600635B58 /* TodayView.swift */; };
 		794DB9ED2A07E38E00635B58 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DB9EC2A07E38E00635B58 /* ListView.swift */; };
 		794DB9EF2A07E3A500635B58 /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DB9EE2A07E3A500635B58 /* PublishView.swift */; };
@@ -16,13 +20,51 @@
 		794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EB6AB2A03FF8900DA52B5 /* Question+CoreDataClass.swift */; };
 		794EB6AE2A03FF8900DA52B5 /* Question+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EB6AC2A03FF8900DA52B5 /* Question+CoreDataProperties.swift */; };
 		794EB6B12A03FFCB00DA52B5 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EB6B02A03FFCB00DA52B5 /* Persistence.swift */; };
+		799E8F9D2A0A94D7003F78F2 /* question_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = 799E8F9C2A0A94D7003F78F2 /* question_samples.json */; };
+		799E8FA02A0A94FA003F78F2 /* QuerySentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8F9F2A0A94FA003F78F2 /* QuerySentence.swift */; };
+		799E8FA22A0A9508003F78F2 /* QuerySentenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8FA12A0A9508003F78F2 /* QuerySentenceManager.swift */; };
+		799E8FBF2A0CBDD7003F78F2 /* PDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8FBE2A0CBDD7003F78F2 /* PDFGenerator.swift */; };
+		799E8FC12A0CC175003F78F2 /* AttendanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8FC02A0CC175003F78F2 /* AttendanceManager.swift */; };
+		799E8FC32A0CCE2A003F78F2 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8FC22A0CCE2A003F78F2 /* Calendar.swift */; };
 		79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */; };
 		79D7C5DE2A00ED3700AC8B6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */; };
 		79D7C5E12A00ED3700AC8B6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D7C5E02A00ED3700AC8B6F /* Preview Assets.xcassets */; };
+		9809A3042A097AD100AB8995 /* ColorWithHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3032A097AD100AB8995 /* ColorWithHex.swift */; };
+		9809A3062A0988A600AB8995 /* QuestionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3052A0988A600AB8995 /* QuestionBoxView.swift */; };
+		9827EC732A0E1FBD00154343 /* ClosedCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827EC722A0E1FBD00154343 /* ClosedCardListView.swift */; };
+		9827EC752A0E1FE900154343 /* OpenCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827EC742A0E1FE900154343 /* OpenCardView.swift */; };
+		98EE907D2A0A750A0042E7B0 /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EE907C2A0A750A0042E7B0 /* QuestionCardView.swift */; };
+		B22A97E52A08ED2900ECD178 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E32A08EC3C00ECD178 /* CustomColor.swift */; };
+		B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */; };
+		B22A97EA2A0910C000ECD178 /* PeriodSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */; };
+		B22A97EC2A09117700ECD178 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97EB2A09117700ECD178 /* ColorExtension.swift */; };
+		B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97ED2A0912AD00ECD178 /* PeriodView.swift */; };
+		B256C8C92A0A5D9800B0C62E /* UIScreenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */; };
+		B256C8CB2A0A621D00B0C62E /* MonthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8CA2A0A621D00B0C62E /* MonthPickerView.swift */; };
+		B256C8CD2A0A64D500B0C62E /* PublishCardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8CC2A0A64D500B0C62E /* PublishCardify.swift */; };
+		B256C8CF2A0A6A2D00B0C62E /* ResultBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */; };
+		B2A03E5A2A0D75FC005BF71D /* Answer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E592A0D75FB005BF71D /* Answer+CoreDataClass.swift */; };
+		B2A03E5C2A0D7619005BF71D /* Answer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E5B2A0D7619005BF71D /* Answer+CoreDataProperties.swift */; };
+		B2A03E5E2A0D782A005BF71D /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E5D2A0D782A005BF71D /* CoreDataHelper.swift */; };
+		B2A03E602A0D7A1B005BF71D /* PersistenceController+Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E5F2A0D7A1B005BF71D /* PersistenceController+Answer.swift */; };
+		B2A03E622A0D7A2C005BF71D /* PersistenceController+Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E612A0D7A2C005BF71D /* PersistenceController+Question.swift */; };
+		B2A03E642A0D880C005BF71D /* NSPredicateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E632A0D880C005BF71D /* NSPredicateExtension.swift */; };
+		B2A03E662A0D9013005BF71D /* QuestionProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E652A0D9013005BF71D /* QuestionProperties.swift */; };
+		B2A03E682A0D9054005BF71D /* QuestionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E672A0D9054005BF71D /* QuestionError.swift */; };
+		C9DD7BEB2A0A3F3F007C1973 /* QnAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */; };
+		C9DD7C272A0B790C007C1973 /* ActivityViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */; };
+		CD1E64092A0E265400BB3179 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1E64082A0E265400BB3179 /* OnboardingView.swift */; };
+		CD1E640B2A0E268500BB3179 /* Page1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1E640A2A0E268500BB3179 /* Page1View.swift */; };
+		CD1E640D2A0E26A900BB3179 /* Page2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1E640C2A0E26A900BB3179 /* Page2View.swift */; };
+		CD1E640F2A0E26C500BB3179 /* Page3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1E640E2A0E26C500BB3179 /* Page3View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		791029D82A039C58009A5590 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		791C24562A08EA520009E4EA /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		791C24592A0933DE0009E4EA /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		791C245D2A09530F0009E4EA /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		791C245F2A0A10BB0009E4EA /* CapsuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleView.swift; sourceTree = "<group>"; };
 		794DB9EA2A07E38600635B58 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		794DB9EC2A07E38E00635B58 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		794DB9EE2A07E3A500635B58 /* PublishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
@@ -32,11 +74,45 @@
 		794EB6AB2A03FF8900DA52B5 /* Question+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Question+CoreDataClass.swift"; sourceTree = "<group>"; };
 		794EB6AC2A03FF8900DA52B5 /* Question+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Question+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		794EB6B02A03FFCB00DA52B5 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		799E8F9C2A0A94D7003F78F2 /* question_samples.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = question_samples.json; sourceTree = "<group>"; };
+		799E8F9F2A0A94FA003F78F2 /* QuerySentence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuerySentence.swift; sourceTree = "<group>"; };
+		799E8FA12A0A9508003F78F2 /* QuerySentenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuerySentenceManager.swift; sourceTree = "<group>"; };
+		799E8FBE2A0CBDD7003F78F2 /* PDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGenerator.swift; sourceTree = "<group>"; };
+		799E8FC02A0CC175003F78F2 /* AttendanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceManager.swift; sourceTree = "<group>"; };
+		799E8FC22A0CCE2A003F78F2 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		79D7C5D62A00ED3500AC8B6F /* Hyoza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hyoza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyozaApp.swift; sourceTree = "<group>"; };
 		79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79D7C5E02A00ED3700AC8B6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		79D7C5EC2A00ED5A00AC8B6F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9809A3032A097AD100AB8995 /* ColorWithHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorWithHex.swift; sourceTree = "<group>"; };
+		9809A3052A0988A600AB8995 /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
+		9827EC722A0E1FBD00154343 /* ClosedCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedCardListView.swift; sourceTree = "<group>"; };
+		9827EC742A0E1FE900154343 /* OpenCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCardView.swift; sourceTree = "<group>"; };
+		98EE907C2A0A750A0042E7B0 /* QuestionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCardView.swift; sourceTree = "<group>"; };
+		B22A97E32A08EC3C00ECD178 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodSegmentView.swift; sourceTree = "<group>"; };
+		B22A97EB2A09117700ECD178 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		B22A97ED2A0912AD00ECD178 /* PeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
+		B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtension.swift; sourceTree = "<group>"; };
+		B256C8CA2A0A621D00B0C62E /* MonthPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthPickerView.swift; sourceTree = "<group>"; };
+		B256C8CC2A0A64D500B0C62E /* PublishCardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishCardify.swift; sourceTree = "<group>"; };
+		B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBookView.swift; sourceTree = "<group>"; };
+		B2A03E592A0D75FB005BF71D /* Answer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Answer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B2A03E5B2A0D7619005BF71D /* Answer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Answer+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B2A03E5D2A0D782A005BF71D /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		B2A03E5F2A0D7A1B005BF71D /* PersistenceController+Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Answer.swift"; sourceTree = "<group>"; };
+		B2A03E612A0D7A2C005BF71D /* PersistenceController+Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Question.swift"; sourceTree = "<group>"; };
+		B2A03E632A0D880C005BF71D /* NSPredicateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtension.swift; sourceTree = "<group>"; };
+		B2A03E652A0D9013005BF71D /* QuestionProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionProperties.swift; sourceTree = "<group>"; };
+		B2A03E672A0D9054005BF71D /* QuestionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionError.swift; sourceTree = "<group>"; };
+		C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAView.swift; sourceTree = "<group>"; };
+		C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewControllerWrapper.swift; sourceTree = "<group>"; };
+		CD1E64082A0E265400BB3179 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		CD1E640A2A0E268500BB3179 /* Page1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page1View.swift; sourceTree = "<group>"; };
+		CD1E640C2A0E26A900BB3179 /* Page2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page2View.swift; sourceTree = "<group>"; };
+		CD1E640E2A0E26C500BB3179 /* Page3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,10 +126,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		791C24552A08E9C40009E4EA /* notification */ = {
+			isa = PBXGroup;
+			children = (
+				791C24562A08EA520009E4EA /* NotificationManager.swift */,
+			);
+			path = notification;
+			sourceTree = "<group>";
+		};
+		791C24582A0933CA0009E4EA /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B22A97EB2A09117700ECD178 /* ColorExtension.swift */,
+				791C24592A0933DE0009E4EA /* DateExtension.swift */,
+				B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */,
+				791C245D2A09530F0009E4EA /* ViewExtension.swift */,
+				B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */,
+				799E8FC22A0CCE2A003F78F2 /* Calendar.swift */,
+				B2A03E632A0D880C005BF71D /* NSPredicateExtension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		794DB9E72A07E07B00635B58 /* tabToday */ = {
 			isa = PBXGroup;
 			children = (
 				794DB9EA2A07E38600635B58 /* TodayView.swift */,
+				9809A3032A097AD100AB8995 /* ColorWithHex.swift */,
+				9809A3052A0988A600AB8995 /* QuestionBoxView.swift */,
+				98EE907C2A0A750A0042E7B0 /* QuestionCardView.swift */,
+				9827EC722A0E1FBD00154343 /* ClosedCardListView.swift */,
+				9827EC742A0E1FE900154343 /* OpenCardView.swift */,
 			);
 			path = tabToday;
 			sourceTree = "<group>";
@@ -70,6 +173,11 @@
 			isa = PBXGroup;
 			children = (
 				794DB9EE2A07E3A500635B58 /* PublishView.swift */,
+				B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */,
+				B22A97ED2A0912AD00ECD178 /* PeriodView.swift */,
+				B256C8CA2A0A621D00B0C62E /* MonthPickerView.swift */,
+				B256C8CC2A0A64D500B0C62E /* PublishCardify.swift */,
+				B256C8CE2A0A6A2D00B0C62E /* ResultBookView.swift */,
 			);
 			path = tabPublish;
 			sourceTree = "<group>";
@@ -78,6 +186,10 @@
 			isa = PBXGroup;
 			children = (
 				794DB9F12A07EE6000635B58 /* CardView.swift */,
+				791C245F2A0A10BB0009E4EA /* CapsuleView.swift */,
+				799E8FBE2A0CBDD7003F78F2 /* PDFGenerator.swift */,
+				C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */,
+				799E8FC02A0CC175003F78F2 /* AttendanceManager.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -85,11 +197,35 @@
 		794EB6AF2A03FF8E00DA52B5 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				B2A03E5D2A0D782A005BF71D /* CoreDataHelper.swift */,
 				794EB6B02A03FFCB00DA52B5 /* Persistence.swift */,
+				B2A03E5F2A0D7A1B005BF71D /* PersistenceController+Answer.swift */,
+				B2A03E612A0D7A2C005BF71D /* PersistenceController+Question.swift */,
 				794EB6AB2A03FF8900DA52B5 /* Question+CoreDataClass.swift */,
 				794EB6AC2A03FF8900DA52B5 /* Question+CoreDataProperties.swift */,
+				799E8FA12A0A9508003F78F2 /* QuerySentenceManager.swift */,
+				B2A03E592A0D75FB005BF71D /* Answer+CoreDataClass.swift */,
+				B2A03E5B2A0D7619005BF71D /* Answer+CoreDataProperties.swift */,
 			);
 			path = data;
+			sourceTree = "<group>";
+		};
+		799E8F9B2A0A94D7003F78F2 /* raw */ = {
+			isa = PBXGroup;
+			children = (
+				799E8F9C2A0A94D7003F78F2 /* question_samples.json */,
+			);
+			path = raw;
+			sourceTree = "<group>";
+		};
+		799E8F9E2A0A94FA003F78F2 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				799E8F9F2A0A94FA003F78F2 /* QuerySentence.swift */,
+				B2A03E652A0D9013005BF71D /* QuestionProperties.swift */,
+				B2A03E672A0D9054005BF71D /* QuestionError.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		79D7C5CD2A00ED3500AC8B6F = {
@@ -112,16 +248,23 @@
 		79D7C5D82A00ED3500AC8B6F /* Hyoza */ = {
 			isa = PBXGroup;
 			children = (
+				B22A97E42A08EC4A00ECD178 /* constant */,
 				79D7C5DF2A00ED3700AC8B6F /* Preview Content */,
 				79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */,
 				79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */,
 				794EB6A72A03F92600DA52B5 /* Hyoza.xcdatamodeld */,
+				799E8F9B2A0A94D7003F78F2 /* raw */,
 				794EB6AF2A03FF8E00DA52B5 /* data */,
+				799E8F9E2A0A94FA003F78F2 /* model */,
 				791029D82A039C58009A5590 /* MainTabView.swift */,
+				791C24582A0933CA0009E4EA /* extensions */,
 				794DB9F02A07EE5200635B58 /* component */,
+				791C24552A08E9C40009E4EA /* notification */,
 				794DB9E92A07E11A00635B58 /* tabPublish */,
 				794DB9E82A07E11200635B58 /* tabList */,
 				794DB9E72A07E07B00635B58 /* tabToday */,
+				C9DD7BE92A0A3E04007C1973 /* qna */,
+				CD1E64072A0E25EC00BB3179 /* onboard */,
 			);
 			path = Hyoza;
 			sourceTree = "<group>";
@@ -132,6 +275,33 @@
 				79D7C5E02A00ED3700AC8B6F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B22A97E42A08EC4A00ECD178 /* constant */ = {
+			isa = PBXGroup;
+			children = (
+				B22A97E32A08EC3C00ECD178 /* CustomColor.swift */,
+			);
+			path = constant;
+			sourceTree = "<group>";
+		};
+		C9DD7BE92A0A3E04007C1973 /* qna */ = {
+			isa = PBXGroup;
+			children = (
+				C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */,
+			);
+			path = qna;
+			sourceTree = "<group>";
+		};
+		CD1E64072A0E25EC00BB3179 /* onboard */ = {
+			isa = PBXGroup;
+			children = (
+				CD1E64082A0E265400BB3179 /* OnboardingView.swift */,
+				CD1E640A2A0E268500BB3179 /* Page1View.swift */,
+				CD1E640C2A0E26A900BB3179 /* Page2View.swift */,
+				CD1E640E2A0E26C500BB3179 /* Page3View.swift */,
+			);
+			path = onboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79D7C5E12A00ED3700AC8B6F /* Preview Assets.xcassets in Resources */,
+				799E8F9D2A0A94D7003F78F2 /* question_samples.json in Resources */,
 				79D7C5DE2A00ED3700AC8B6F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,16 +375,53 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2A03E662A0D9013005BF71D /* QuestionProperties.swift in Sources */,
+				B256C8CF2A0A6A2D00B0C62E /* ResultBookView.swift in Sources */,
 				794EB6AE2A03FF8900DA52B5 /* Question+CoreDataProperties.swift in Sources */,
+				791C245A2A0933DE0009E4EA /* DateExtension.swift in Sources */,
+				9827EC752A0E1FE900154343 /* OpenCardView.swift in Sources */,
 				794EB6AA2A03F92600DA52B5 /* Hyoza.xcdatamodeld in Sources */,
+				B2A03E602A0D7A1B005BF71D /* PersistenceController+Answer.swift in Sources */,
+				799E8FC12A0CC175003F78F2 /* AttendanceManager.swift in Sources */,
+				C9DD7BEB2A0A3F3F007C1973 /* QnAView.swift in Sources */,
+				B2A03E5E2A0D782A005BF71D /* CoreDataHelper.swift in Sources */,
+				B22A97EA2A0910C000ECD178 /* PeriodSegmentView.swift in Sources */,
+				B22A97E52A08ED2900ECD178 /* CustomColor.swift in Sources */,
 				794EB6B12A03FFCB00DA52B5 /* Persistence.swift in Sources */,
 				79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */,
+				B256C8CD2A0A64D500B0C62E /* PublishCardify.swift in Sources */,
+				791C24572A08EA520009E4EA /* NotificationManager.swift in Sources */,
+				799E8FA22A0A9508003F78F2 /* QuerySentenceManager.swift in Sources */,
+				B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */,
+				B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */,
+				B22A97EC2A09117700ECD178 /* ColorExtension.swift in Sources */,
+				9827EC732A0E1FBD00154343 /* ClosedCardListView.swift in Sources */,
+				B256C8C92A0A5D9800B0C62E /* UIScreenExtension.swift in Sources */,
+				B2A03E622A0D7A2C005BF71D /* PersistenceController+Question.swift in Sources */,
 				794DB9F22A07EE6000635B58 /* CardView.swift in Sources */,
+				B2A03E5C2A0D7619005BF71D /* Answer+CoreDataProperties.swift in Sources */,
+				B2A03E642A0D880C005BF71D /* NSPredicateExtension.swift in Sources */,
 				791029D92A039C58009A5590 /* MainTabView.swift in Sources */,
+				B2A03E682A0D9054005BF71D /* QuestionError.swift in Sources */,
 				794DB9EF2A07E3A500635B58 /* PublishView.swift in Sources */,
+				CD1E64092A0E265400BB3179 /* OnboardingView.swift in Sources */,
+				CD1E640D2A0E26A900BB3179 /* Page2View.swift in Sources */,
+				CD1E640B2A0E268500BB3179 /* Page1View.swift in Sources */,
 				794DB9EB2A07E38600635B58 /* TodayView.swift in Sources */,
+				B2A03E5A2A0D75FC005BF71D /* Answer+CoreDataClass.swift in Sources */,
+				791C24602A0A10BB0009E4EA /* CapsuleView.swift in Sources */,
+				CD1E640F2A0E26C500BB3179 /* Page3View.swift in Sources */,
+				799E8FC32A0CCE2A003F78F2 /* Calendar.swift in Sources */,
 				794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */,
+				98EE907D2A0A750A0042E7B0 /* QuestionCardView.swift in Sources */,
+				B256C8CB2A0A621D00B0C62E /* MonthPickerView.swift in Sources */,
+				9809A3042A097AD100AB8995 /* ColorWithHex.swift in Sources */,
+				C9DD7C272A0B790C007C1973 /* ActivityViewControllerWrapper.swift in Sources */,
 				794DB9ED2A07E38E00635B58 /* ListView.swift in Sources */,
+				799E8FBF2A0CBDD7003F78F2 /* PDFGenerator.swift in Sources */,
+				9809A3062A0988A600AB8995 /* QuestionBoxView.swift in Sources */,
+				791C245E2A09530F0009E4EA /* ViewExtension.swift in Sources */,
+				799E8FA02A0A94FA003F78F2 /* QuerySentence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,9 +550,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hyoza/Preview Content\"";
-				DEVELOPMENT_TEAM = BDU85ET24K;
+				DEVELOPMENT_TEAM = RXYS3YJ24P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "아무거나";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -372,9 +581,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hyoza/Preview Content\"";
-				DEVELOPMENT_TEAM = BDU85ET24K;
+				DEVELOPMENT_TEAM = RXYS3YJ24P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "아무거나";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
