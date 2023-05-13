@@ -8,10 +8,16 @@
 import Foundation
 
 enum CustomColor: String {
-    case TextColor
     case BackgroundColor
     case ButtonColor
     case ButtonTextColor
+    case CapsuleColor
+    case CardPointColor
     case CardPrimaryColor
     case CardSecondaryColor
+    case SelectedColor
+    case TextColor
+    case TextPointColor
+    case TextSecondaryColor
+    case TextThirdColor
 }
