@@ -24,14 +24,14 @@ extension PersistenceController {
     }
     
     func addComment(detail commentDetail: String, relatedTo question: Question) {
-        if let context = question.managedObjectContext {
-            context.performAndWait {
-                if let answer = question.answer {
-                    answer.comment = commentDetail
-                }
-                context.save(with: .addComment)
+        //        if let context = question.managedObjectContext {
+        context.performAndWait {
+            if let answer = question.answer {
+                answer.comment = commentDetail
             }
+            context.save(with: .addComment)
         }
+        //        }
     }
     
     func deleteComment(relatedTo question: Question) {

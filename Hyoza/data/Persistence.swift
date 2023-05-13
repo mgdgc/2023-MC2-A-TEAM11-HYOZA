@@ -21,6 +21,10 @@ class PersistenceController: ObservableObject {
     
     let container: NSPersistentContainer
     
+    var context: NSManagedObjectContext {
+        container.viewContext
+    }
+    
     /// A peristent history token used for fetching transactions from the store.
     private var lastToken: NSPersistentHistoryToken?
     
