@@ -9,11 +9,10 @@ import SwiftUI
 import CoreData
 
 struct TodayView: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
     
     @State var isQuestionBoxViewTapped: Bool = false
-    @State var easyQuestions: [QuerySentence] = QuerySentenceManager.shared.filtered(difficulty: .easy)
-    @State var hardQuestions: [QuerySentence] = QuerySentenceManager.shared.filtered(difficulty: .hard)
+    @State var easyQuestions: [Question] = []
+    @State var hardQuestions: [Question] = []
     @State var isContinueIconSmall: Bool = false
     @State var continueText: String? = nil
     @State var continueTextOpacity: Double = 1.0

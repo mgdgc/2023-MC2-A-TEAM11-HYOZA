@@ -10,9 +10,9 @@ import SwiftUI
 struct ClosedCardListView: View {
     @Binding var openDegree: Double
     @Binding var closedDegree: Double
-    @Binding var easyQuestions: [QuerySentence]
-    @Binding var hardQuestions: [QuerySentence]
-    @Binding var selectedQuestion: QuerySentence
+    @Binding var easyQuestions: [Question]
+    @Binding var hardQuestions: [Question]
+    @Binding var selectedQuestion: Question?
     
     var body: some View {
         ZStack{
@@ -62,14 +62,14 @@ struct ClosedCardListView: View {
         .rotation3DEffect(Angle(degrees: closedDegree), axis: (0, 1, 0))
     }
     
-    private func closedCardView(question: QuerySentence, questionNumber: Int) -> some View {
+    private func closedCardView(question: Question, questionNumber: Int) -> some View {
         var body: some View {
             CardView(backgroundColor: .cardLightOrange, cornerRadius: 15, shadowColor: .black.opacity(0.1), shadowRadius: 8){
                 VStack{
                     Spacer()
                     HStack{
                         CapsuleView(content: {
-                            Text(question.difficulty == .easy ? "쉬움" : "어려움")
+                            Text(question.difficultyString)
                                 .font(.footnote)
                                 .foregroundColor(.textOrange)
                                 .padding([.leading, .trailing], 12)
@@ -89,9 +89,9 @@ struct ClosedCardListView: View {
         return body
     }
 }
-
-struct ClosedCardListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ClosedCardListView(openDegree: .constant(90), closedDegree: .constant(0), easyQuestions: .constant([QuerySentence(id: 1, question: "최근에 재미있게 본 유튜브 채널에 대해 말해주세요~", difficulty: .easy), QuerySentence(id: 2, question: "강아지가 좋나요, 고양이가 좋나요?", difficulty: .easy)]), hardQuestions: .constant([QuerySentence(id: 3, question: "인생에서 가장 중요시하는 가치가 무엇이신가요?", difficulty: .hard), QuerySentence(id: 4, question: "부모님에게 '부모님'이란 어떤 존재였나요?", difficulty: .hard)]), selectedQuestion: .constant(QuerySentence(id: 3, question: "인생에서 가장 중요시하는 가치가 무엇이신가요?", difficulty: .hard)))
-    }
-}
+//
+//struct ClosedCardListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ClosedCardListView(openDegree: .constant(90), closedDegree: .constant(0), easyQuestions: .constant([QuerySentence(id: 1, question: "최근에 재미있게 본 유튜브 채널에 대해 말해주세요~", difficulty: .easy), QuerySentence(id: 2, question: "강아지가 좋나요, 고양이가 좋나요?", difficulty: .easy)]), hardQuestions: .constant([QuerySentence(id: 3, question: "인생에서 가장 중요시하는 가치가 무엇이신가요?", difficulty: .hard), QuerySentence(id: 4, question: "부모님에게 '부모님'이란 어떤 존재였나요?", difficulty: .hard)]), selectedQuestion: .constant(QuerySentence(id: 3, question: "인생에서 가장 중요시하는 가치가 무엇이신가요?", difficulty: .hard)))
+//    }
+//}

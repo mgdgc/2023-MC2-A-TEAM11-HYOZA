@@ -158,7 +158,7 @@ struct QnAView: View {
             }
             .padding(.all)
             
-            if data.wrappedAnswer.comment != nil {
+            if data.answer?.comment != nil {
                 HStack {
                     Spacer()
                     Text(data.wrappedAnswer.commentDetail)
@@ -190,7 +190,7 @@ struct QnAView: View {
     
     var commentEditView: some View {
         ZStack {
-            if data.wrappedAnswer.comment == nil {
+            if data.answer?.comment == nil {
                 Rectangle()
                     .frame(width: UIScreen.screenWidth-40, height: 40)
                     .cornerRadius(100)
