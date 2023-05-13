@@ -42,14 +42,11 @@ struct TodayView: View {
                             }
                         }
                 }
-//                Spacer()
                 ZStack {
-                    //                    if isQuestionBoxViewTapped {
                     CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
                         QuestionCardView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions)
                     }
                     .zIndex(isQuestionBoxViewTapped ? 1 : 0)
-                    //                    } else {
                     CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
                         QuestionBoxView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, isQuestionBoxViewTapped: $isQuestionBoxViewTapped)
                     }
@@ -57,7 +54,6 @@ struct TodayView: View {
                         self.isQuestionBoxViewTapped.toggle()
                     }
                     .zIndex(isQuestionBoxViewTapped ? 0 : 1)
-                    //                    }
                 }
                 Spacer()
             }
