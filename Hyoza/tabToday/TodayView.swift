@@ -23,23 +23,23 @@ struct TodayView: View {
     
     var body: some View {
         ZStack {
-            Color.backGroundWhite
-                .edgesIgnoringSafeArea(.all)
-            VStack(alignment: .leading, spacing: 20) {
-                Text(Date().dateOnlyString)
-                    .font(.system(.footnote))
-                HStack {
-                    Text("오늘의 질문")
-                        .font(.largeTitle)
-                        .bold()
-                        .foregroundColor(.textBlack)
-                    Spacer()
-                    ContinueIconView(text: $continueText, textOpacity: $continueTextOpacity, continuousDayCount: $continuousDayCount)
-                        .onTapGesture {
-                            if !isContinueIconAnimating {
-                                makeCoutinueIconLargeAndSmall()
+            VStack(alignment: .leading) {
+                VStack(alignment: .leading) {
+                    Text(Date().dateOnlyString)
+                        .font(.system(.footnote))
+                    HStack {
+                        Text("오늘의 질문")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.textBlack)
+                        Spacer()
+                        ContinueIconView(text: $continueText, textOpacity: $continueTextOpacity, continuousDayCount: $continuousDayCount)
+                            .onTapGesture {
+                                if !isContinueIconAnimating {
+                                    makeCoutinueIconLargeAndSmall()
+                                }
                             }
-                        }
+                    }
                 }
                 Spacer()
                 ZStack {
@@ -56,11 +56,13 @@ struct TodayView: View {
                         }
                     }
                 }
+                .padding(.top, 20)
                 Spacer()
             }
             .padding(20)
             
         }
+        .background(Color.backGroundWhite.ignoresSafeArea())
         .onAppear() {
             continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
             
