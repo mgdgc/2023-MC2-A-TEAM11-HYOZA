@@ -19,6 +19,7 @@ struct QuestionCardView: View {
     
     var body: some View {
         ZStack {
+            Color.backGroundWhite
             OpenCardView(degree: $openDegree, selectedQuestion: $selectedQuestion)
             ClosedCardListView(openDegree: $openDegree, closedDegree: $closedDegree, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion)
         }
