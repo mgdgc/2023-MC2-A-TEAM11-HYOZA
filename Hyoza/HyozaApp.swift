@@ -14,6 +14,8 @@ struct HyozaApp: App {
     
     init() {
         self.isFirstLaunch = UserDefaults.standard.object(forKey: UserDefaultsKey.isFirstLaunching.rawValue) == nil ? true : UserDefaults.standard.bool(forKey: UserDefaultsKey.isFirstLaunching.rawValue)
+        
+        NotificationManager.shared.requestAuthorization { granted in }
     }
     
     let persistenceController = PersistenceController.shared
