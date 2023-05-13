@@ -29,14 +29,15 @@ class PersistenceController: ObservableObject {
     private var lastToken: NSPersistentHistoryToken?
     
     // MARK: - Init
-    private init() {
+    private init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Hyoza")
         
         guard let description = container.persistentStoreDescriptions.first else {
             fatalError("Failed to retrieve a persistent store description.")
         }
-        
-        description.url = URL(fileURLWithPath: "/dev/null")
+        if inMemory {
+            description.url = URL(fileURLWithPath: "/dev/null")
+        }
         
         // Enable persistent history tracking
         /// - Tag: persistentHistoryTracking
@@ -51,15 +52,17 @@ class PersistenceController: ObservableObject {
         
         // This sample refreshes UI by consuming store changes via persistent history tracking.
         /// - Tag: viewContextMergeParentChanges
-        container.viewContext.automaticallyMergesChangesFromParent = false
-        container.viewContext.name = "viewContext"
+//        container.viewContext.automaticallyMergesChangesFromParent = false
+        container.viewContext.automaticallyMergesChangesFromParent = true
+//        container.viewContext.name = "viewContext"
         /// - Tag: viewContextMergePolicy
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+//        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         
-        Task {
-            try await fetchQuestion()
+        if easyQuestions.count == 0 {
+            Task {
+                try await fetchQuestion()
+            }
         }
-        
     }
     
     // MARK: Save Context
@@ -89,7 +92,6 @@ extension PersistenceController {
         print("yes file")
         do {
             let data = try Data(contentsOf: fileUrl)
-            print("error1")
             // Decode the GeoJSON into a data model.
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .secondsSince1970
@@ -100,32 +102,10 @@ extension PersistenceController {
             logger.debug("Start importing data to the store...")
             try await importQuestions(from: questionPropertiesList)
             logger.debug("Finished importing data.")
-            
-            let context = container.viewContext
+            try await setRelationships(with: questionPropertiesList)
+            logger.debug("Finished setting relationships.")
             context.refreshAllObjects()
             
-            for questionProperties in questionPropertiesList {
-                guard let answer = questionProperties.answer else {
-                    continue
-                }
-                let questionRequest: NSFetchRequest<Question> = Question.fetchRequest()
-                questionRequest.predicate = NSPredicate(format: "id == %@", argumentArray: [Int64(questionProperties.id)])
-                let answerRequest: NSFetchRequest<Answer> = Answer.fetchRequest()
-                answerRequest.predicate = NSPredicate(format: "answer == %@", argumentArray: [answer])
-                
-                let questionResults = try context.fetch(questionRequest)
-//                let allAnswers = try context.fetch(Answer.fetchRequest())
-                let answerResults = try context.fetch(answerRequest)
-                
-//                print(questionResults)
-//                print(allAnswers)
-//                print(answerResults)
-                questionResults.first!.answer = answerResults.first!
-            }
-            
-            if context.hasChanges {
-                try context.save()
-            }
         } catch {
             print(":(")
             throw QuestionError.wrongDataFormat(error: error)
@@ -177,19 +157,49 @@ extension PersistenceController {
         logger.debug("Successfully inserted data.")
     }
 
-    private func newBatchInsertRequest(with propertyList: [QuestionProperties]) -> [NSBatchInsertRequest] {
+    private func setRelationships(with propertiesList: [QuestionProperties]) async throws {
+        guard !propertiesList.isEmpty else { return }
+        
+        let taskContext = newTaskContext()
+        // Add name and author to identify source of persistent history changes.
+        taskContext.name = "setRelationshipsContext"
+        taskContext.transactionAuthor = "setRelationships"
+        
+        try await taskContext.perform {
+            for property in propertiesList {
+                guard let answer = property.answer else {
+                    continue
+                }
+                let questionRequest: NSFetchRequest<Question> = Question.fetchRequest()
+                questionRequest.predicate = NSPredicate(format: "id == %@", argumentArray: [Int64(property.id)])
+                let answerRequest: NSFetchRequest<Answer> = Answer.fetchRequest()
+                answerRequest.predicate = NSPredicate(format: "answer == %@", argumentArray: [answer])
+                
+                let questionResults = try? taskContext.fetch(questionRequest)
+                let answerResults = try? taskContext.fetch(answerRequest)
+                
+                questionResults?.first?.answer = answerResults?.first!
+            }
+            
+            if taskContext.hasChanges {
+                try taskContext.save()
+            }
+        }
+    }
+    
+    private func newBatchInsertRequest(with propertiesList: [QuestionProperties]) -> [NSBatchInsertRequest] {
         var index = 0
         var answerIndex = 0
-        let total = propertyList.count
+        let total = propertiesList.count
 
         let batchAnswerInsertRequest = NSBatchInsertRequest(entity: Answer.entity(), dictionaryHandler: { dictionary in
             guard answerIndex < total else {
                 return true }
-            guard propertyList[answerIndex].answer != nil else {
+            guard propertiesList[answerIndex].answer != nil else {
                 answerIndex += 1
                 return false
             }
-            dictionary.addEntries(from: propertyList[answerIndex].answerDictionaryValue)
+            dictionary.addEntries(from: propertiesList[answerIndex].answerDictionaryValue)
             answerIndex += 1
             return false
         })
@@ -197,11 +207,10 @@ extension PersistenceController {
         // Provide one dictionary at a time when the closure is called.
         let batchInsertRequest = NSBatchInsertRequest(entity: Question.entity(), dictionaryHandler: { dictionary in
             guard index < total else { return true }
-            dictionary.addEntries(from: propertyList[index].questionDictionaryValue)
+            dictionary.addEntries(from: propertiesList[index].questionDictionaryValue)
             index += 1
             return false
         })
-        
         
         return [batchInsertRequest, batchAnswerInsertRequest]
     }
