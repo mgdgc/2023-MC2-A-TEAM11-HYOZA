@@ -17,6 +17,8 @@ struct ListView: View {
     
     private var items : FetchedResults<Question>
     @State private var searchText : String = ""
+    @State private var answerText : String = "기본답변입니다."
+    
     //코어데이터에서 호출하는 쿼리
     var query : Binding<String> {
         Binding {
@@ -35,6 +37,7 @@ struct ListView: View {
             ZStack{
                 Color.backgroundColor.ignoresSafeArea(edges: .top)
                 ScrollView{
+                    
                     LazyVStack {
                         //MARK: 삭제예정 :코어데이터 생성을 위해 임의 배치
                         //아이템을 만들어주기 위한 RoundedRectangle
@@ -48,11 +51,14 @@ struct ListView: View {
                                     .shadow( color : .gray, radius: 5, y :5)
                                     .opacity(0.3)
                                     .overlay(CellContents(item : item))
-                                    .padding(.bottom, 20) 
+                                    .padding(.bottom, 20)
+                                    
                             }
                             
                         }
                     }
+                    
+                    
                 }
             }
             .navigationTitle("질문 리스트")
@@ -69,7 +75,7 @@ struct ListView: View {
 
 //RoundedRectangle에 overlay 되는 텍스트
 private struct CellContents : View {
-    var item : Question
+    @ObservedObject var item : Question
     let viewWidth = UIScreen.main.bounds.size.width - 60
     // TODO: 더 나은 방식으로 개선할 수 없나?
     var body : some View{
@@ -90,27 +96,24 @@ private struct CellContents : View {
                 .multilineTextAlignment(.leading)
                 .padding(.top, 5)
             
-            if let answer = item.answer,
-               let answerDetail = answer.answer {
-                Text(answerDetail)
-                    .fontWeight(.regular)
-                    .font(.subheadline)
-                    .foregroundColor(.textColor)
-                    .frame(width: viewWidth, alignment: .leading)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.leading)
-                    .padding(.top, 5)
-            }
+            Text(item.wrappedAnswer.answerDetail)
+                .fontWeight(.regular)
+                .font(.subheadline)
+                .foregroundColor(.textColor)
+                .frame(width: viewWidth, alignment: .leading)
+                .lineLimit(2)
+                .multilineTextAlignment(.leading)
+                .padding(.top, 5)
             Spacer()
         }
     }
 }
 
 private let itemFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 MM월 dd일"
-        formatter.locale = Locale(identifier: "ko_KR")
-        return formatter
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy년 MM월 dd일"
+    formatter.locale = Locale(identifier: "ko_KR")
+    return formatter
 }()
 
 
