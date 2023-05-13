@@ -24,10 +24,6 @@ struct QuestionBoxView: View {
                 Button {
                     easyQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndEasy)
                     hardQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndHard)
-                    dump(easyQuestions)
-                    dump(hardQuestions)
-                    print(easyQuestions)
-                    print(hardQuestions)
                     self.isQuestionBoxViewTapped.toggle()
                 } label: {
                     Image(systemName: "shippingbox.fill")

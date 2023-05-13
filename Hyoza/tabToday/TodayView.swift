@@ -18,14 +18,15 @@ struct TodayView: View {
     @State var continueTextOpacity: Double = 1.0
     @State var isContinueIconAnimating: Bool = false
     @State var continuousDayCount: Int = 0
+    @State var selectedQuestion: Question? = nil
     
     @State var tempTextStorage: String? = nil
     
     var body: some View {
         ZStack {
             Color.backGroundWhite
-                .edgesIgnoringSafeArea(.all)
-            VStack(alignment: .leading, spacing: 20) {
+//                .edgesIgnoringSafeArea(.all)
+            VStack(alignment: .leading) {
                 Text(Date().dateOnlyString)
                     .font(.system(.footnote))
                 HStack {
@@ -57,9 +58,9 @@ struct TodayView: View {
                 ZStack {
                     if isQuestionBoxViewTapped {
                         CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
-                            QuestionCardView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions)
+                            QuestionCardView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion)
                         }
-//                        .zIndex(isQuestionBoxViewTapped ? 1 : 0)
+                        .zIndex(isQuestionBoxViewTapped ? 1 : 0)
                     } else {
                         CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
                             QuestionBoxView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, isQuestionBoxViewTapped: $isQuestionBoxViewTapped)
@@ -67,10 +68,10 @@ struct TodayView: View {
                         .onTapGesture {
                             self.isQuestionBoxViewTapped.toggle()
                         }
-//                        .zIndex(isQuestionBoxViewTapped ? 0 : 1)
+                        .zIndex(isQuestionBoxViewTapped ? 0 : 1)
                     }
                 }
-                Spacer()
+//                Spacer()
             }
             .padding(20)
             
