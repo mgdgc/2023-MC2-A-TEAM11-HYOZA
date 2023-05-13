@@ -105,7 +105,6 @@ extension PersistenceController {
             context.refreshAllObjects()
             
             for questionProperties in questionPropertiesList {
-                dump(questionProperties)
                 guard let answer = questionProperties.answer else {
                     continue
                 }
