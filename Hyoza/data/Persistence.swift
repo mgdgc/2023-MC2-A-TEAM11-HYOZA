@@ -19,6 +19,56 @@ class PersistenceController: ObservableObject {
     
     static let shared = PersistenceController()
     
+    static var preview: PersistenceController = {
+        let result = PersistenceController(inMemory: true)
+        let viewContext = result.container.viewContext
+        
+        // easyQuestion 1, 2
+        var newQuestions = [Question]()
+        for _ in 0..<5 {
+            let newQuestion = Question(context: viewContext)
+            newQuestion.id = Int64(UUID().hashValue)
+            newQuestions.append(newQuestion)
+        }
+        
+        newQuestions[3].timestamp = Date()
+        newQuestions[4].timestamp = Date()
+        
+        newQuestions[0].difficulty = 0
+        newQuestions[1].difficulty = 0
+        newQuestions[2].difficulty = 1
+        newQuestions[3].difficulty = 1
+        newQuestions[4].difficulty = 0
+        
+        newQuestions[0].question = "0번째 미리보기 질문입니다."
+        newQuestions[1].question = "1번째 미리보기 질문입니다."
+        newQuestions[2].question = "2번째 미리보기 질문입니다."
+        newQuestions[3].question = "3번째 미리보기 질문입니다."
+        newQuestions[4].question = "4번째 미리보기 질문입니다."
+        
+        let newAnswer1 = Answer(context: viewContext)
+        newAnswer1.answer = "3번째 미리보기 답변입니다."
+        newAnswer1.answerTime = Date()
+        
+        let newAnswer2 = Answer(context: viewContext)
+        newAnswer2.answer = "4번째 미리보기 답변입니다."
+        newAnswer2.answerTime = Date()
+        newAnswer2.comment = "4번째 미리보기 코멘트입니다."
+        
+        newQuestions[3].answer = newAnswer1
+        newQuestions[4].answer = newAnswer2
+        
+        do {
+            try viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+        return result
+    }()
+    
     let container: NSPersistentContainer
     
     var context: NSManagedObjectContext {
