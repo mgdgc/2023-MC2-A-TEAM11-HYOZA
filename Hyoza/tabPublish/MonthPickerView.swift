@@ -7,9 +7,16 @@
 
 import SwiftUI
 
-enum Month: Int, CaseIterable, Identifiable {
+enum Month: Int, CaseIterable, Identifiable, Equatable {
     case jan = 1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
     var id: Self { self }
+    var start: Date {
+        self.rawValue.startOfMonth
+    }
+    
+    var end: Date {
+        self.rawValue.endOfMonth
+    }
 }
 
 struct MonthPickerView: View {

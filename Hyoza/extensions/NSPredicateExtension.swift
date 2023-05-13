@@ -16,7 +16,7 @@ extension NSPredicate {
     
     static func timestampIn(between startDate: Date, and endDate: Date) -> NSPredicate {
         return NSPredicate(
-            format: "timestamp >= %@ AND timestamp < %@", startDate.start as NSDate,
+            format: "timestamp >= %@ AND timestamp <= %@", startDate.start as NSDate,
             endDate.end as NSDate)
     }
     

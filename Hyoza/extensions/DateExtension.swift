@@ -41,16 +41,15 @@ extension Date {
         "\(year)년 \(String(format: "%02d", month))월 \(String(format: "%02d", day))일"
     }
     
-    var nextDay: Date {
-        return Calendar.current.date(byAdding: .day, value: 1, to: self)!
-    }
-    
     var start: Date {
         Calendar.current.startOfDay(for: self)
     }
     
     var end: Date {
-        Calendar.current.startOfDay(for: self.nextDay)
+        var components = DateComponents()
+        components.day = 1
+        components.second = -1
+        return Calendar.current.date(byAdding: components, to: start)!
     }
 }
 
