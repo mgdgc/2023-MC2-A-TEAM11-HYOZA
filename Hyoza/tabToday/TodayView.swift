@@ -15,7 +15,6 @@ import SwiftUI
 import CoreData
 
 struct TodayView: View {
-    
     @State var isQuestionBoxViewTapped: Bool = false
     @State var easyQuestions: [Question] = []
     @State var hardQuestions: [Question] = []
@@ -24,7 +23,7 @@ struct TodayView: View {
     @State var continueTextOpacity: Double = 1.0
     @State var isContinueIconAnimating: Bool = false
     @State var continuousDayCount: Int = 0
-    @State var selectedQuestion: Question? = PersistenceController.shared.selectedQuestion
+    @State var selectedQuestion: Question? = nil
     @State var tempTextStorage: String? = nil
     @State var openDegree: Double = 90
     @State var closedDegree: Double = 0
@@ -95,7 +94,10 @@ struct TodayView: View {
                     }
                 }
             }
-            if selectedQuestion != nil {
+            
+            if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
+               selectedQuestion == nil {
+                selectedQuestion = _selectedQuestion
                 closedDegree = -90
                 openDegree = 0
                 isQuestionBoxViewTapped.toggle()
