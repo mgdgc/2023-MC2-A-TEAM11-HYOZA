@@ -31,7 +31,7 @@
         "comment": "코멘트입니다1211",
         "answerTime": 1681210902,
         "difficulty": 0,
-        "question": "질문입니다2",
+        "question": "질문입니다2-코멘트 있음",
         "timestamp": 1681200902,
         "id": 168120
     },
@@ -39,7 +39,7 @@
         "answer": "답입니다3",
         "answerTime": 1681978502,
         "difficulty": 0,
-        "question": "질문입니다3",
+        "question": "질문입니다3-코멘트 없음",
         "timestamp": 1681958502,
         "id": 168195
     },

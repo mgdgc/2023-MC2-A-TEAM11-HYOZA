@@ -24,6 +24,9 @@ extension Answer {
         answer ?? "Unknown Answer."
     }
     
+    public var commentDetail: String {
+        comment ?? "Unknown Comment."
+    }
 }
 
 extension Answer : Identifiable {
