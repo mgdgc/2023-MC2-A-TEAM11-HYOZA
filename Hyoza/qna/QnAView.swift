@@ -79,6 +79,7 @@ struct QnAView: View {
                                 print("텍스트를 입력해주세요.")
                             }
                             persistenceController.addAnswer(content: textValue, relateTo: data)
+                            persistenceController.addComment(detail: comment, relatedTo: data)
                             
                         }) {
                             Text("완료")
