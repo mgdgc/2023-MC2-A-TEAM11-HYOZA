@@ -16,10 +16,7 @@ struct OpenCardView: View {
     @Binding var selectedQuestion: Question?
     
     var body: some View {
-//        NavigationView {
             GeometryReader { geo in
-//                ZStack {
-//                    Color.backGroundWhite
                     if let selectedQuestion = selectedQuestion {
                         VStack{
                             HStack {
@@ -73,10 +70,7 @@ struct OpenCardView: View {
                         }
                         .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
                     }
-//                }
-//                .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
             }
-//        }
     }
 }
 

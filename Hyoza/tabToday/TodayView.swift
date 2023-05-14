@@ -19,19 +19,18 @@ struct TodayView: View {
     @State var easyQuestions: [Question] = []
     @State var hardQuestions: [Question] = []
     @State var isContinueIconSmall: Bool = false
-    @State var continueText: String? = nil
-    @State var continueTextOpacity: Double = 1.0
-    @State var isContinueIconAnimating: Bool = false
-    @State var continuousDayCount: Int = 0
     @State var selectedQuestion: Question? = nil
-    @State var tempTextStorage: String? = nil
     @State var openDegree: Double = 90
     @State var closedDegree: Double = 0
     
+    @Binding var continuousDayCount: Int
+    @Binding var continueText: String?
+    @Binding var continueTextOpacity: Double
+    @Binding var tempTextStorage: String?
+    @Binding var isContinueIconAnimating: Bool
     
     var body: some View {
         NavigationStack {
-//            ZStack {
                 VStack {
                     VStack(alignment: .leading) {
                         Text(Date().dateOnlyString)
@@ -68,33 +67,8 @@ struct TodayView: View {
                     Spacer()
                 }
                 .padding(20)
-                
-//            }
             .background(Color.backGroundWhite.ignoresSafeArea())
             .onAppear() {
-                continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
-                
-                switch continuousDayCount {
-                case 0:
-                    tempTextStorage = "작성을 시작해보세요!"
-                    continueText = tempTextStorage
-                case 1...:
-                    tempTextStorage = "연속 작성 \(continuousDayCount)일째 돌파!"
-                    continueText = tempTextStorage
-                default:
-                    tempTextStorage = "무언가 잘못됐어요 :("
-                    continueText = tempTextStorage
-                }
-                
-                if !isContinueIconAnimating {
-                    self.isContinueIconAnimating = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        makeContinueIconSmall()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                            self.isContinueIconAnimating = false
-                        }
-                    }
-                }
                 if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
                    selectedQuestion == nil {
                     selectedQuestion = _selectedQuestion
@@ -102,20 +76,6 @@ struct TodayView: View {
                     openDegree = 0
                     isQuestionBoxViewTapped.toggle()
                 }
-            }
-            
-            .onDisappear() {
-                continueTextOpacity = 1
-                
-                
-//                if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
-//                   selectedQuestion == nil {
-//                    selectedQuestion = _selectedQuestion
-//                    closedDegree = -90
-//                    openDegree = 0
-//                    isQuestionBoxViewTapped.toggle()
-//                }
-                
             }
         }
     }
@@ -176,15 +136,11 @@ struct ContinueIconView: View {
                 }
             }
         }
-//        .onAppear() {
-//            continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
-//        }
-        
     }
 }
 
 struct TodayView_Previews: PreviewProvider {
     static var previews: some View {
-        TodayView()
+        TodayView(continuousDayCount: .constant(0), continueText: .constant(nil), continueTextOpacity: .constant(1.0), tempTextStorage: .constant("작성을 시작해보세요!"), isContinueIconAnimating: .constant(false))
     }
 }
