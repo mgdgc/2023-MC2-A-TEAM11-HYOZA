@@ -25,7 +25,7 @@ class PersistenceController: ObservableObject {
         
         // easyQuestion 1, 2
         var newQuestions = [Question]()
-        for _ in 0..<5 {
+        for _ in 0...5 {
             let newQuestion = Question(context: viewContext)
             newQuestion.id = Int64(UUID().hashValue)
             newQuestions.append(newQuestion)
@@ -33,18 +33,21 @@ class PersistenceController: ObservableObject {
         
         newQuestions[3].timestamp = Date()
         newQuestions[4].timestamp = Date()
+        newQuestions[5].timestamp = Date()
         
         newQuestions[0].difficulty = 0
         newQuestions[1].difficulty = 0
         newQuestions[2].difficulty = 1
         newQuestions[3].difficulty = 1
         newQuestions[4].difficulty = 0
+        newQuestions[5].difficulty = 0
         
         newQuestions[0].question = "0번째 미리보기 질문입니다."
         newQuestions[1].question = "1번째 미리보기 질문입니다."
         newQuestions[2].question = "2번째 미리보기 질문입니다."
         newQuestions[3].question = "3번째 미리보기 질문입니다."
         newQuestions[4].question = "4번째 미리보기 질문입니다."
+        newQuestions[5].question = "5번째 미리보기 질문입니다."
         
         let newAnswer1 = Answer(context: viewContext)
         newAnswer1.answer = "3번째 미리보기 답변입니다."
