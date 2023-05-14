@@ -37,7 +37,7 @@ struct MainTabView: View {
         .onAppear {
             print(NSHomeDirectory())
         }
-        #warning("debugging을 위한 onAppear 함수")
+//        #warning("debugging을 위한 onAppear 함수")
     }
 }
 
