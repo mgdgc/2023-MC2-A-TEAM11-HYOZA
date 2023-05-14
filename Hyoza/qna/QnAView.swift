@@ -74,11 +74,13 @@ struct QnAView: View {
                         Button(action: {
                             if !isTextFieldEmpty {
                                 isEditing = false
-                                commentTextField = ""
                             } else {
                                 print("텍스트를 입력해주세요.")
                             }
                             persistenceController.addAnswer(content: textValue, relateTo: data)
+                            persistenceController.addComment(detail: comment, relatedTo: data)
+                            
+                            
                             
                         }) {
                             Text("완료")
@@ -104,7 +106,11 @@ struct QnAView: View {
                             }
                             Button(action: {
                                 isEditing = true
-                                commentTextField = comment
+                                isTextFieldEmpty = false
+                                textValue = data.wrappedAnswer.answerDetail
+                                if data.wrappedAnswer.comment != nil {
+                                    comment = data.wrappedAnswer.comment ?? "Unknown Error"
+                                }
                             }) {
                                 Image(systemName: "pencil")
                                     .foregroundColor(.orange)
@@ -158,10 +164,10 @@ struct QnAView: View {
             }
             .padding(.all)
             
-            if data.answer?.comment != nil {
+            if data.answer?.comment != nil && data.answer?.comment != "" {
                 HStack {
                     Spacer()
-                    Text(data.wrappedAnswer.commentDetail)
+                    Text(data.wrappedAnswer.comment ?? "Unknown Error.")
                         .padding(.all)
                         .background(
                             Rectangle()
@@ -176,8 +182,8 @@ struct QnAView: View {
                             }
                             Button("삭제", role: .destructive) {
                                 persistenceController.deleteComment(relatedTo: data)
+                                comment = ""
                                 isCommetFieldEmpty = true
-                                // 데이터 베이스 내 코멘트 값도 삭제해주어야 함.
                             }
                         }
                 }
@@ -185,12 +191,13 @@ struct QnAView: View {
                 .padding(.bottom, 30)
             }
             
+            
         }
     }
     
     var commentEditView: some View {
         ZStack {
-            if data.answer?.comment == nil {
+            if data.answer?.comment == nil || data.answer?.comment == "" {
                 Rectangle()
                     .frame(width: UIScreen.screenWidth-40, height: 40)
                     .cornerRadius(100)
@@ -205,13 +212,16 @@ struct QnAView: View {
                             isCommetFieldEmpty = newValue.isEmpty
                         }
                     Button(action: {
-                        if !isCommetFieldEmpty {
+                        comment = commentTextField
+                        if !isCommetFieldEmpty && comment != "" {
                             saveItem()
-                            //                            isComment = true
                         } else {
                             print("코멘트를 입력해주세요.")
                         }
-                        persistenceController.addComment(detail: comment, relatedTo: data)
+                   
+                            persistenceController.addComment(detail: comment, relatedTo: data)
+                        
+                       
                         
                     }) {
                         Text("게시")
