@@ -146,6 +146,9 @@ struct PublishView: View {
     
     // ShareSheet로 공유할 데이터
     @State private var pdfToShare: PDFWrapper? = nil
+}
+
+extension PublishView {
     
     var publishButton: some View {
         HStack {
