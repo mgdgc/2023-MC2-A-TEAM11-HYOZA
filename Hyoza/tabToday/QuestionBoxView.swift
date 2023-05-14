@@ -14,8 +14,6 @@ struct QuestionBoxView: View {
     @Binding var isQuestionBoxViewTapped: Bool
     
     var body: some View {
-//        ZStack{
-//            Color.backGroundWhite
             VStack {
                 Text("오늘의 질문 꾸러미")
                     .font(.title)
@@ -33,7 +31,6 @@ struct QuestionBoxView: View {
                         .padding(30)
                 }
             }
-//        }
     }
 }
 
