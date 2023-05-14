@@ -30,91 +30,93 @@ struct TodayView: View {
     
     
     var body: some View {
-        ZStack {
-            VStack {
-                VStack(alignment: .leading) {
-                    Text(Date().dateOnlyString)
-                        .font(.system(.footnote))
-                    HStack {
-                        Text("오늘의 질문")
-                            .font(.largeTitle)
-                            .bold()
-                            .foregroundColor(.textBlack)
-                        Spacer()
-                        ContinueIconView(text: $continueText, textOpacity: $continueTextOpacity, continuousDayCount: $continuousDayCount)
-                            .onTapGesture {
-                                if !isContinueIconAnimating {
-                                    makeCoutinueIconLargeAndSmall()
+        NavigationStack {
+//            ZStack {
+                VStack {
+                    VStack(alignment: .leading) {
+                        Text(Date().dateOnlyString)
+                            .font(.system(.footnote))
+                        HStack {
+                            Text("오늘의 질문")
+                                .font(.largeTitle)
+                                .bold()
+                                .foregroundColor(.textBlack)
+                            Spacer()
+                            ContinueIconView(text: $continueText, textOpacity: $continueTextOpacity, continuousDayCount: $continuousDayCount)
+                                .onTapGesture {
+                                    if !isContinueIconAnimating {
+                                        makeCoutinueIconLargeAndSmall()
+                                    }
                                 }
+                        }
+                    }
+                    Spacer()
+                    ZStack {
+                        if isQuestionBoxViewTapped {
+                            CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
+                                QuestionCardView(openDegree: $openDegree, closedDegree: $closedDegree, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion)
                             }
-                    }
-                }
-                Spacer()
-                ZStack {
-                    if isQuestionBoxViewTapped {
-                        CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
-                            QuestionCardView(openDegree: $openDegree, closedDegree: $closedDegree, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion)
-                        }
-                    } else {
-                        CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
-                            QuestionBoxView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, isQuestionBoxViewTapped: $isQuestionBoxViewTapped)
-                        }
-                        .onTapGesture {
-                            self.isQuestionBoxViewTapped.toggle()
+                        } else {
+                            CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
+                                QuestionBoxView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, isQuestionBoxViewTapped: $isQuestionBoxViewTapped)
+                            }
+                            .onTapGesture {
+                                self.isQuestionBoxViewTapped.toggle()
+                            }
                         }
                     }
+                    Spacer()
                 }
-                Spacer()
-            }
-            .padding(20)
-            
-        }
-        .background(Color.backGroundWhite.ignoresSafeArea())
-        .onAppear() {
-            continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
-            
-            switch continuousDayCount {
-            case 0:
-                tempTextStorage = "작성을 시작해보세요!"
-                continueText = tempTextStorage
-            case 1...:
-                tempTextStorage = "연속 작성 \(continuousDayCount)일째 돌파!"
-                continueText = tempTextStorage
-            default:
-                tempTextStorage = "무언가 잘못됐어요 :("
-                continueText = tempTextStorage
-            }
-            
-            if !isContinueIconAnimating {
-                self.isContinueIconAnimating = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    makeContinueIconSmall()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                        self.isContinueIconAnimating = false
+                .padding(20)
+                
+//            }
+            .background(Color.backGroundWhite.ignoresSafeArea())
+            .onAppear() {
+                continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
+                
+                switch continuousDayCount {
+                case 0:
+                    tempTextStorage = "작성을 시작해보세요!"
+                    continueText = tempTextStorage
+                case 1...:
+                    tempTextStorage = "연속 작성 \(continuousDayCount)일째 돌파!"
+                    continueText = tempTextStorage
+                default:
+                    tempTextStorage = "무언가 잘못됐어요 :("
+                    continueText = tempTextStorage
+                }
+                
+                if !isContinueIconAnimating {
+                    self.isContinueIconAnimating = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        makeContinueIconSmall()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                            self.isContinueIconAnimating = false
+                        }
                     }
                 }
-            }
-            if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
-               selectedQuestion == nil {
-                selectedQuestion = _selectedQuestion
-                closedDegree = -90
-                openDegree = 0
-                isQuestionBoxViewTapped.toggle()
-            }
-        }
-        
-        .onDisappear() {
-            continueTextOpacity = 1
-            
-            
-            if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
-               selectedQuestion == nil {
-                selectedQuestion = _selectedQuestion
-                closedDegree = -90
-                openDegree = 0
-                isQuestionBoxViewTapped.toggle()
+                if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
+                   selectedQuestion == nil {
+                    selectedQuestion = _selectedQuestion
+                    closedDegree = -90
+                    openDegree = 0
+                    isQuestionBoxViewTapped.toggle()
+                }
             }
             
+            .onDisappear() {
+                continueTextOpacity = 1
+                
+                
+//                if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
+//                   selectedQuestion == nil {
+//                    selectedQuestion = _selectedQuestion
+//                    closedDegree = -90
+//                    openDegree = 0
+//                    isQuestionBoxViewTapped.toggle()
+//                }
+                
+            }
         }
     }
     
