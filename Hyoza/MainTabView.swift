@@ -33,8 +33,11 @@ struct MainTabView: View {
                     Text("Today")
                 }
                 .tag(2)
-            
         }
+        .onAppear {
+            print(NSHomeDirectory())
+        }
+//        #warning("debugging을 위한 onAppear 함수")
     }
 }
 

@@ -12,8 +12,9 @@ import CoreData
 //
 extension PersistenceController {
     func addTimestamp(to question: Question) {
+        guard selectedQuestion == nil else { return }
         if let context = question.managedObjectContext {
-            context.perform {
+            context.performAndWait {
                 question.timestamp = Date()
                 context.save(with: .addTimestamp)
             }
@@ -22,29 +23,18 @@ extension PersistenceController {
     
     func filteredQuestion(which questionStatus: QuestionStatus) -> [Question] {
         let questionRequest: NSFetchRequest<Question> = Question.fetchRequest()
-        do {
-            switch questionStatus {
-            case .hasAnswer:
-                questionRequest.predicate = .hasAnswer
-                let questionResults = try context.fetch(questionRequest)
-                return questionResults
-            case .isNotChoosenAndEasy:
-                // easy hard가 적어도 1개, 나머지 1개는 둘 중 하나.
-                questionRequest.predicate = .isNotChoosen && .isEasy
-                let questionResults = try context.fetch(questionRequest).shuffled()
-                return Array(questionResults[0...1])
-            case .isNotChoosenAndHard:
-                questionRequest.predicate = .isNotChoosen && .isHard
-                let questionResults = try context.fetch(questionRequest).shuffled()
-                if let firstQuestion = questionResults.first {
-                    return [firstQuestion]
-                }
-                return []
-            }
-        } catch {
-            print(":( filteredQuestion에서 오류")
-            return []
+        
+        switch questionStatus {
+        case .hasAnswer:
+            questionRequest.predicate = .hasAnswer
+        case .isNotChoosenAndEasy:
+            // easy hard가 적어도 1개, 나머지 1개는 둘 중 하나.
+            questionRequest.predicate = .isNotChoosen && .isEasy
+        case .isNotChoosenAndHard:
+            questionRequest.predicate = .isNotChoosen && .isHard
         }
+        let questionResults: [Question] = (try? context.fetch(questionRequest)) ?? []
+        return questionStatus == .hasAnswer ? questionResults : questionResults.shuffled()
     }
     
     // MARK: - TodayView
@@ -55,8 +45,12 @@ extension PersistenceController {
         return try? context.fetch(questionRequest).first
     }
     
-    var hasSelected: Bool {
-        selectedQuestion != nil
+    var easyQuestions: [Question] {
+        filteredQuestion(which: .isNotChoosenAndEasy)
+    }
+    
+    var hardQuestions: [Question] {
+        filteredQuestion(which: .isNotChoosenAndHard)
     }
 }
 
