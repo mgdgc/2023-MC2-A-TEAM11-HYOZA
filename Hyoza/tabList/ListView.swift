@@ -32,42 +32,36 @@ struct ListView: View {
     }
     
     var body: some View {
-        let viewWidth = UIScreen.main.bounds.size.width - 40
+        let viewWidth = UIScreen.main.bounds.size.width - 34
         NavigationView {
             ZStack{
                 Color.backgroundColor.ignoresSafeArea(edges: .top)
                 ScrollView{
-                    
                     LazyVStack {
-                        //MARK: 삭제예정 :코어데이터 생성을 위해 임의 배치
                         //아이템을 만들어주기 위한 RoundedRectangle
                         ForEach(items) { item in
                             NavigationLink(destination : QnAView(data:item, isEditing: false)){
                                 RoundedRectangle(cornerRadius : 15)
-                                //viewWidth하는
                                     .frame(width: viewWidth, height: 160)
-                                
                                     .foregroundColor(.white)
                                     .shadow( color : .gray, radius: 5, y :5)
                                     .opacity(0.3)
                                     .overlay(CellContents(item : item))
                                     .padding(.bottom, 20)
-                                    
+
                             }
-                            
                         }
                     }
-                    
-                    
                 }
             }
             .navigationTitle("질문 리스트")
             .navigationBarTitleDisplayMode(.large)
             .navigationBarTitleTextColor(.textColor)
+            .searchable(text: query,
+                        placement: .navigationBarDrawer(displayMode: .automatic),
+                        prompt: "검색")
+            
         }
-        .searchable(text: query,
-                    placement: .navigationBarDrawer(displayMode: .automatic),
-                    prompt: "검색")
     }
 }
 
