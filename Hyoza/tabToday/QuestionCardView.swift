@@ -18,6 +18,8 @@ struct QuestionCardView: View {
         ZStack {
             OpenCardView(degree: $openDegree, selectedQuestion: $selectedQuestion)
                 .zIndex(closedDegree == -90 ? 1 : 0)
+                .onAppear {
+                }
             ClosedCardListView(openDegree: $openDegree, closedDegree: $closedDegree, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion)
         }
     }

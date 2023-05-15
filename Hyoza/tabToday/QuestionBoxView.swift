@@ -23,8 +23,10 @@ struct QuestionBoxView: View {
                     easyQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndEasy)
                     hardQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndHard)
                     self.isQuestionBoxViewTapped.toggle()
+                    print("[QuestionBoxView - easyQuestions]\(easyQuestions)")
+                    print("[QuestionBoxView - hardQuestions]\(hardQuestions)")
                 } label: {
-                    Image(systemName: "shippingbox.fill")
+                    Image("questionBoxImage")
                         .resizable()
                         .scaledToFit()
                         .foregroundColor(.backGroundLightOrange)

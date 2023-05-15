@@ -45,6 +45,14 @@ struct ListView: View {
                                         .padding(4)
                                 }
                                 .padding([.leading, .trailing], 20)
+//                                CellContents(item : item)
+//                                    .cardify(backgroundColor: .white,
+//                                             cornerRadius: 15,
+//                                             shadowColor: .black.opacity(0.1),
+//                                             shadowRadius: 5,
+//                                             corners: .allCorners
+//                                           )
+//                                    .padding(.bottom, 20)
                             }
                         }
                     }.padding(.top, 4)
@@ -95,7 +103,6 @@ private struct CellContents : View {
         .multilineTextAlignment(.leading)
         .lineLimit(2)
         .padding(2)
-        .frame(width: viewWidth, alignment: .leading)
     }
 }
 
