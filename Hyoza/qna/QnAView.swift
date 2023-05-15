@@ -198,33 +198,36 @@ struct QnAView: View {
     
     var commentEditView: some View {
         ZStack {
-            
-            if data.answer?.comment == nil || data.answer?.comment == "" {
-                Rectangle()
-                    .frame(width: UIScreen.screenWidth-40, height: 40)
-                    .cornerRadius(100)
-                    .padding(.all)
-                    .foregroundColor(.white)
-                    .shadow(radius: 5)
-                    .opacity(0.5)
-                HStack {
-                    TextField("나의 한 마디 작성하기", text: $commentTextField)
-                        .padding(.leading, 40)
-                        .onChange(of: commentTextField) { newValue in
-                            isCommetFieldEmpty = newValue.isEmpty
+            if isEditing == false {
+                if data.answer?.comment == nil || data.answer?.comment == "" {
+                    Rectangle()
+                        .frame(width: UIScreen.screenWidth-40, height: 40)
+                        .cornerRadius(100)
+                        .padding(.all)
+                        .foregroundColor(.white)
+                        .shadow(radius: 5)
+                        .opacity(0.5)
+                    HStack {
+                        TextField("나의 한 마디 작성하기", text: $commentTextField)
+                            .padding(.leading, 40)
+                            .onChange(of: commentTextField) { newValue in
+                                isCommetFieldEmpty = newValue.isEmpty
+                            }
+                        Button(action: {
+                            comment = commentTextField
+                            if !isCommetFieldEmpty && comment != "" {
+                                saveItem()
+                            } else {
+                                print("코멘트를 입력해주세요.")
+                            }
+                        }) {
+                            Text("게시")
+                                .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
                         }
-                    Button(action: {
-                        comment = commentTextField
-                        if !isCommetFieldEmpty && comment != "" {
-                            saveItem()
-                        } else {
-                            print("코멘트를 입력해주세요.")
-                        }
-                    }) {
-                        Text("게시")
-                            .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
+                        .padding(.trailing, 35)
                     }
                 }
+            
             }
         }
     }
