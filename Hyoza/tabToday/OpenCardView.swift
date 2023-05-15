@@ -34,7 +34,7 @@ struct OpenCardView: View {
                                 Spacer()
                                 Button(action: {
                                     Task {
-                                        let viewToRender = self.frame(width: UIScreen.main.bounds.width)
+                                        let viewToRender = self.frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height)
                                         
                                         guard let image = await viewToRender.render(scale: displayScale) else {
                                             return
