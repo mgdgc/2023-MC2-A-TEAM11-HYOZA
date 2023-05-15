@@ -30,14 +30,14 @@ struct MainTabView: View {
             ListView(isAnswered: $isAnswered)
                 .tabItem {
                     Image(systemName: "books.vertical.fill")
-                    Text("Today")
+                    Text("History")
                 }
                 .tag(1)
             
             PublishView()
                 .tabItem {
                     Image(systemName: "text.book.closed.fill")
-                    Text("Today")
+                    Text("Publish")
                 }
                 .tag(2)
         }

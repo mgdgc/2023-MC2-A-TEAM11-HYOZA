@@ -34,29 +34,33 @@ struct ListView: View {
     }
     
     var body: some View {
-        let viewWidth = UIScreen.main.bounds.size.width - 34
         NavigationView {
             ZStack{
-                Color.backgroundColor.ignoresSafeArea(edges: .top)
                 ScrollView{
-                    LazyVStack {
+                    LazyVStack(spacing: 20) {
+                        //MARK: 삭제예정 :코어데이터 생성을 위해 임의 배치
                         //아이템을 만들어주기 위한 RoundedRectangle
                         ForEach(items) { item in
                             NavigationLink(destination : QnAView(data:item, isAnswered: $isAnswered, isEditing: false)){
-                                CellContents(item : item)
-                                    .cardify(backgroundColor: .white,
-                                             cornerRadius: 15,
-                                             shadowColor: .black.opacity(0.1),
-                                             shadowRadius: 5,
-                                             corners: .allCorners
-                                           )
-                                    .padding(.bottom, 20)
-
+                                CardView(shadowColor: Color.black.opacity(0.1)) {
+                                    CellContents(item : item)
+                                        .padding(4)
+                                }
+                                .padding([.leading, .trailing], 20)
+//                                CellContents(item : item)
+//                                    .cardify(backgroundColor: .white,
+//                                             cornerRadius: 15,
+//                                             shadowColor: .black.opacity(0.1),
+//                                             shadowRadius: 5,
+//                                             corners: .allCorners
+//                                           )
+//                                    .padding(.bottom, 20)
                             }
                         }
-                    }
+                    }.padding(.top, 4)
                 }
             }
+            .background(Color.backgroundColor.ignoresSafeArea())
             .navigationTitle("질문 리스트")
             .navigationBarTitleDisplayMode(.large)
             .navigationBarTitleTextColor(.textColor)
@@ -73,33 +77,34 @@ struct ListView: View {
 //RoundedRectangle에 overlay 되는 텍스트
 private struct CellContents : View {
     @ObservedObject var item : Question
-    let viewWidth = UIScreen.main.bounds.size.width - 60
     // TODO: 더 나은 방식으로 개선할 수 없나?
     var body : some View{
-        VStack(alignment : .leading) {
-            Text(item.wrappedTimestamp, formatter : itemFormatter)
-                .font(.subheadline)
-                .bold()
-                .foregroundColor(.textSecondaryColor)
-                .padding(.bottom, 2)
-
-
+        VStack(alignment : .leading, spacing: 8) {
+            HStack {
+                Text(item.wrappedTimestamp, formatter : itemFormatter)
+                    .font(.subheadline.bold())
+                    .foregroundColor(.tapBarDarkGray)
+                    .lineLimit(1)
+                Spacer()
+            }
+            
             Text(item.wrappedQuestion)
-                .bold()
-                .font(.body)
-                .padding(.bottom, 2)
+                .font(.body.bold())
+                .foregroundColor(.textBlack)
+                .lineLimit(2)
+                .multilineTextAlignment(.leading)
             
 
             Text(item.wrappedAnswer.answerDetail)
                 .font(.body)
-                
-                
+                .foregroundColor(.textBlack)
+                .lineLimit(2)
+                .multilineTextAlignment(.leading)
         }
         .foregroundColor(.textColor)
         .multilineTextAlignment(.leading)
         .lineLimit(2)
         .padding(2)
-        .frame(width: viewWidth, alignment: .leading)
     }
 }
 
