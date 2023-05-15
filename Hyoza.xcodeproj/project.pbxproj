@@ -53,6 +53,7 @@
 		B2A03E642A0D880C005BF71D /* NSPredicateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E632A0D880C005BF71D /* NSPredicateExtension.swift */; };
 		B2A03E662A0D9013005BF71D /* QuestionProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E652A0D9013005BF71D /* QuestionProperties.swift */; };
 		B2A03E682A0D9054005BF71D /* QuestionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A03E672A0D9054005BF71D /* QuestionError.swift */; };
+		B2B6FF3E2A12280B008E6BA2 /* NSSortDescriptorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6FF3D2A12280B008E6BA2 /* NSSortDescriptorExtension.swift */; };
 		C9DD7BEB2A0A3F3F007C1973 /* QnAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */; };
 		C9DD7C272A0B790C007C1973 /* ActivityViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */; };
 		CD1E64092A0E265400BB3179 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1E64082A0E265400BB3179 /* OnboardingView.swift */; };
@@ -111,6 +112,7 @@
 		B2A03E632A0D880C005BF71D /* NSPredicateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtension.swift; sourceTree = "<group>"; };
 		B2A03E652A0D9013005BF71D /* QuestionProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionProperties.swift; sourceTree = "<group>"; };
 		B2A03E672A0D9054005BF71D /* QuestionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionError.swift; sourceTree = "<group>"; };
+		B2B6FF3D2A12280B008E6BA2 /* NSSortDescriptorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSortDescriptorExtension.swift; sourceTree = "<group>"; };
 		C9DD7BEA2A0A3F3F007C1973 /* QnAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAView.swift; sourceTree = "<group>"; };
 		C9DD7C262A0B790C007C1973 /* ActivityViewControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewControllerWrapper.swift; sourceTree = "<group>"; };
 		CD1E64082A0E265400BB3179 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */,
 				799E8FC22A0CCE2A003F78F2 /* Calendar.swift */,
 				B2A03E632A0D880C005BF71D /* NSPredicateExtension.swift */,
+				B2B6FF3D2A12280B008E6BA2 /* NSSortDescriptorExtension.swift */,
 				B20505A42A0F8453005AFB44 /* IntExtension.swift */,
 			);
 			path = extensions;
@@ -396,6 +399,7 @@
 				B22A97E52A08ED2900ECD178 /* CustomColor.swift in Sources */,
 				794EB6B12A03FFCB00DA52B5 /* Persistence.swift in Sources */,
 				79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */,
+				B2B6FF3E2A12280B008E6BA2 /* NSSortDescriptorExtension.swift in Sources */,
 				B256C8CD2A0A64D500B0C62E /* PublishCardify.swift in Sources */,
 				791C24572A08EA520009E4EA /* NotificationManager.swift in Sources */,
 				790B9B692A0FCAF30034D893 /* UserDefaultsKey.swift in Sources */,
@@ -558,7 +562,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hyoza/Preview Content\"";
-				DEVELOPMENT_TEAM = BDU85ET24K;
+				DEVELOPMENT_TEAM = RXYS3YJ24P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "아무거나";
@@ -589,7 +593,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hyoza/Preview Content\"";
-				DEVELOPMENT_TEAM = BDU85ET24K;
+				DEVELOPMENT_TEAM = RXYS3YJ24P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "아무거나";

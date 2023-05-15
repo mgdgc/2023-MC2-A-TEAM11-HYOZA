@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 struct PublishView: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.displayScale) var displayScale
     
     @FetchRequest(
@@ -24,6 +23,7 @@ struct PublishView: View {
     @State var startDate: Date = Date()
     @State var endDate: Date = Date()
     @State var selectedMonth: Month = .may
+    @State var selectedYear: Int = (PersistenceController.shared.oldestAnsweredQuestion?.timestamp ?? Date()).year
     
     
     enum K {
@@ -49,8 +49,8 @@ struct PublishView: View {
                         of: periodSelection,
                         perform: segmentedSelectionDidChange
                     )
-                titleTextField
                 periodView
+                titleTextField
                 Spacer()
                 ResultBookView(count: questions.count, title: titleText)
                     .padding()
@@ -87,13 +87,10 @@ struct PublishView: View {
             startDate = selectedMonth.start
             endDate = selectedMonth.end
         case .whole:
-            questions.nsPredicate = .hasAnswer
-            if let firstQuestion = questions.first,
-               let lastQuestion = questions.last {
-                startDate = (lastQuestion as Question).wrappedAnswer.answerTime!.start
-                endDate = (firstQuestion as Question).wrappedAnswer.answerTime!.end
-            }
+            startDate = (PersistenceController.shared.oldestAnsweredQuestion?.answer?.answerTime ?? Date()).start
+            endDate = (PersistenceController.shared.latestAnsweredQuestion?.answer?.answerTime ?? Date()).end
         }
+        fetchAfterDateChanged()
     }
     
     var titleTextField: some View {
@@ -111,12 +108,12 @@ struct PublishView: View {
                 startDate: $startDate,
                 endDate: $endDate
             )
-                .publishCardify()
-                .opacity(periodSelection == .oneMonth ? 0 : 1)
-                .onChange(of: startDate) { _ in fetchAfterDateChanged() }
-                .onChange(of: endDate) { _ in fetchAfterDateChanged() }
+            .publishCardify()
+            .opacity(periodSelection == .oneMonth ? 0 : 1)
+            .onChange(of: startDate) { _ in fetchAfterDateChanged() }
+            .onChange(of: endDate) { _ in fetchAfterDateChanged() }
             
-            MonthPickerView(selectedMonth: $selectedMonth)
+            MonthPickerView(startYear: 2023, selectedYear: $selectedYear, selectedMonth: $selectedMonth)
                 .publishCardify()
                 .opacity(periodSelection == .oneMonth ? 1 : 0)
                 .onChange(of: selectedMonth) { _ in
@@ -128,8 +125,9 @@ struct PublishView: View {
     }
     
     func fetchAfterDateChanged() {
-        print(#function)
-        questions.nsPredicate = .hasAnswer && .timestampIn(between: startDate, and: endDate)
+        withAnimation {
+            questions.nsPredicate = .hasAnswer && .timestampIn(between: startDate, and: endDate)
+        }
     }
     
     var countLabel: some View {

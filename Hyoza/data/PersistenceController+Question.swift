@@ -52,6 +52,26 @@ extension PersistenceController {
     var hardQuestions: [Question] {
         filteredQuestion(which: .isNotChoosenAndHard)
     }
+    
+    var oldestAnsweredQuestion: Question? {
+        let questionRequest: NSFetchRequest<Question> = Question.fetchRequest()
+        questionRequest.predicate = .hasAnswer
+        questionRequest.sortDescriptors = [.byTimestamp(ascending: true)]
+        return try? container.viewContext.fetch(questionRequest).first
+    }
+    
+    var latestAnsweredQuestion: Question? {
+        let questionRequest: NSFetchRequest<Question> = Question.fetchRequest()
+        questionRequest.predicate = .hasAnswer
+        questionRequest.sortDescriptors = [.byTimestamp(ascending: false)]
+        return try? container.viewContext.fetch(questionRequest).first
+    }
+    
+    var todayAnsweredQuestion: Question? {
+        let questionRequest: NSFetchRequest<Question> = Question.fetchRequest()
+        questionRequest.predicate = .wasAnsweredToday
+        return try? container.viewContext.fetch(questionRequest).first
+    }
 }
 
 enum QuestionStatus {
@@ -59,3 +79,5 @@ enum QuestionStatus {
     case isNotChoosenAndHard
     case hasAnswer
 }
+
+
