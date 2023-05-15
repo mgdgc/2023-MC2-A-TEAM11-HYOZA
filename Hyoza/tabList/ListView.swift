@@ -32,35 +32,30 @@ struct ListView: View {
     }
     
     var body: some View {
-        let viewWidth = UIScreen.main.bounds.size.width - 40
         NavigationView {
             ZStack{
-                Color.backgroundColor.ignoresSafeArea(edges: .top)
                 ScrollView{
-                    
-                    LazyVStack {
+                    LazyVStack(spacing: 20) {
                         //MARK: 삭제예정 :코어데이터 생성을 위해 임의 배치
                         //아이템을 만들어주기 위한 RoundedRectangle
                         ForEach(items) { item in
                             NavigationLink(destination : QnAView(data:item, isEditing: false)){
-                                RoundedRectangle(cornerRadius : 15)
-                                //viewWidth하는
-                                    .frame(width: viewWidth, height: 160)
-                                
-                                    .foregroundColor(.white)
-                                    .shadow( color : .gray, radius: 5, y :5)
-                                    .opacity(0.3)
-                                    .overlay(CellContents(item : item))
-                                    .padding(.bottom, 20)
+                                CardView(shadowColor: Color.black.opacity(0.1)) {
+                                    CellContents(item : item)
+                                        .padding(4)
+                                }
+                                .padding([.leading, .trailing], 20)
                                     
                             }
                             
                         }
                     }
+                    .padding(.top, 4)
                     
                     
                 }
             }
+            .background(Color.backgroundColor.ignoresSafeArea())
             .navigationTitle("질문 리스트")
             .navigationBarTitleDisplayMode(.large)
             .navigationBarTitleTextColor(.textColor)
@@ -76,35 +71,28 @@ struct ListView: View {
 //RoundedRectangle에 overlay 되는 텍스트
 private struct CellContents : View {
     @ObservedObject var item : Question
-    let viewWidth = UIScreen.main.bounds.size.width - 60
     // TODO: 더 나은 방식으로 개선할 수 없나?
     var body : some View{
-        VStack(alignment : .leading) {
-            Text(item.wrappedTimestamp, formatter : itemFormatter)
-                .font(.caption)
-                .foregroundColor(.textColor)
-                .frame(width: viewWidth , alignment: .leading)
-                .lineLimit(1)
-                .padding(.top, 15)
+        VStack(alignment : .leading, spacing: 8) {
+            HStack {
+                Text(item.wrappedTimestamp, formatter : itemFormatter)
+                    .font(.subheadline.bold())
+                    .foregroundColor(.textLightGray)
+                    .lineLimit(1)
+                Spacer()
+            }
             
             Text(item.wrappedQuestion)
-                .fontWeight(.bold)
-                .font(.headline)
+                .font(.body.bold())
                 .foregroundColor(.textColor)
-                .frame(width: viewWidth, alignment: .leading)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
-                .padding(.top, 5)
             
             Text(item.wrappedAnswer.answerDetail)
-                .fontWeight(.regular)
-                .font(.subheadline)
+                .font(.body)
                 .foregroundColor(.textColor)
-                .frame(width: viewWidth, alignment: .leading)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
-                .padding(.top, 5)
-            Spacer()
         }
     }
 }
