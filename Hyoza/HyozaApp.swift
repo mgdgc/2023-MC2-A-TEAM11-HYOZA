@@ -35,9 +35,6 @@ struct HyozaApp: App {
         WindowGroup {
             if isFirstLaunch {
                 OnboardingView(showOnboardingView: $isFirstLaunch)
-                    .onAppear {
-                        UserDefaults.standard.set(false, forKey: UserDefaultsKey.isFirstLaunching.rawValue)
-                    }
             } else {
                 MainTabView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)

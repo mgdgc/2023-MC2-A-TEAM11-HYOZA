@@ -38,6 +38,9 @@ struct OnboardingView: View {
                     selected += 1
                 } else {
                     // 3 페이지인 경우
+                    // 최초 접속 여부 저장
+                    UserDefaults.standard.set(false, forKey: UserDefaultsKey.isFirstLaunching.rawValue)
+                    // 메인 화면 전환
                     showOnboardingView = false
                 }
                 
