@@ -19,7 +19,7 @@ struct TodayView: View {
     @State var easyQuestions: [Question] = []
     @State var hardQuestions: [Question] = []
     @State var isContinueIconSmall: Bool = false
-    @State var selectedQuestion: Question? = nil
+//    @State var selectedQuestion: Question? = nil
     @State var openDegree: Double = 90
     @State var closedDegree: Double = 0
     
@@ -28,6 +28,7 @@ struct TodayView: View {
     @Binding var continueTextOpacity: Double
     @Binding var tempTextStorage: String?
     @Binding var isContinueIconAnimating: Bool
+    @Binding var selectedQuestion: Question?
     
     var body: some View {
         NavigationStack {
@@ -69,13 +70,19 @@ struct TodayView: View {
                 .padding(20)
             .background(Color.backGroundWhite.ignoresSafeArea())
             .onAppear() {
-                if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
-                   selectedQuestion == nil {
-                    selectedQuestion = _selectedQuestion
+                print("[TodayView][선택된 질문에 따라 카드 뒤집기 전]\(selectedQuestion?.wrappedQuestion)")
+                if selectedQuestion != nil || PersistenceController.shared.todayAnsweredQuestion != nil {
                     closedDegree = -90
                     openDegree = 0
-                    isQuestionBoxViewTapped.toggle()
+                    isQuestionBoxViewTapped = true
                 }
+//                if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
+//                   selectedQuestion == nil {
+//                    selectedQuestion = _selectedQuestion
+//                    closedDegree = -90
+//                    openDegree = 0
+//                    isQuestionBoxViewTapped.toggle()
+//                }
             }
         }
     }
@@ -141,6 +148,6 @@ struct ContinueIconView: View {
 
 struct TodayView_Previews: PreviewProvider {
     static var previews: some View {
-        TodayView(continuousDayCount: .constant(0), continueText: .constant(nil), continueTextOpacity: .constant(1.0), tempTextStorage: .constant("작성을 시작해보세요!"), isContinueIconAnimating: .constant(false))
+        TodayView(continuousDayCount: .constant(0), continueText: .constant(nil), continueTextOpacity: .constant(1.0), tempTextStorage: .constant("작성을 시작해보세요!"), isContinueIconAnimating: .constant(false), selectedQuestion: .constant(nil))
     }
 }

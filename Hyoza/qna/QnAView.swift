@@ -13,6 +13,7 @@ struct QnAView: View {
     
     var data: Question
     
+    
     @State var isEditing: Bool = false
     @State var textValue = ""
     @State var commentTextField = ""
@@ -80,7 +81,6 @@ struct QnAView: View {
                         }
                         persistenceController.updateAnswer(content: textValue, relateTo: data)
                         data.objectWillChange.send()
-                        
                     }) {
                         Text("완료")
                             .foregroundColor(isTextFieldEmpty ? .gray : .orange)
