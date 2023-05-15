@@ -33,10 +33,6 @@ struct QuestionBoxView: View {
                         .padding(30)
                 }
             }
-//            .onAppear {
-//                print("[QuestionBoxView - easyQuestions]\(easyQuestions)")
-//                print("[QuestionBoxView - hardQuestions]\(hardQuestions)")
-//            }
     }
 }
 
