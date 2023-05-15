@@ -26,7 +26,7 @@ struct QuestionBoxView: View {
                     print("[QuestionBoxView - easyQuestions]\(easyQuestions)")
                     print("[QuestionBoxView - hardQuestions]\(hardQuestions)")
                 } label: {
-                    Image(systemName: "shippingbox.fill")
+                    Image("questionBoxImage")
                         .resizable()
                         .scaledToFit()
                         .foregroundColor(.backGroundLightOrange)

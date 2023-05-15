@@ -22,7 +22,7 @@ extension NSPredicate {
     
     static func answerTimeIn(between startDate: Date, and endDate: Date) -> NSPredicate {
         return NSPredicate(
-            format: "timestamp >= %@ AND timestamp <= %@", startDate.start as NSDate,
+            format: "answer.answerTime >= %@ AND answer.answerTime <= %@", startDate.start as NSDate,
             endDate.end as NSDate)
     }
     
