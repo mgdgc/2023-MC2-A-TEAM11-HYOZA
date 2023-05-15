@@ -7,12 +7,21 @@
 
 import SwiftUI
 
+// TODO: - 좌우 전체 마진 20으로 통일하기 (여기 포함 전반적인 뷰)
+
+// TODO: - 출판하기 버튼이 좀 더 넓었으면 좋겠다. (온보딩뷰와 같이)
+// TODO: - 출판하기 버튼 누르면 공유하기
+// TODO: - 질문 고르기 카드에서 글자와 타이틀이 조금 더 붙었으면
+// TODO: - 옹졸제이뷰 해결
+/// TODO: - Comment를 삭제하니까 padding이 한 세트 삭제됨. 있으면 2세트됨.
+// TODO: - 열어보기 뷰에서 버튼에 action function 넣기
+// TODO: - 오늘 QnA 카드 뷰 이미지 넣기
+
 
 
 struct QnAView: View {
     
     var data: Question
-    
     
     @State var isEditing: Bool = false
     @State var textValue = ""
@@ -36,8 +45,10 @@ struct QnAView: View {
                 ScrollView {
                     contentView
                 }
+                .padding(.horizontal, 20)
                 Spacer()
                 commentEditView
+                    .padding(.horizontal, 20)
             }
         }
         .background(
@@ -121,52 +132,47 @@ struct QnAView: View {
     
     var contentView: some View {
         VStack(alignment: .leading, spacing: 15) {
-            HStack{
-                CapsuleView(content: {
-                    Text(data.difficultyString)
-                        .font(.system(size: 17))
-                        .foregroundColor(.textOrange)
-                        .padding([.leading, .trailing], 12)
-                        .padding([.top, .bottom], 8)
-                }, capsuleColor: .backGroundLightOrange)
-            }
-            .padding([.top, .leading], 30)
-            Text(data.wrappedQuestion)
-                .font(.title.bold())
-                .foregroundColor(.textBlack)
-                .padding(.horizontal, 30)
-            Text(data.wrappedTimestamp.fullString)
-                .font(.subheadline)
-                .foregroundColor(.tapBarDarkGray)
-                .padding(.leading, 30)
-            ZStack {
-                RoundedRectangle(cornerRadius: 30)
-                    .frame(height: 60)
-                    .foregroundColor(.clear)
-                if isEditing {
-                    TextField("답변을 입력해 주세요.", text: $textValue, axis: .vertical)
-                        .onChange(of: textValue) { newValue in
-                            isTextFieldEmpty = newValue.isEmpty
-                        }
-                        .font(.body)
-                        .foregroundColor(.textBlack)
-                        .multilineTextAlignment(.leading)
-                        .opacity(isEditing ? 0.5 : 1)
-                        .padding(.horizontal, 15)
+            Group {
+                HStack{
+                    DifficultyCapsuleView(difficulty: data.difficultyString)
                 }
-                else {
-                    HStack {
-                        Text(data.wrappedAnswer.answerDetail)
+                .padding(.top, 30)
+                Text(data.wrappedQuestion)
+                    .font(.title.bold())
+                    .foregroundColor(.textBlack)
+                    
+                Text(data.wrappedTimestamp.fullString)
+                    .font(.subheadline)
+                    .foregroundColor(.tapBarDarkGray)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 30)
+                        .frame(height: 60)
+                        .foregroundColor(.clear)
+                    if isEditing {
+                        TextField("답변을 입력해 주세요.", text: $textValue, axis: .vertical)
+                            .onChange(of: textValue) { newValue in
+                                isTextFieldEmpty = newValue.isEmpty
+                            }
                             .font(.body)
                             .foregroundColor(.textBlack)
-                        Spacer()
+                            .multilineTextAlignment(.leading)
+                            .opacity(isEditing ? 0.5 : 1)
                     }
-                    .padding(.horizontal, 15)
+                    else {
+                        HStack {
+                            Text(data.wrappedAnswer.answerDetail)
+                                .font(.body)
+                                .foregroundColor(.textBlack)
+                            Spacer()
+                        }
+                    }
                 }
-            }
-            .padding(.all)
+            }.padding(.leading, 20)
             
-            if let commentDetail = data.answer?.comment,
+            
+            /// comment view
+            if !isEditing,
+               let commentDetail = data.answer?.comment,
                commentDetail != "" {
                 HStack {
                     Spacer()
@@ -180,7 +186,6 @@ struct QnAView: View {
                                 .foregroundColor(.white)
                                 .shadow(radius: 1)
                         )
-                        .padding(.all, 16)
                         .contextMenu {
                             Button("복사", role: .none) {
                                 pastboard.string = commentDetail
@@ -192,11 +197,8 @@ struct QnAView: View {
                             }
                         }
                 }
-                .padding(.horizontal, 15)
                 .padding(.bottom, 30)
             }
-            
-            
         }
     }
     
@@ -251,9 +253,10 @@ struct ImageWrapper: Identifiable {
 
 
 
-//
-//struct QnA_Previews: PreviewProvider {
-//    static var previews: some View {
-////        QnAView(isEditing: true, isTextFieldEmpty: true, isCommetFieldEmpty: true)
-//    }
-//}
+
+struct QnA_Previews: PreviewProvider {
+    static var previews: some View {
+        let pc = PersistenceController.preview
+        QnAView(data: pc.latestAnsweredQuestion!, isEditing: true, isTextFieldEmpty: true, isCommetFieldEmpty: true)
+    }
+}

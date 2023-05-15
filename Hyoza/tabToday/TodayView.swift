@@ -34,7 +34,10 @@ struct TodayView: View {
                 VStack {
                     VStack(alignment: .leading) {
                         Text(Date().dateOnlyString)
-                            .font(.system(.footnote))
+                            .font(.footnote)
+                            .foregroundColor(.textSecondaryColor)
+                            .bold()
+                            .offset(CGSize(width:0, height:8))
                         HStack {
                             Text("오늘의 질문")
                                 .font(.largeTitle)
@@ -113,7 +116,16 @@ struct ContinueIconView: View {
     
     var body: some View {
         CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
-            HStack {
+            HStack(spacing: 0) {
+                if let text {
+                    Text(text)
+                        .font(.caption)
+                        .foregroundColor(.textColor)
+                        .bold()
+                        .padding(.horizontal, 6)
+                        .opacity(textOpacity)
+                        
+                }
                 switch continuousDayCount {
                 case 1..<4:
                     Text("💛")
@@ -125,12 +137,6 @@ struct ContinueIconView: View {
                     Text("❤️‍🔥")
                 default:
                     Text("🤍")
-                }
-                if let text {
-                    Text(text)
-                        .font(.caption)
-                        .bold()
-                        .opacity(textOpacity)
                 }
             }
         }

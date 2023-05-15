@@ -38,6 +38,7 @@ struct PeriodView: View {
                     displayedComponents: [.date]
                 )
             }
+            .foregroundColor(.textColor)
             .colorMultiply(Color.orange)
             .datePickerStyle(CompactDatePickerStyle())
             .environment(\.locale, Locale(identifier: K.pickerLocale))

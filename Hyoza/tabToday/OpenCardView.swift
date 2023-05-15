@@ -41,44 +41,54 @@ struct NoAnswerView: View {
         if let selectedQuestion = selectedQuestion {
             GeometryReader { geo in
                 VStack{
-                    HStack {
-                        CapsuleView(content: {
-                            Text(selectedQuestion.difficultyString)
-                                .font(.footnote)
-                                .foregroundColor(.textOrange)
-                                .padding([.leading, .trailing], 12)
-                                .padding([.top, .bottom], 4)
-                        }, capsuleColor: .backGroundLightOrange)
-                        Spacer()
-                        Text(Date().fullString)
-                            .font(.footnote)
-                            .foregroundColor(.tapBarDarkGray)
-                        Spacer()
-                        ShareButtonView(content: AnyView(self))
-                    }
+                    OpenCardTitleView(difficulty: selectedQuestion.difficultyString)
                     Spacer()
                     Text(selectedQuestion.wrappedQuestion)
                         .font(.title)
-                        .foregroundColor(.textBlack)
+                        .foregroundColor(.textColor)
                         .bold()
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 5)
                     Spacer()
                     NavigationLink {
                         QnAView(data: selectedQuestion, isEditing: true)
                     } label: {
-                        CapsuleView(content: {
-                            Text("답변하기")
-                                .bold()
-                                .font(.title2)
-                                .foregroundColor(.textWhite)
-                                .padding([.top, .bottom], 20)
-                                .frame(width: geo.size.width)
-                        }, capsuleColor: .backGroundOrange)
+                        ButtonView(content: "답변하기") {
+                            print("hehe")
+                        }
+                        .disabled(true)
                     }
                 }
             }
         } else {
             Text("Here idiot")
         }
+    }
+}
+
+struct OpenCardTitleView: View {
+    let difficulty: String
+    let horizontalPadding: CGFloat = 10
+    let topPadding: CGFloat = 10
+    
+    var body: some View {
+        ZStack {
+            HStack {
+                DifficultyCapsuleView(difficulty: difficulty)
+                    .padding(.leading, horizontalPadding)
+                Spacer()
+                ShareButtonView(content: AnyView(self))
+                    .padding(.trailing, horizontalPadding)
+            }
+            HStack {
+                Spacer()
+                Text(Date().fullString)
+                    .font(.subheadline)
+                    .foregroundColor(.textSecondaryColor)
+                Spacer()
+            }
+        }
+        .padding(.top, topPadding)
     }
 }
 
@@ -89,33 +99,26 @@ struct AnswerView: View {
     
     var body: some View {
         if let todayAnsweredQuestion = todayAnsweredQuestion {
+            NavigationLink {
+                QnAView(data: todayAnsweredQuestion, isEditing: false)
+            } label: {
                 VStack{
-                    HStack {
-                        CapsuleView(content: {
-                            Text(todayAnsweredQuestion.difficultyString)
-                                .font(.footnote)
-                                .foregroundColor(.textOrange)
-                                .padding([.leading, .trailing], 12)
-                                .padding([.top, .bottom], 4)
-                        }, capsuleColor: .backGroundLightOrange)
-                        Spacer()
-                        Text(Date().fullString)
-                            .font(.footnote)
-                            .foregroundColor(.tapBarDarkGray)
-                        Spacer()
-                        ShareButtonView(content: AnyView(self))
-                    }
+                    OpenCardTitleView(difficulty: todayAnsweredQuestion.difficultyString)
                     Spacer()
                     Text(todayAnsweredQuestion.wrappedQuestion)
                         .font(.title)
-                        .foregroundColor(.textBlack)
+                        .foregroundColor(.textColor)
                         .bold()
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 5)
                     Spacer()
                     Text(todayAnsweredQuestion.answer?.answerDetail ?? "답변이 없습니다")
                         .font(.title3)
                         .foregroundColor(.textBlack)
                     Spacer()
                 }
+            }
+            
         }
     }
 }
@@ -136,7 +139,8 @@ struct ShareButtonView: View {
             imageToShareInQuestionCard = ImageWrapper(image: image)
         }) {
             Image(systemName: "square.and.arrow.up")
-                .foregroundColor(.textOrange)
+                .foregroundColor(.textPointColor)
+                .font(.title3)
         }
         .sheet(item: $imageToShareInQuestionCard) { imageToShareInQuestionCard in
             ActivityViewControllerWrapper(items: [imageToShareInQuestionCard.image], activities: nil)

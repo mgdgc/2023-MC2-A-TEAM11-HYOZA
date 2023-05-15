@@ -15,7 +15,7 @@ struct PublishCardify: ViewModifier {
         CardView(shadowColor: .black.opacity(opacity)) {
             content
         }
-        .padding()
+        .padding(.vertical)
     }
 }
 

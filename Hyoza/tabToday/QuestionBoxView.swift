@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// TODO: - Action 하나의 함수로 묶고 두 버튼에 호출하기
+
 struct QuestionBoxView: View {
     private let persistenceController = PersistenceController.shared
     @Binding var easyQuestions: [Question]
@@ -14,11 +16,12 @@ struct QuestionBoxView: View {
     @Binding var isQuestionBoxViewTapped: Bool
     
     var body: some View {
-            VStack {
+        VStack {
                 Text("오늘의 질문 꾸러미")
                     .font(.title)
                     .bold()
                     .foregroundColor(.textBlack)
+                    .padding(.top, 30)
                 Button {
                     easyQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndEasy)
                     hardQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndHard)
@@ -32,7 +35,11 @@ struct QuestionBoxView: View {
                         .foregroundColor(.backGroundLightOrange)
                         .padding(30)
                 }
+                ButtonView(content: "열어보기", action: {
+                    return
+                })
             }
+            .frame(height: UIScreen.screenHeight * 0.6)
     }
 }
 

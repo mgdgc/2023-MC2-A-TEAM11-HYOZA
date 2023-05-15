@@ -41,22 +41,27 @@ struct PublishView: View {
     
     var body: some View {
         ZStack {
-            Color.backgroundColor
-            VStack(alignment: .center, spacing: .zero) {
-                header
-                PeriodSegmentView(selection: $periodSelection)
-                    .onChange(
-                        of: periodSelection,
-                        perform: segmentedSelectionDidChange
-                    )
-                periodView
-                titleTextField
-                Spacer()
-                ResultBookView(count: questions.count, title: titleText)
-                    .padding()
-                countLabel
-                publishButton
-            }
+                Color.backgroundColor
+                VStack(alignment: .center, spacing: .zero) {
+                    header
+                        .padding(.top, 4)
+                    PeriodSegmentView(selection: $periodSelection)
+                        .onChange(
+                            of: periodSelection,
+                            perform: segmentedSelectionDidChange
+                        )
+                    periodView
+                        .offset(.init(width: 0, height: -8))
+                    titleTextField
+                        .offset(.init(width: 0, height: -16))
+                    Spacer()
+                    ResultBookView(count: questions.count, title: titleText)
+                        .padding()
+                    countLabel
+                    publishButton
+                }
+                .padding(.horizontal, K.leadingPadding)
+            
         }
         .ignoresSafeArea(edges: .top)
         .onAppear {
@@ -73,7 +78,7 @@ struct PublishView: View {
                 .foregroundColor(Color.textColor)
             Spacer()
         }
-        .padding(.leading, K.leadingPadding)
+//        .padding(.leading, K.leadingPadding)
         .padding(.top, K.topPadding)
     }
     
@@ -149,9 +154,7 @@ struct PublishView: View {
 extension PublishView {
     
     var publishButton: some View {
-        HStack {
-            Spacer()
-            Button {
+            ButtonView (content: K.publishButtonTitle) {
                 
                 // 질문과 답변을 PDF Text로 변환
                 var pdfTexts: [PDFText] = []
@@ -177,23 +180,24 @@ extension PublishView {
                 
                 // PDF 공유
                 pdfToShare = PDFWrapper(data: pdfData)
-                
-            } label: {
-                ZStack {
-                    questions.isEmpty ? Color.textThirdColor : Color.buttonColor
-                    Text(K.publishButtonTitle)
-                        .foregroundColor(.buttonTextColor)
-                        .bold()
-                }
-                .frame(width: UIScreen.screenWidth * 0.8, height: 57)
-                .cornerRadius(50)
             }
-            .disabled(questions.isEmpty)
-            .sheet(item: $pdfToShare) { data in
-                ActivityViewControllerWrapper(items: [data.data], activities: [])
-            }
-            Spacer()
-        }
+//            Button {
+//
+//            } label: {
+//                ZStack {
+//                    questions.isEmpty ? Color.textThirdColor : Color.buttonColor
+//                    Text(K.publishButtonTitle)
+//                        .foregroundColor(.buttonTextColor)
+//                        .bold()
+//                }
+//                .frame(width: UIScreen.screenWidth * 0.8, height: 57)
+//                .cornerRadius(50)
+//            }
+//            .disabled(questions.isEmpty)
+//            .sheet(item: $pdfToShare) { data in
+//                ActivityViewControllerWrapper(items: [data.data], activities: [])
+//            }
+//            Spacer()
         .padding()
     }
 }
