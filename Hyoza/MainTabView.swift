@@ -42,8 +42,6 @@ struct MainTabView: View {
         }
         .onAppear {
             selectedQuestion = PersistenceController.shared.selectedQuestion
-            print(NSHomeDirectory())
-            print("선택된 질문: \(selectedQuestion)")
             continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
             
             switch continuousDayCount {

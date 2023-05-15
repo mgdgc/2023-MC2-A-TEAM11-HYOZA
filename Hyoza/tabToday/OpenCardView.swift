@@ -54,25 +54,7 @@ struct NoAnswerView: View {
                             .font(.footnote)
                             .foregroundColor(.tapBarDarkGray)
                         Spacer()
-                        Button(action: {
-                            Task {
-//                                func tempView() -> some View {
-//
-//                                }
-                                let viewToRender = self.frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height)
-                                
-                                guard let image = viewToRender.render(scale: displayScale) else {
-                                    return
-                                }
-                                imageToShareInQuestionCard = ImageWrapper(image: image)
-                            }
-                        }) {
-                            Image(systemName: "square.and.arrow.up")
-                                .foregroundColor(.textOrange)
-                        }
-                        .sheet(item: $imageToShareInQuestionCard) { imageToShareInQuestionCard in
-                            ActivityViewControllerWrapper(items: [imageToShareInQuestionCard.image], activities: nil)
-                        }
+                        ShareButtonView(content: AnyView(self))
                     }
                     Spacer()
                     Text(selectedQuestion.wrappedQuestion)
@@ -92,8 +74,6 @@ struct NoAnswerView: View {
                                 .frame(width: geo.size.width)
                         }, capsuleColor: .backGroundOrange)
                     }
-                    //                    TempAnswerView(selectedQuestion: selectedQuestion)
-                    
                 }
             }
         } else {
@@ -124,25 +104,6 @@ struct AnswerView: View {
                             .foregroundColor(.tapBarDarkGray)
                         Spacer()
                         ShareButtonView(content: AnyView(self))
-//                        Button(action: {
-//                            Task {
-////                                func tempView() -> some View {
-////
-////                                }
-//                                let viewToRender = self.frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height)
-//
-//                                guard let image = viewToRender.render(scale: displayScale) else {
-//                                    return
-//                                }
-//                                imageToShareInQuestionCard = ImageWrapper(image: image)
-//                            }
-//                        }) {
-//                            Image(systemName: "square.and.arrow.up")
-//                                .foregroundColor(.textOrange)
-//                        }
-//                        .sheet(item: $imageToShareInQuestionCard) { imageToShareInQuestionCard in
-//                            ActivityViewControllerWrapper(items: [imageToShareInQuestionCard.image], activities: nil)
-//                        }
                     }
                     Spacer()
                     Text(todayAnsweredQuestion.wrappedQuestion)
@@ -151,12 +112,9 @@ struct AnswerView: View {
                         .bold()
                     Spacer()
                     Text(todayAnsweredQuestion.answer?.answerDetail ?? "답변이 없습니다")
-                        .font(.title)
+                        .font(.title3)
                         .foregroundColor(.textBlack)
-                        .bold()
                     Spacer()
-                    //                    TempAnswerView(selectedQuestion: selectedQuestion)
-                    
                 }
         }
     }
@@ -185,21 +143,6 @@ struct ShareButtonView: View {
         }
     }
 }
-
-//struct TempAnswerView: View {
-//    var selectedQuestion: Question?
-//    var body: some View {
-//        if selectedQuestion?.wrappedAnswer.answerDetail != nil {
-//            Text(selectedQuestion?.wrappedQuestion ?? "")
-//                .font(.title)
-//                .foregroundColor(.textBlack)
-//                .bold()
-//            Spacer()
-//            Text(selectedQuestion?.wrappedAnswer.answerDetail ?? "")
-//        }
-//    }
-//}
-
 
 struct OpenCardView_Previews: PreviewProvider {
     static var previews: some View {
