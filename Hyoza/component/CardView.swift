@@ -25,7 +25,7 @@ struct RoundedCorner: Shape {
 }
 
 struct CardView<Content>: View where Content: View {
-    var backgroundColor: Color = Color.cardPrimaryColor
+    var backgroundColor: Color = Color("CardPrimaryColor")
     var cornerRadius: CGFloat = 8.0
     var shadowColor: Color = Color.black.opacity(0.3)
     var shadowRadius: CGFloat = 4
@@ -43,6 +43,7 @@ struct CardView<Content>: View where Content: View {
                     .shadow(color: shadowColor, radius: shadowRadius, y: shadowRadius == 0 ? 0 : shadowRadius / 2)
             )
     }
+    
 }
 
 
@@ -52,45 +53,5 @@ struct CardView_Previews: PreviewProvider {
             Text("Hello, world!")
         }
         .frame(width: 200, height: 400)
-    }
-}
-
-//
-struct Cardify: ViewModifier {
-    var backgroundColor: Color = Color.cardPrimaryColor
-    var cornerRadius: CGFloat = 8.0
-    var shadowColor: Color = Color.black.opacity(0.3)
-    var shadowRadius: CGFloat = 4
-    var corners: UIRectCorner = .allCorners
-
-    func body(content: Content) -> some View {
-        content
-            .padding(EdgeInsets(top: 12, leading: 8, bottom: 12, trailing: 8))
-            .background(
-                Rectangle()
-                    .fill(backgroundColor)
-                    .cornerRadius(cornerRadius, corners: corners)
-                    .shadow(color: shadowColor, radius: shadowRadius, y: shadowRadius == 0 ? 0 : shadowRadius / 2)
-            )
-    }
-}
-
-extension View {
-    func cardify(
-        backgroundColor: Color = Color.cardPrimaryColor,
-        cornerRadius: CGFloat = 8.0,
-        shadowColor: Color = Color.black.opacity(0.3),
-        shadowRadius: CGFloat = 4,
-        corners: UIRectCorner = .allCorners
-    ) -> some View {
-        self.modifier(
-            Cardify(
-                backgroundColor: backgroundColor,
-                cornerRadius: cornerRadius,
-                shadowColor: shadowColor,
-                shadowRadius: shadowRadius,
-                corners: corners
-            )
-        )
     }
 }

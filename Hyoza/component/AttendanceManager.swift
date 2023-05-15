@@ -9,8 +9,8 @@ import Foundation
 
 class AttendanceManager {
     
-    static let udLastAttended = UserDefaultsKey.udLastAttended.rawValue
-    static let udFirstAttended = UserDefaultsKey.udFirstAttended.rawValue
+    static let udLastAttended = "last_attended"
+    static let udFirstAttended = "first_attended"
     
     func getFirstAttendedDate() -> Date? {
         return UserDefaults.standard.object(forKey: AttendanceManager.udFirstAttended) as? Date

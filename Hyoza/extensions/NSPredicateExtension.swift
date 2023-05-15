@@ -9,32 +9,16 @@ import Foundation
 
 extension NSPredicate {
     static let hasAnswer = NSPredicate(format: "answer != nil")
-    
     static func contains(key: String) -> NSPredicate {
         NSPredicate(format : "question CONTAINS[cd] %@ OR answer.answer CONTAINS[cd] %@", key, key)
     }
-    
+    static func hasAnswerAndContains(key: String) -> NSPredicate {
+        NSCompoundPredicate(andPredicateWithSubpredicates: [.hasAnswer, .contains(key: key)])
+    }
+    static let isNotChoosen = NSPredicate(format: "timestamp == nil")
     static func timestampIn(between startDate: Date, and endDate: Date) -> NSPredicate {
         return NSPredicate(
-            format: "timestamp >= %@ AND timestamp <= %@", startDate.start as NSDate,
+            format: "timestamp >= %@ AND timestamp < %@", startDate.start as NSDate,
             endDate.end as NSDate)
-    }
-    
-    // MARK: - TodayView 관련 NSPredicate
-    
-    static let isNotChoosen = NSPredicate(format: "timestamp == nil")
-    static let isHard = NSPredicate(format: "difficulty == 1")
-    static let isEasy = NSPredicate(format: "difficulty == 0")
-    static let isSelected = NSPredicate(format: "timestamp != nil")
-    static let hasNoAnswer = NSPredicate(format: "answer == nil")
-}
-
-extension NSPredicate {
-    static func && (lhs: NSPredicate, rhs: NSPredicate) -> NSPredicate {
-        NSCompoundPredicate(andPredicateWithSubpredicates: [lhs, rhs])
-    }
-    
-    static func || (lhs: NSPredicate, rhs: NSPredicate) -> NSPredicate {
-        NSCompoundPredicate(orPredicateWithSubpredicates: [lhs, rhs])
     }
 }

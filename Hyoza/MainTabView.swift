@@ -10,15 +10,10 @@ import SwiftUI
 struct MainTabView: View {
     
     @State private var selection: Int = 0
-    @State var continuousDayCount: Int = 0
-    @State var continueText: String? = nil
-    @State var continueTextOpacity: Double = 1.0
-    @State var tempTextStorage: String? = nil
-    @State var isContinueIconAnimating: Bool = false
     
     var body: some View {
         TabView(selection: $selection) {
-            TodayView(continuousDayCount: $continuousDayCount, continueText: $continueText, continueTextOpacity: $continueTextOpacity, tempTextStorage: $tempTextStorage, isContinueIconAnimating: $isContinueIconAnimating)
+            TodayView()
                 .tabItem {
                     Image(systemName: "heart.square.fill")
                     Text("Today")
@@ -38,39 +33,7 @@ struct MainTabView: View {
                     Text("Today")
                 }
                 .tag(2)
-        }
-        .onAppear {
-            print(NSHomeDirectory())
-            continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
             
-            switch continuousDayCount {
-            case 0:
-                tempTextStorage = "작성을 시작해보세요!"
-                continueText = tempTextStorage
-            case 1...:
-                tempTextStorage = "연속 작성 \(continuousDayCount)일째 돌파!"
-                continueText = tempTextStorage
-            default:
-                tempTextStorage = "무언가 잘못됐어요 :("
-                continueText = tempTextStorage
-            }
-            
-            if !isContinueIconAnimating {
-                self.isContinueIconAnimating = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    makeContinueIconSmall()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                        self.isContinueIconAnimating = false
-                    }
-                }
-            }
-        }
-    }
-    
-    private func makeContinueIconSmall() {
-        self.continueTextOpacity = 0
-        withAnimation(.easeInOut(duration: 0.7)) {
-            self.continueText = nil
         }
     }
 }
