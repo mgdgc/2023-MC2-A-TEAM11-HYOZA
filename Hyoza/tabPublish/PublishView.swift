@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 struct PublishView: View {
-    @Environment(\.displayScale) var displayScale
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Question.timestamp, ascending:false)],
@@ -198,8 +197,8 @@ extension PublishView {
     }
 }
 
-struct PublishView_Previews: PreviewProvider {
-    static var previews: some View {
-        PublishView()
-    }
-}
+//struct PublishView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PublishView()
+//    }
+//}
