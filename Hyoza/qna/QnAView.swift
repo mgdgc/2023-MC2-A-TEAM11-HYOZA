@@ -22,7 +22,7 @@ struct QnAView: View {
     @State var isTextFieldEmpty : Bool = true
     @State var isCommetFieldEmpty : Bool = true
     
-    private let persistenceController = PersistenceController.shared
+    @EnvironmentObject var persistenceController: PersistenceController
     private let pastboard = UIPasteboard.general
     
     @Environment(\.displayScale) var displayScale
@@ -31,7 +31,7 @@ struct QnAView: View {
     var body: some View {
         ZStack {
             //배경 색
-            Color("backgroundColor")
+            Color.backgroundColor
                 .ignoresSafeArea()
             //contentView + ComentEditView
             VStack(alignment: .leading, spacing: 15) {
@@ -77,11 +77,16 @@ struct QnAView: View {
                         } else {
                             print("텍스트를 입력해주세요.")
                         }
+                        <<<<<<< HEAD
                         persistenceController.addAnswer(content: textValue, relateTo: data)
                         persistenceController.addComment(detail: comment, relatedTo: data)
                         
                         
                         
+                        =======
+                        persistenceController.updateAnswer(content: textValue, relateTo: data)
+                        data.objectWillChange.send()
+                        >>>>>>> d4aeccf6e636ea135debc119a36cafacd9e7508d
                     }) {
                         Text("완료")
                             .foregroundColor(isTextFieldEmpty ? .gray : .orange)
@@ -166,10 +171,11 @@ struct QnAView: View {
             }
             .padding(.all)
             
-            if data.answer?.comment != nil && data.answer?.comment != "" {
+            if let commentDetail = data.answer?.comment,
+               commentDetail != "" {
                 HStack {
                     Spacer()
-                    Text(data.wrappedAnswer.comment ?? "Unknown Error.")
+                    Text(commentDetail)
                         .padding(.all)
                         .background(
                             Rectangle()
@@ -180,7 +186,7 @@ struct QnAView: View {
                         .padding(.all, 16)
                         .contextMenu {
                             Button("복사", role: .none) {
-                                pastboard.string = comment
+                                pastboard.string = commentDetail
                             }
                             Button("삭제", role: .destructive) {
                                 persistenceController.deleteComment(relatedTo: data)
@@ -199,38 +205,31 @@ struct QnAView: View {
     
     var commentEditView: some View {
         ZStack {
-            if isEditing == false {
-                if data.answer?.comment == nil || data.answer?.comment == "" {
-                    Rectangle()
-                        .frame(width: UIScreen.screenWidth-40, height: 40)
-                        .cornerRadius(100)
-                        .padding(.all)
-                        .foregroundColor(.white)
-                        .shadow(radius: 5)
-                        .opacity(0.5)
-                    HStack {
-                        TextField("나의 한 마디 작성하기", text: $commentTextField)
-                            .padding(.leading, 40)
-                            .onChange(of: commentTextField) { newValue in
-                                isCommetFieldEmpty = newValue.isEmpty
-                            }
-                        Button(action: {
-                            comment = commentTextField
-                            if !isCommetFieldEmpty && comment != "" {
-                                saveItem()
-                            } else {
-                                print("코멘트를 입력해주세요.")
-                            }
-                            
-                            persistenceController.addComment(detail: comment, relatedTo: data)
-                            
-                            
-                            
-                        }) {
-                            Text("게시")
-                                .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
+            
+            if data.answer?.comment == nil || data.answer?.comment == "" {
+                Rectangle()
+                    .frame(width: UIScreen.screenWidth-40, height: 40)
+                    .cornerRadius(100)
+                    .padding(.all)
+                    .foregroundColor(.white)
+                    .shadow(radius: 5)
+                    .opacity(0.5)
+                HStack {
+                    TextField("나의 한 마디 작성하기", text: $commentTextField)
+                        .padding(.leading, 40)
+                        .onChange(of: commentTextField) { newValue in
+                            isCommetFieldEmpty = newValue.isEmpty
                         }
-                        .padding(.trailing, 35)
+                    Button(action: {
+                        comment = commentTextField
+                        if !isCommetFieldEmpty && comment != "" {
+                            saveItem()
+                        } else {
+                            print("코멘트를 입력해주세요.")
+                        }
+                    }) {
+                        Text("게시")
+                            .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
                     }
                 }
             }
@@ -240,6 +239,7 @@ struct QnAView: View {
     func saveItem() {
         comment = commentTextField
         commentTextField = ""
+        persistenceController.addComment(detail: comment, relatedTo: data)
     }
     
 }
