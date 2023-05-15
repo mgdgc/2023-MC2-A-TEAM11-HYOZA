@@ -1,29 +1,232 @@
 
 [
     {
-        "id": 1,
+        "question": "어떤 활동을 할 때 가장 자유롭게 살고 있다는 느낌을 받나요?",
+        "difficulty": 1
+    },
+    {
+        "question": "삶에서 가장 중요하게 여기는 가치는 무엇인가요? 이러한 가치가 왜 중요하다고 생각하시나요?",
+        "difficulty": 1
+    },
+    {
+        "question": "살아오시면서 가장 큰 도전은 무엇이었나요? 그 도전을 어떻게 극복했나요?",
+        "difficulty": 1
+    },
+    {
+        "question": "할머니, 할아버지의 자식으로서 제일 자랑스러웠던 순간이 어떤 순간이었나요? 왜 그 순간이 특별했나요?",
+        "difficulty": 1
+    },
+    {
+        "question": "자녀에게 전하고 싶은 가장 중요한 조언이 있다면 무엇인가요?",
+        "difficulty": 1
+    },
+    {
+        "question": "살면서 가장 큰 영향을 받았던 사람은 누구인가요? 어떤 영향을 받았나요?",
+        "difficulty": 1
+    },
+    {
+        "question": "자녀의 부모로서 기억되고 싶은 모습은 어떤 모습인가요?",
+        "difficulty": 1
+    },
+    {
+        "question": "인생에 있어서 결혼이 꼭 필요하다고 생각하나요? 필요하다면 어떤 배우자가 좋은 사람일까요?",
+        "difficulty": 1
+    },
+    {
+        "question": "청춘에 해보고 싶었지만 못해본 일이 있나요?",
+        "difficulty": 1
+    },
+    {
+        "question": "본인이 나이가 들었다고 느꼈던 순간이 언제였나요?",
+        "difficulty": 1
+    },
+    {
+        "question": "과거에 가장 소중했던 것은 어떤 것인가요? 그리고 현재에 가장 소중한 것은 어떤 것인가요?",
+        "difficulty": 1
+    },
+    {
+        "question": "자녀의 부모님으로 살아오는 인생은 어땠나요?",
+        "difficulty": 1
+    },
+    {
+        "question": "부모님의 부모님은 어떤 분들이셨나요? 부모님과 관련한 소중한 추억이 있나요?",
+        "difficulty": 1
+    },
+    {
+        "question": "자녀가 어떻게 살기를 바라나요? 자녀가 어떤 사람이 되면 좋겠다고 생각하시나요?",
+        "difficulty": 1
+    },
+    {
+        "question": "리즈시절(가장 빛나는 시절)은 언제였나요?",
+        "difficulty": 1
+    },
+    {
+        "question": "가장 좋아하는 부모님 자신의 모습이 뭔가요?",
+        "difficulty": 1
+    },
+    {
+        "question": "오늘 어떤 음식을 드셨나요? 맛있게 먹었나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "요즘 가장 먹고 싶은 음식이 있나요? 왜 먹고 싶나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "우리 가족이 함께하면서 가장 기억에 남고 특별했던 순간은 어떤 순간인가요?",
+        "difficulty": 0
+    },
+    {
+        "question": "가장 최근에 본 영화나 드라마는 무엇이었나요? 어땠나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "최근에 읽은 책이 있나요? 어떤 내용이었나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "어릴 적 가장 행복했던 추억은 무엇이었나요? 왜 그 순간이 특별했나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "가장 좋아하는 취미나 여가 활동은 무엇인가요? 언제부터 그 취미를 갖게 되었나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "최근에 경험한 재미있는 이야기가 있나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "주변에 일어난 흥미로운 일들 중 가장 기억에 남는 것은 무엇인가요?",
+        "difficulty": 0
+    },
+    {
+        "question": "이번 주말에는 어떻게 보내고 싶으세요? 특별한 계획이 있나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "오늘 기분은 어떤가요? 왜 그런 기분을 느꼈나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "어릴 적에 가장 좋아하셨던 음식은 무엇이었나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "어릴적에, 또는 요즘 좋아하는 연예인이나 유명인이 있나요? 왜 그 분을 좋아하나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "가족 여행 중 가장 기억에 남는 순간은 어떤 것이었나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "첫 사랑 이야기를 들려주세요.",
+        "difficulty": 0
+    },
+    {
+        "question": "좋아하는 음악 장르나 가수가 있나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "가장 좋아하는 계절은 언제인가요? 그 이유는 무엇인가요?",
+        "difficulty": 0
+    },
+    {
+        "question": "우리 가족이 함께했던 순간에 가장 웃긴 에피소드나 이야기가 있나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "자녀를 키우며 자부심을 느꼈던 순간이 있으신가요?",
+        "difficulty": 0
+    },
+    {
+        "question": "자라면서 가장 즐겁게 봤던 TV 프로그램이 뭐였나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "결혼식날 무슨 생각을 했나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "가봤던 여행지 중에 다시 가고 싶은 곳이 있을까요?",
+        "difficulty": 0
+    },
+    {
+        "question": "살아오면서 한 경험 중 자녀가 꼭 해봤으면 하는 경험이 있나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "꼭 가지고 싶었지만 사지 못했던 물건 중 계속해서 생각나는 물건이 있나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "자녀에게 받은 선물 중에 가장 기억남은 선물이 있나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "학생시절에 수업을 빼먹은 적은 없나요? 그것 때문에 혼난 적이 있나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "초등학교를 다니며 있었던 기억에 남는 에피소드가 있나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "책 읽는 것을 좋아하셨나요? 어떤 장르의 책이 좋나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "극장에서 제일 처음으로 본 영화가 무엇이었나요? 어디서 누구와 함께 보았나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "어렸을 때 누구와 가장 가까웠나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "시간 가는 줄 모르고 푹 빠졌던 일이 있나요? 왜 그 일에 열정을 느끼나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "한번쯤 새롭게 배우고 싶은 싶은 기술, 지식, 또는 활동이 있나요? 있다면 왜 배워보고 싶나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "가족과 함께할 때 가장 좋아하는 활동은 무엇인가요? 왜 그 활동이 좋나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "타임머신이 있다면 삶의 어느 순간으로 돌아가 어떤 경험을 해보고 싶나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "가족과 같이 하지 못했지만 꼭 같이 하고 싶었던 것이 있나요?",
+        "difficulty": 0
+    },
+    {
+        "question": "오늘 소소하지만 행복했거나 기분 좋았던 일이 있었나요?",
+        "difficulty": 0
+    },
+    {
         "question": "엄마 돈 많아?",
         "difficulty": 1
     },
     {
-        "id": 2,
         "question": "엄마 차 있어?",
         "difficulty": 0
     },
     {
-        "id": 3,
         "question": "인생이란 무엇인가",
         "difficulty": 1
     },
     {
-        "id": 4,
         "question": "강아지 vs 고양이",
         "difficulty": 0
     },
     {
         "difficulty": 0,
-        "question": "질문입니다1",
-        "id": 168375
+        "question": "질문입니다1"
     },
     {
         "answer": "답입니다123",
@@ -31,71 +234,62 @@
         "answerTime": 1681210902,
         "difficulty": 0,
         "question": "질문입니다2-코멘트 있음",
-        "timestamp": 1681200902,
-        "id": 168120
+        "timestamp": 1681200902
     },
     {
         "answer": "답입니다3",
         "answerTime": 1681978502,
         "difficulty": 0,
         "question": "질문입니다3-코멘트 없음",
-        "timestamp": 1681958502,
-        "id": 168195
+        "timestamp": 1681958502
     },
     {
         "answer": "답입니다4",
         "answerTime": 1682496902,
         "difficulty": 0,
         "question": "질문입니다4",
-        "timestamp": 1682496902,
-        "id": 168249
+        "timestamp": 1682496902
     },
     {
         "answer": "답입니다5",
         "answerTime": 1682410502,
         "difficulty": 0,
         "question": "질문입니다5",
-        "timestamp": 1682410502,
-        "id": 168241
+        "timestamp": 1682410502
     },
     {
         "answer": "답입니다6",
         "answerTime": 1682324102,
         "difficulty": 0,
         "question": "질문입니다6",
-        "timestamp": 1682324102,
-        "id": 168232
+        "timestamp": 1682324102
     },
     {
         "answer": "답입니다7",
         "answerTime": 1682237702,
         "difficulty": 0,
         "question": "질문입니다7",
-        "timestamp": 1682237702,
-        "id": 168223
+        "timestamp": 1682237702
     },
     {
         "answer": "답입니다8",
         "answerTime": 1682147702,
         "difficulty": 0,
         "question": "질문입니다8",
-        "timestamp": 1682147702,
-        "id": 168214
+        "timestamp": 1682147702
     },
     {
         "answer": "답입니다9",
         "answerTime": 1682057702,
         "difficulty": 0,
         "question": "질문입니다9",
-        "timestamp": 1682057702,
-        "id": 168205
+        "timestamp": 1682057702
     },
     {
         "answer": "답입니다10",
         "answerTime": 1683101702,
         "difficulty": 0,
         "question": "질문입니다10",
-        "timestamp": 1683101702,
-        "id": 168310
+        "timestamp": 1683101702
     }
 ]
