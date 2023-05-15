@@ -74,10 +74,6 @@ class PersistenceController: ObservableObject {
     
     let container: NSPersistentContainer
     
-    var context: NSManagedObjectContext {
-        container.viewContext
-    }
-    
     /// A peristent history token used for fetching transactions from the store.
     private var lastToken: NSPersistentHistoryToken?
     
@@ -139,10 +135,8 @@ extension PersistenceController {
     
     func fetchQuestion() async throws {
         guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: fileExtension) else {
-            print("No File..!")
             return
         }
-        print("yes file")
         do {
             let data = try Data(contentsOf: fileUrl)
             // Decode the GeoJSON into a data model.
@@ -157,10 +151,8 @@ extension PersistenceController {
             logger.debug("Finished importing data.")
             try await setRelationships(with: questionPropertiesList)
             logger.debug("Finished setting relationships.")
-            context.refreshAllObjects()
-            
+            container.viewContext.refreshAllObjects()
         } catch {
-            print(":(")
             throw QuestionError.wrongDataFormat(error: error)
         }
     }
@@ -168,34 +160,18 @@ extension PersistenceController {
 
 extension PersistenceController {
     
-    /// Creates and configures a private queue context.
-    private func newTaskContext() -> NSManagedObjectContext {
-        // Create a private queue context.
-        /// - Tag: newBackgroundContext
-        let taskContext = container.newBackgroundContext()
-        taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        // Set unused undoManager to nil for macOS (it is nil by default on iOS)
-        // to reduce resource requirements.
-        taskContext.undoManager = nil
-        return taskContext
-    }
-    
     /// Uses `NSBatchInsertRequest` (BIR) to import a JSON dictionary into the Core Data store on a private queue.
     private func importQuestions(from propertiesList: [QuestionProperties]) async throws {
         guard !propertiesList.isEmpty else { return }
         
-        let taskContext = newTaskContext()
-        // Add name and author to identify source of persistent history changes.
-        taskContext.name = "importContext"
-        taskContext.transactionAuthor = "importQuestions"
-        
+        let context = container.viewContext
         /// - Tag: performAndWait
-        try await taskContext.perform {
+        try await context.perform {
             // Execute the batch insert.
             /// - Tag: batchInsertRequest
             let batchInsertRequests = self.newBatchInsertRequest(with: propertiesList)
-            if let fetchQuestionResult = try? taskContext.execute(batchInsertRequests[0]),
-               let fetchAnswerResult = try? taskContext.execute(batchInsertRequests[1]),
+            if let fetchQuestionResult = try? context.execute(batchInsertRequests[0]),
+               let fetchAnswerResult = try? context.execute(batchInsertRequests[1]),
                let batchQuestionInsertResult = fetchQuestionResult as? NSBatchInsertResult,
                let batchAnswerInsertResult = fetchAnswerResult as? NSBatchInsertResult,
                let successQuestion = batchQuestionInsertResult.result as? Bool,
@@ -213,12 +189,9 @@ extension PersistenceController {
     private func setRelationships(with propertiesList: [QuestionProperties]) async throws {
         guard !propertiesList.isEmpty else { return }
         
-        let taskContext = newTaskContext()
-        // Add name and author to identify source of persistent history changes.
-        taskContext.name = "setRelationshipsContext"
-        taskContext.transactionAuthor = "setRelationships"
+        let context = container.viewContext
         
-        try await taskContext.perform {
+        try await context.perform {
             for property in propertiesList {
                 guard let answer = property.answer else {
                     continue
@@ -228,14 +201,14 @@ extension PersistenceController {
                 let answerRequest: NSFetchRequest<Answer> = Answer.fetchRequest()
                 answerRequest.predicate = NSPredicate(format: "answer == %@", argumentArray: [answer])
                 
-                let questionResults = try? taskContext.fetch(questionRequest)
-                let answerResults = try? taskContext.fetch(answerRequest)
+                let questionResults = try? context.fetch(questionRequest)
+                let answerResults = try? context.fetch(answerRequest)
                 
                 questionResults?.first?.answer = answerResults?.first!
             }
             
-            if taskContext.hasChanges {
-                try taskContext.save()
+            if context.hasChanges {
+                try context.save()
             }
         }
     }
