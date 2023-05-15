@@ -79,6 +79,7 @@ struct QnAView: View {
                         }
                         persistenceController.updateAnswer(content: textValue, relateTo: data)
                         data.objectWillChange.send()
+                      
                     }) {
                         Text("완료")
                             .foregroundColor(isTextFieldEmpty ? .gray : .orange)
@@ -120,18 +121,20 @@ struct QnAView: View {
     var contentView: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack{
-                Rectangle()
-                    .frame(width: 50, height: 30)
-                    .cornerRadius(30)
+                
+                
+                Text(data.difficultyString)
                     .foregroundColor(.orange)
-                    .opacity(0.2)
-                    .overlay(
-                        Text(data.difficultyString)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(
+                        Rectangle()
+                            .cornerRadius(30)
                             .foregroundColor(.orange)
+                            .opacity(0.2)
                     )
-                    .padding(.leading, 30)
-                    .padding(.top, 30)
             }
+            .padding([.top, .leading], 30)
             Text(data.wrappedQuestion)
                 .font(.system(size: 25))
                 .padding(.horizontal, 30)
@@ -195,33 +198,36 @@ struct QnAView: View {
     
     var commentEditView: some View {
         ZStack {
-            if data.answer?.comment == nil || data.answer?.comment == "" {
-                Rectangle()
-                    .frame(width: UIScreen.screenWidth-40, height: 40)
-                    .cornerRadius(100)
-                    .padding(.all)
-                    .foregroundColor(.white)
-                    .shadow(radius: 5)
-                    .opacity(0.5)
-                HStack {
-                    TextField("나의 한 마디 작성하기", text: $commentTextField)
-                        .padding(.leading, 40)
-                        .onChange(of: commentTextField) { newValue in
-                            isCommetFieldEmpty = newValue.isEmpty
+            if isEditing == false {
+                if data.answer?.comment == nil || data.answer?.comment == "" {
+                    Rectangle()
+                        .frame(width: UIScreen.screenWidth-40, height: 40)
+                        .cornerRadius(100)
+                        .padding(.all)
+                        .foregroundColor(.white)
+                        .shadow(radius: 5)
+                        .opacity(0.5)
+                    HStack {
+                        TextField("나의 한 마디 작성하기", text: $commentTextField)
+                            .padding(.leading, 40)
+                            .onChange(of: commentTextField) { newValue in
+                                isCommetFieldEmpty = newValue.isEmpty
+                            }
+                        Button(action: {
+                            comment = commentTextField
+                            if !isCommetFieldEmpty && comment != "" {
+                                saveItem()
+                            } else {
+                                print("코멘트를 입력해주세요.")
+                            }
+                        }) {
+                            Text("게시")
+                                .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
                         }
-                    Button(action: {
-                        comment = commentTextField
-                        if !isCommetFieldEmpty && comment != "" {
-                            saveItem()
-                        } else {
-                            print("코멘트를 입력해주세요.")
-                        }
-                    }) {
-                        Text("게시")
-                            .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
+                        .padding(.trailing, 35)
                     }
-                    .padding(.trailing, 35)
                 }
+            
             }
         }
     }
