@@ -15,20 +15,20 @@ enum PeriodSelection: String, CaseIterable {
 
 
 struct PeriodSegmentView: View {
-    @Binding var segmentationSelection: PeriodSelection
+    @Binding var periodSelection: PeriodSelection
     
     private enum K {
         static let pickerTitle = "기간을 고르세요"
     }
     
     init(selection: Binding<PeriodSelection>) {
-        self._segmentationSelection = selection
+        self._periodSelection = selection
         UISegmentedControl.appearance().backgroundColor = .cardSecondaryColor
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
     }
     
     var body: some View {
-        Picker(K.pickerTitle, selection: $segmentationSelection) {
+        Picker(K.pickerTitle, selection: $periodSelection) {
             ForEach(PeriodSelection.allCases, id: \.self) {
                 Text($0.rawValue)
             }
