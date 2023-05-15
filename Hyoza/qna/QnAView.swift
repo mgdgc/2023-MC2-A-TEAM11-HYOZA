@@ -22,7 +22,7 @@ struct QnAView: View {
     @State var isTextFieldEmpty : Bool = true
     @State var isCommetFieldEmpty : Bool = true
     
-    private let persistenceController = PersistenceController.shared
+    @EnvironmentObject var persistenceController: PersistenceController
     private let pastboard = UIPasteboard.general
     
     @Environment(\.displayScale) var displayScale
@@ -31,7 +31,7 @@ struct QnAView: View {
     var body: some View {
         ZStack {
             //배경 색
-            Color("backgroundColor")
+            Color.backgroundColor
                 .ignoresSafeArea()
             //contentView + ComentEditView
             VStack(alignment: .leading, spacing: 15) {
@@ -70,54 +70,51 @@ struct QnAView: View {
                     
                 },
             trailing: HStack {
-                    if isEditing {
-                        Button(action: {
-                            if !isTextFieldEmpty {
-                                isEditing = false
-                            } else {
-                                print("텍스트를 입력해주세요.")
-                            }
-                            persistenceController.addAnswer(content: textValue, relateTo: data)
-                            persistenceController.addComment(detail: comment, relatedTo: data)
-                            
-                            
-                            
-                        }) {
-                            Text("완료")
-                                .foregroundColor(isTextFieldEmpty ? .gray : .orange)
+                if isEditing {
+                    Button(action: {
+                        if !isTextFieldEmpty {
+                            isEditing = false
+                        } else {
+                            print("텍스트를 입력해주세요.")
                         }
-                    } else {
-                        HStack {
-                            Button(action: {
-                                Task {
-                                    let viewToRender = contentView.frame(width: UIScreen.main.bounds.width)
-                                    //TODO: 이 코드가 뭔지 꼭 공부할것
-                                    guard let image = await viewToRender.render(scale: displayScale) else {return}
-                                    imageToShare = ImageWrapper(image: image)
-                                }
-                            }) {
-                                Image(systemName: "square.and.arrow.up")
-                                    .foregroundColor(.orange)
+                        persistenceController.updateAnswer(content: textValue, relateTo: data)
+                        data.objectWillChange.send()
+                    }) {
+                        Text("완료")
+                            .foregroundColor(isTextFieldEmpty ? .gray : .orange)
+                    }
+                } else {
+                    HStack {
+                        Button(action: {
+                            Task {
+                                let viewToRender = contentView.frame(width: UIScreen.main.bounds.width)
+                                //TODO: 이 코드가 뭔지 꼭 공부할것
+                                guard let image = await viewToRender.render(scale: displayScale) else {return}
+                                imageToShare = ImageWrapper(image: image)
                             }
-                            .padding(.trailing)
-                            .sheet(item: $imageToShare) { imageToShare in
-                                ActivityViewControllerWrapper(items: [imageToShare.image],
-                                                              activities: nil)
+                        }) {
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(.orange)
+                        }
+                        .padding(.trailing)
+                        .sheet(item: $imageToShare) { imageToShare in
+                            ActivityViewControllerWrapper(items: [imageToShare.image],
+                                                          activities: nil)
+                        }
+                        Button(action: {
+                            isEditing = true
+                            isTextFieldEmpty = false
+                            textValue = data.wrappedAnswer.answerDetail
+                            if data.wrappedAnswer.comment != nil {
+                                comment = data.wrappedAnswer.comment ?? "Unknown Error"
                             }
-                            Button(action: {
-                                isEditing = true
-                                isTextFieldEmpty = false
-                                textValue = data.wrappedAnswer.answerDetail
-                                if data.wrappedAnswer.comment != nil {
-                                    comment = data.wrappedAnswer.comment ?? "Unknown Error"
-                                }
-                            }) {
-                                Image(systemName: "pencil")
-                                    .foregroundColor(.orange)
-                            }
+                        }) {
+                            Image(systemName: "pencil")
+                                .foregroundColor(.orange)
                         }
                     }
-                })
+                }
+            })
     }
     
     var contentView: some View {
@@ -144,7 +141,7 @@ struct QnAView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 30)
                     .frame(height: 60)
-                    .foregroundColor(.clear)                
+                    .foregroundColor(.clear)
                 if isEditing {
                     TextField("답변을 입력해 주세요.", text: $textValue, axis: .vertical)
                         .onChange(of: textValue) { newValue in
@@ -164,10 +161,11 @@ struct QnAView: View {
             }
             .padding(.all)
             
-            if data.answer?.comment != nil && data.answer?.comment != "" {
+            if let commentDetail = data.answer?.comment,
+               commentDetail != "" {
                 HStack {
                     Spacer()
-                    Text(data.wrappedAnswer.comment ?? "Unknown Error.")
+                    Text(commentDetail)
                         .padding(.all)
                         .background(
                             Rectangle()
@@ -178,7 +176,7 @@ struct QnAView: View {
                         .padding(.all, 16)
                         .contextMenu {
                             Button("복사", role: .none) {
-                                pastboard.string = comment
+                                pastboard.string = commentDetail
                             }
                             Button("삭제", role: .destructive) {
                                 persistenceController.deleteComment(relatedTo: data)
@@ -218,11 +216,6 @@ struct QnAView: View {
                         } else {
                             print("코멘트를 입력해주세요.")
                         }
-                   
-                            persistenceController.addComment(detail: comment, relatedTo: data)
-                        
-                       
-                        
                     }) {
                         Text("게시")
                             .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
@@ -236,6 +229,7 @@ struct QnAView: View {
     func saveItem() {
         comment = commentTextField
         commentTextField = ""
+        persistenceController.addComment(detail: comment, relatedTo: data)
     }
     
 }
