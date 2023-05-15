@@ -22,6 +22,7 @@ struct QuestionCardView: View {
                 }
             ClosedCardListView(openDegree: $openDegree, closedDegree: $closedDegree, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion)
         }
+        .frame(height: UIScreen.screenHeight * 0.6)
     }
 }
 

@@ -47,8 +47,7 @@ struct MonthPickerView: View {
                 .pickerStyle(.menu)
             }
         }
-        
-        
+        .foregroundColor(.textColor)
     }
 }
 

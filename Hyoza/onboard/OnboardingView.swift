@@ -32,7 +32,7 @@ struct OnboardingView: View {
                 UIPageControl.appearance().pageIndicatorTintColor = UIColor(named: "CapsuleColor")
             })
             
-            Button {
+            ButtonView (content: (selected < 2 ? "다음" : "시작하기")) {
                 // 1, 2 페이지인 경우
                 if selected < 2 {
                     selected += 1
@@ -43,19 +43,7 @@ struct OnboardingView: View {
                     // 메인 화면 전환
                     showOnboardingView = false
                 }
-                
-            } label: {
-                HStack {
-                    Spacer()
-                    Text(selected < 2 ? "다음" : "시작하기").font(.system(size: 20))
-                        .padding(10)
-                    Spacer()
-                }
             }
-            .buttonStyle(.borderedProminent)
-            .buttonBorderShape(.capsule)
-            .padding(20)
-            .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 4)
             
             Button {
                 // 최초 접속 여부 저장

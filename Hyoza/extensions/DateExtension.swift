@@ -38,7 +38,8 @@ extension Date {
     } // String(format: "%2d", month)
     
     var fullString: String {
-        "\(year)년 \(String(format: "%02d", month))월 \(String(format: "%02d", day))일"
+//        "\(year)년 \(String(format: "%02d", month))월 \(String(format: "%02d", day))일"
+        "\(year)년 \(month)월 \(day)일"
     }
     
     var start: Date {

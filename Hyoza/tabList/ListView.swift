@@ -42,17 +42,10 @@ struct ListView: View {
                             NavigationLink(destination : QnAView(data:item, isEditing: false)){
                                 CardView(shadowColor: Color.black.opacity(0.1)) {
                                     CellContents(item : item)
-                                        .padding(4)
+                                        .padding(.horizontal, 6)
+                                        .padding(.vertical, 4)
                                 }
                                 .padding([.leading, .trailing], 20)
-                                //                                CellContents(item : item)
-                                //                                    .cardify(backgroundColor: .white,
-                                //                                             cornerRadius: 15,
-                                //                                             shadowColor: .black.opacity(0.1),
-                                //                                             shadowRadius: 5,
-                                //                                             corners: .allCorners
-                                //                                           )
-                                //                                    .padding(.bottom, 20)
                             }
                         }
                     }.padding(.top, 4)
@@ -80,7 +73,7 @@ private struct CellContents : View {
         VStack(alignment : .leading, spacing: 8) {
             HStack {
                 Text(item.wrappedTimestamp, formatter : itemFormatter)
-                    .font(.subheadline.bold())
+                    .font(.subheadline)
                     .foregroundColor(.tapBarDarkGray)
                     .lineLimit(1)
                 Spacer()
