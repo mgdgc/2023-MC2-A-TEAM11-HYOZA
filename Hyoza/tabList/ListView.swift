@@ -85,7 +85,7 @@ private struct CellContents : View {
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
             
-
+            
             Text(item.wrappedAnswer.answerDetail)
                 .font(.body)
                 .foregroundColor(.textBlack)
