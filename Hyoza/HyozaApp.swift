@@ -41,6 +41,7 @@ struct HyozaApp: App {
             } else {
                 MainTabView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .environmentObject(persistenceController)
             }
         }
     }

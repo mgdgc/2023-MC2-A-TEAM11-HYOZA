@@ -13,8 +13,13 @@ enum PeriodSelection: String, CaseIterable {
     case whole = "전체"
 }
 
+
 struct PeriodSegmentView: View {
     @Binding var segmentationSelection: PeriodSelection
+    
+    private enum K {
+        static let pickerTitle = "기간을 고르세요"
+    }
     
     init(selection: Binding<PeriodSelection>) {
         self._segmentationSelection = selection
@@ -23,7 +28,7 @@ struct PeriodSegmentView: View {
     }
     
     var body: some View {
-        Picker("Choose a Period", selection: $segmentationSelection) {
+        Picker(K.pickerTitle, selection: $segmentationSelection) {
             ForEach(PeriodSelection.allCases, id: \.self) {
                 Text($0.rawValue)
             }

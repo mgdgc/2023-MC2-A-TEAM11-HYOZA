@@ -20,13 +20,18 @@ enum Month: Int, CaseIterable, Identifiable, Equatable {
 }
 
 struct MonthPickerView: View {
+    private enum K {
+        static let month = "월"
+    }
+    
     @Binding var selectedMonth: Month
+    
     var body: some View {
         HStack {
-            Text("월")
+            Text(K.month)
             Spacer()
-            Picker("Month", selection: $selectedMonth) {
-                ForEach(Month.allCases) { Text("\($0.rawValue)월") }
+            Picker(K.month, selection: $selectedMonth) {
+                ForEach(Month.allCases) { Text("\($0.rawValue)\(K.month)") }
             }
             .pickerStyle(.menu)
         }
