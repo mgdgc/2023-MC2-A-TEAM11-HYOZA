@@ -32,12 +32,11 @@ struct ListView: View {
     }
     
     var body: some View {
-        let viewWidth = UIScreen.main.bounds.size.width - 34
         NavigationView {
             ZStack{
                 Color.backgroundColor.ignoresSafeArea(edges: .top)
-                ScrollView{
-                    LazyVStack {
+                ScrollView {
+                    LazyVStack(spacing: 24) {
                         //아이템을 만들어주기 위한 RoundedRectangle
                         ForEach(items) { item in
                             NavigationLink(destination : QnAView(data:item, isEditing: false)){
@@ -55,11 +54,11 @@ struct ListView: View {
                                              shadowRadius: 5,
                                              corners: .allCorners
                                            )
-                                    .padding(.bottom, 20)
 
                             }
                         }
                     }
+                    .padding(.top, 4)
                 }
             }
             .navigationTitle("질문 리스트")
