@@ -34,7 +34,7 @@ struct ResultBookView: View {
         }
         .frame(width: UIScreen.screenWidth * K.scale, height: height)
         .background {
-            Color.brown
+            (count == 0 ? Color.textThirdColor : Color.brown)
                 .cornerRadius(K.cornerRadius)
         }
     }
@@ -53,8 +53,6 @@ struct ResultBookView: View {
     
     var height: CGFloat {
         switch count{
-        case ...Int.zero:
-            return .zero
         case ...(Int(K.maxHeight) - Int(K.defaultHeight)):
             return K.defaultHeight + CGFloat(count)
         default:

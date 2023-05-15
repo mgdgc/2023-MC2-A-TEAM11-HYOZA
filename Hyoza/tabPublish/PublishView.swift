@@ -19,7 +19,6 @@ struct PublishView: View {
         animation: .default)
     private var questions: FetchedResults<Question>
     
-    @State var count: Int = 0
     @State var titleText = ""
     @State var periodSelection: PeriodSelection = .custom
     @State var startDate: Date = Date()
@@ -53,13 +52,16 @@ struct PublishView: View {
                 titleTextField
                 periodView
                 Spacer()
-                ResultBookView(count: count, title: titleText)
+                ResultBookView(count: questions.count, title: titleText)
                     .padding()
                 countLabel
                 publishButton
             }
         }
         .ignoresSafeArea(edges: .top)
+        .onAppear {
+            questions.nsPredicate = .hasAnswer && .timestampIn(between: startDate, and: endDate)
+        }
     }
     
 
@@ -90,7 +92,6 @@ struct PublishView: View {
                let lastQuestion = questions.last {
                 startDate = (lastQuestion as Question).wrappedAnswer.answerTime!.start
                 endDate = (firstQuestion as Question).wrappedAnswer.answerTime!.end
-                count = questions.count
             }
         }
     }
@@ -129,11 +130,10 @@ struct PublishView: View {
     func fetchAfterDateChanged() {
         print(#function)
         questions.nsPredicate = .hasAnswer && .timestampIn(between: startDate, and: endDate)
-        count = questions.count
     }
     
     var countLabel: some View {
-        Text(K.countLabel(count))
+        Text(K.countLabel(questions.count))
             .font(.callout)
             .foregroundColor(.gray)
     }
@@ -182,14 +182,15 @@ extension PublishView {
                 
             } label: {
                 ZStack {
-                    questions.count == 0 ? Color.textThirdColor : Color.buttonColor
+                    questions.isEmpty ? Color.textThirdColor : Color.buttonColor
                     Text(K.publishButtonTitle)
-                        .foregroundColor(Color.buttonTextColor)
+                        .foregroundColor(.buttonTextColor)
                         .bold()
                 }
                 .frame(width: UIScreen.screenWidth * 0.8, height: 57)
                 .cornerRadius(50)
             }
+            .disabled(questions.isEmpty)
             .sheet(item: $pdfToShare) { data in
                 ActivityViewControllerWrapper(items: [data.data], activities: [])
             }
