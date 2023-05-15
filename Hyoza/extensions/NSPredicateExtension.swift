@@ -20,6 +20,12 @@ extension NSPredicate {
             endDate.end as NSDate)
     }
     
+    static func answerTimeIn(between startDate: Date, and endDate: Date) -> NSPredicate {
+        return NSPredicate(
+            format: "timestamp >= %@ AND timestamp <= %@", startDate.start as NSDate,
+            endDate.end as NSDate)
+    }
+    
     // MARK: - TodayView 관련 NSPredicate
     
     static let isNotChoosen = NSPredicate(format: "timestamp == nil")
@@ -27,6 +33,7 @@ extension NSPredicate {
     static let isEasy = NSPredicate(format: "difficulty == 0")
     static let isSelected = NSPredicate(format: "timestamp != nil")
     static let hasNoAnswer = NSPredicate(format: "answer == nil")
+    static let wasAnsweredToday = answerTimeIn(between: Date(), and: Date())
 }
 
 extension NSPredicate {
