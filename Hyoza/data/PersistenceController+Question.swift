@@ -33,7 +33,7 @@ extension PersistenceController {
         case .isNotChoosenAndHard:
             questionRequest.predicate = .isNotChoosen && .isHard
         }
-        let questionResults: [Question] = (try? context.fetch(questionRequest)) ?? []
+        let questionResults: [Question] = (try? container.viewContext.fetch(questionRequest)) ?? []
         return questionStatus == .hasAnswer ? questionResults : questionResults.shuffled()
     }
     
@@ -42,7 +42,7 @@ extension PersistenceController {
     var selectedQuestion: Question? {
         let questionRequest: NSFetchRequest<Question> = Question.fetchRequest()
         questionRequest.predicate = .isSelected && .hasNoAnswer
-        return try? context.fetch(questionRequest).first
+        return try? container.viewContext.fetch(questionRequest).first
     }
     
     var easyQuestions: [Question] {

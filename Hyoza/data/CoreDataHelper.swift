@@ -13,7 +13,7 @@ extension NSManagedObjectContext {
      */
     enum ContextualInfoForSaving: String {
         case addComment, deleteComment
-        case addAnswer
+        case addAnswer, updateAnswer
         case addTimestamp
     }
     /**
