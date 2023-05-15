@@ -15,47 +15,19 @@ struct PublishView: View {
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Question.timestamp, ascending:false)],
+        predicate: .hasAnswer,
         animation: .default)
-    private var items: FetchedResults<Question>
-    @State var count: Int = 0
-    
-    
-    var fromDate: Binding<Date> {
-        Binding {
-            startDate
-        } set: { newValue in
-            startDate = newValue
-            items.nsPredicate = NSPredicate(
-                format: "timestamp >= %@ AND timestamp < %@",
-                Calendar.current.startOfDay(for: startDate) as NSDate,
-                Calendar.current.startOfDay(for: endDate) as NSDate)
-            count = items.count
-        }
-    }
-    
-    var toDate: Binding<Date> {
-        Binding {
-            endDate
-        } set: { newValue in
-            endDate = newValue
-            items.nsPredicate = NSPredicate(
-                format: "timestamp >= %@ AND timestamp < %@",
-                Calendar.current.startOfDay(for: startDate) as NSDate,
-                Calendar.current.startOfDay(for: endDate) as NSDate)
-            count = items.count
-        }
-    }
+    private var questions: FetchedResults<Question>
     
     @State var titleText = ""
     @State var periodSelection: PeriodSelection = .custom
-    
     @State var startDate: Date = Date()
     @State var endDate: Date = Date()
     @State var selectedMonth: Month = .may
     
-    let cornerRadius: CGFloat = 10
     
     enum K {
+        static let cornerRadius: CGFloat = 10
         static let title: String = "자서전 출판"
         static let leadingPadding: CGFloat = 20
         static let topPadding: CGFloat = 90
@@ -65,6 +37,7 @@ struct PublishView: View {
         }
         static let publishButtonTitle: String = "출판하기"
     }
+    
     
     var body: some View {
         ZStack {
@@ -79,15 +52,19 @@ struct PublishView: View {
                 titleTextField
                 periodView
                 Spacer()
-                ResultBookView(count: count, title: titleText)
+                ResultBookView(count: questions.count, title: titleText)
                     .padding()
                 countLabel
                 publishButton
             }
         }
         .ignoresSafeArea(edges: .top)
+        .onAppear {
+            questions.nsPredicate = .hasAnswer && .timestampIn(between: startDate, and: endDate)
+        }
     }
     
+
     var header: some View {
         HStack {
             Text(K.title)
@@ -100,44 +77,63 @@ struct PublishView: View {
         .padding(.top, K.topPadding)
     }
     
+    
     func segmentedSelectionDidChange(newValue: PeriodSelection) {
         switch newValue {
         case .custom:
-            startDate = Date()
-            endDate = Date()
+            startDate = Date().start
+            endDate = Date().end
         case .oneMonth:
-            print("oneMonth")
+            startDate = selectedMonth.start
+            endDate = selectedMonth.end
         case .whole:
-            startDate = Date() - 130
-            endDate = Date() - 10
+            questions.nsPredicate = .hasAnswer
+            if let firstQuestion = questions.first,
+               let lastQuestion = questions.last {
+                startDate = (lastQuestion as Question).wrappedAnswer.answerTime!.start
+                endDate = (firstQuestion as Question).wrappedAnswer.answerTime!.end
+            }
         }
     }
     
     var titleTextField: some View {
         TextField(K.textFieldTitle, text: $titleText)
             .background(.white)
-            .cornerRadius(cornerRadius)
+            .cornerRadius(K.cornerRadius)
             .publishCardify()
     }
     
     var periodView: some View {
         ZStack(alignment: .top) {
             PeriodView(
-                cornerRadius: cornerRadius,
+                cornerRadius: K.cornerRadius,
                 periodSelection: periodSelection,
-                startDate: fromDate,
-                endDate: toDate
+                startDate: $startDate,
+                endDate: $endDate
             )
                 .publishCardify()
                 .opacity(periodSelection == .oneMonth ? 0 : 1)
+                .onChange(of: startDate) { _ in fetchAfterDateChanged() }
+                .onChange(of: endDate) { _ in fetchAfterDateChanged() }
+            
             MonthPickerView(selectedMonth: $selectedMonth)
                 .publishCardify()
                 .opacity(periodSelection == .oneMonth ? 1 : 0)
+                .onChange(of: selectedMonth) { _ in
+                    startDate = selectedMonth.start
+                    endDate = selectedMonth.end
+                    fetchAfterDateChanged()
+                }
         }
     }
     
+    func fetchAfterDateChanged() {
+        print(#function)
+        questions.nsPredicate = .hasAnswer && .timestampIn(between: startDate, and: endDate)
+    }
+    
     var countLabel: some View {
-        Text(K.countLabel(count))
+        Text(K.countLabel(questions.count))
             .font(.callout)
             .foregroundColor(.gray)
     }
@@ -150,6 +146,9 @@ struct PublishView: View {
     
     // ShareSheet로 공유할 데이터
     @State private var pdfToShare: PDFWrapper? = nil
+}
+
+extension PublishView {
     
     var publishButton: some View {
         HStack {
@@ -161,7 +160,7 @@ struct PublishView: View {
                 
                 pdfTexts.append(PDFText(string: titleText, attributes: PDFTextStyle.title, alignment: .center, indent: 0, spacing: .title))
                 
-                for item in items {
+                for item in questions {
                     pdfTexts.append(PDFText(string: item.wrappedQuestion, attributes: PDFTextStyle.question, alignment: .left, spacing: .question))
                     
                     if let answer = item.answer?.answer, let date = item.answer?.answerTime {
@@ -183,14 +182,15 @@ struct PublishView: View {
                 
             } label: {
                 ZStack {
-                    Color.buttonColor
+                    questions.isEmpty ? Color.textThirdColor : Color.buttonColor
                     Text(K.publishButtonTitle)
-                        .foregroundColor(Color.buttonTextColor)
+                        .foregroundColor(.buttonTextColor)
                         .bold()
                 }
                 .frame(width: UIScreen.screenWidth * 0.8, height: 57)
                 .cornerRadius(50)
             }
+            .disabled(questions.isEmpty)
             .sheet(item: $pdfToShare) { data in
                 ActivityViewControllerWrapper(items: [data.data], activities: [])
             }
@@ -199,7 +199,6 @@ struct PublishView: View {
         .padding()
     }
 }
-
 
 struct PublishView_Previews: PreviewProvider {
     static var previews: some View {

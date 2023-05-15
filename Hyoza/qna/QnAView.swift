@@ -22,7 +22,7 @@ struct QnAView: View {
     @State var isTextFieldEmpty : Bool = true
     @State var isCommetFieldEmpty : Bool = true
     
-    private let persistenceController = PersistenceController.shared
+    @EnvironmentObject var persistenceController: PersistenceController
     private let pastboard = UIPasteboard.general
     
     @Environment(\.displayScale) var displayScale
@@ -31,7 +31,7 @@ struct QnAView: View {
     var body: some View {
         ZStack {
             //배경 색
-            Color("backgroundColor")
+            Color.backgroundColor
                 .ignoresSafeArea()
             //contentView + ComentEditView
             VStack(alignment: .leading, spacing: 15) {
@@ -70,77 +70,80 @@ struct QnAView: View {
                     
                 },
             trailing: HStack {
-                    if isEditing {
-                        Button(action: {
-                            if !isTextFieldEmpty {
-                                isEditing = false
-                                commentTextField = ""
-                            } else {
-                                print("텍스트를 입력해주세요.")
-                            }
-                            persistenceController.addAnswer(content: textValue, relateTo: data)
-                            
-                        }) {
-                            Text("완료")
-                                .foregroundColor(isTextFieldEmpty ? .gray : .orange)
+                if isEditing {
+                    Button(action: {
+                        if !isTextFieldEmpty {
+                            isEditing = false
+                        } else {
+                            print("텍스트를 입력해주세요.")
                         }
-                    } else {
-                        HStack {
-                            Button(action: {
-                                Task {
-                                    let viewToRender = contentView.frame(width: UIScreen.main.bounds.width)
-                                    //TODO: 이 코드가 뭔지 꼭 공부할것
-                                    guard let image = await viewToRender.render(scale: displayScale) else {return}
-                                    imageToShare = ImageWrapper(image: image)
-                                }
-                            }) {
-                                Image(systemName: "square.and.arrow.up")
-                                    .foregroundColor(.orange)
+                        persistenceController.updateAnswer(content: textValue, relateTo: data)
+                        data.objectWillChange.send()
+                      
+                    }) {
+                        Text("완료")
+                            .foregroundColor(isTextFieldEmpty ? .gray : .orange)
+                    }
+                } else {
+                    HStack {
+                        Button(action: {
+                            Task {
+                                let viewToRender = contentView.frame(width: UIScreen.main.bounds.width)
+                                //TODO: 이 코드가 뭔지 꼭 공부할것
+                                guard let image = await viewToRender.render(scale: displayScale) else {return}
+                                imageToShare = ImageWrapper(image: image)
                             }
-                            .padding(.trailing)
-                            .sheet(item: $imageToShare) { imageToShare in
-                                ActivityViewControllerWrapper(items: [imageToShare.image],
-                                                              activities: nil)
+                        }) {
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(.orange)
+                        }
+                        .padding(.trailing)
+                        .sheet(item: $imageToShare) { imageToShare in
+                            ActivityViewControllerWrapper(items: [imageToShare.image],
+                                                          activities: nil)
+                        }
+                        Button(action: {
+                            isEditing = true
+                            isTextFieldEmpty = false
+                            textValue = data.wrappedAnswer.answerDetail
+                            if data.wrappedAnswer.comment != nil {
+                                comment = data.wrappedAnswer.comment ?? "Unknown Error"
                             }
-                            Button(action: {
-                                isEditing = true
-                                commentTextField = comment
-                            }) {
-                                Image(systemName: "pencil")
-                                    .foregroundColor(.orange)
-                            }
+                        }) {
+                            Image(systemName: "pencil")
+                                .foregroundColor(.orange)
                         }
                     }
-                })
+                }
+            })
     }
     
     var contentView: some View {
         VStack(alignment: .leading, spacing: 15) {
-            HStack{
-                Rectangle()
-                    .frame(width: 50, height: 30)
-                    .cornerRadius(30)
-                    .foregroundColor(.orange)
-                    .opacity(0.2)
-                    .overlay(
-                        Text(data.difficultyString)
-                            .foregroundColor(.orange)
-                    )
-                    .padding(.leading, 30)
-                    .padding(.top, 30)
-            }
+            CapsuleView(content: {
+                Text(data.difficultyString)
+                    .font(.system(size: 17))
+                    .foregroundColor(.textOrange)
+                    .padding([.leading, .trailing], 12)
+                    .padding([.top, .bottom], 8)
+            }, capsuleColor: .backGroundLightOrange)
+            .padding([.top, .leading], 30)
             Text(data.wrappedQuestion)
-                .font(.system(size: 25))
+                .font(.title.bold())
+                .foregroundColor(.textBlack)
                 .padding(.horizontal, 30)
             Text(data.wrappedTimestamp.fullString)
+                .font(.subheadline.bold())
+                .foregroundColor(.tapBarDarkGray)
                 .padding(.leading, 30)
-                .foregroundColor(.secondary)
             ZStack {
                 RoundedRectangle(cornerRadius: 30)
                     .frame(height: 60)
-                    .foregroundColor(.clear)                
+                    .foregroundColor(.clear)
                 if isEditing {
                     TextField("답변을 입력해 주세요.", text: $textValue, axis: .vertical)
+                        .font(.body)
+                        .foregroundColor(.textLightGray)
                         .onChange(of: textValue) { newValue in
                             isTextFieldEmpty = newValue.isEmpty
                         }
@@ -151,6 +154,8 @@ struct QnAView: View {
                 else {
                     HStack {
                         Text(data.wrappedAnswer.answerDetail)
+                            .font(.body)
+                            .foregroundColor(.textBlack)
                         Spacer()
                     }
                     .padding(.horizontal, 15)
@@ -158,10 +163,13 @@ struct QnAView: View {
             }
             .padding(.all)
             
-            if data.wrappedAnswer.comment != nil {
+            if let commentDetail = data.answer?.comment,
+               commentDetail != "" {
                 HStack {
                     Spacer()
-                    Text(data.wrappedAnswer.commentDetail)
+                    Text(commentDetail)
+                        .font(.subheadline)
+                        .foregroundColor(.textBlack)
                         .padding(.all)
                         .background(
                             Rectangle()
@@ -172,12 +180,12 @@ struct QnAView: View {
                         .padding(.all, 16)
                         .contextMenu {
                             Button("복사", role: .none) {
-                                pastboard.string = comment
+                                pastboard.string = commentDetail
                             }
                             Button("삭제", role: .destructive) {
                                 persistenceController.deleteComment(relatedTo: data)
+                                comment = ""
                                 isCommetFieldEmpty = true
-                                // 데이터 베이스 내 코멘트 값도 삭제해주어야 함.
                             }
                         }
                 }
@@ -185,40 +193,42 @@ struct QnAView: View {
                 .padding(.bottom, 30)
             }
             
+            
         }
     }
     
     var commentEditView: some View {
         ZStack {
-            if data.wrappedAnswer.comment == nil {
-                Rectangle()
-                    .frame(width: UIScreen.screenWidth-40, height: 40)
-                    .cornerRadius(100)
-                    .padding(.all)
-                    .foregroundColor(.white)
-                    .shadow(radius: 5)
-                    .opacity(0.5)
-                HStack {
-                    TextField("나의 한 마디 작성하기", text: $commentTextField)
-                        .padding(.leading, 40)
-                        .onChange(of: commentTextField) { newValue in
-                            isCommetFieldEmpty = newValue.isEmpty
+            if isEditing == false {
+                if data.answer?.comment == nil || data.answer?.comment == "" {
+                    Rectangle()
+                        .frame(width: UIScreen.screenWidth-40, height: 40)
+                        .cornerRadius(100)
+                        .padding(.all)
+                        .foregroundColor(.white)
+                        .shadow(radius: 5)
+                        .opacity(0.5)
+                    HStack {
+                        TextField("나의 한 마디 작성하기", text: $commentTextField)
+                            .padding(.leading, 40)
+                            .onChange(of: commentTextField) { newValue in
+                                isCommetFieldEmpty = newValue.isEmpty
+                            }
+                        Button(action: {
+                            comment = commentTextField
+                            if !isCommetFieldEmpty && comment != "" {
+                                saveItem()
+                            } else {
+                                print("코멘트를 입력해주세요.")
+                            }
+                        }) {
+                            Text("게시")
+                                .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
                         }
-                    Button(action: {
-                        if !isCommetFieldEmpty {
-                            saveItem()
-                            //                            isComment = true
-                        } else {
-                            print("코멘트를 입력해주세요.")
-                        }
-                        persistenceController.addComment(detail: comment, relatedTo: data)
-                        
-                    }) {
-                        Text("게시")
-                            .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
+                        .padding(.trailing, 35)
                     }
-                    .padding(.trailing, 35)
                 }
+            
             }
         }
     }
@@ -226,6 +236,7 @@ struct QnAView: View {
     func saveItem() {
         comment = commentTextField
         commentTextField = ""
+        persistenceController.addComment(detail: comment, relatedTo: data)
     }
     
 }
@@ -237,9 +248,9 @@ struct ImageWrapper: Identifiable {
 
 
 
-//
+
 //struct QnA_Previews: PreviewProvider {
 //    static var previews: some View {
-////        QnAView(isEditing: true, isTextFieldEmpty: true, isCommetFieldEmpty: true)
+//        QnAView(data: , isEditing: true, isTextFieldEmpty: true, isCommetFieldEmpty: true)
 //    }
 //}

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		790B9B692A0FCAF30034D893 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B9B682A0FCAF30034D893 /* UserDefaultsKey.swift */; };
 		791029D92A039C58009A5590 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791029D82A039C58009A5590 /* MainTabView.swift */; };
 		791C24572A08EA520009E4EA /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C24562A08EA520009E4EA /* NotificationManager.swift */; };
 		791C245A2A0933DE0009E4EA /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C24592A0933DE0009E4EA /* DateExtension.swift */; };
@@ -34,6 +35,7 @@
 		9827EC732A0E1FBD00154343 /* ClosedCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827EC722A0E1FBD00154343 /* ClosedCardListView.swift */; };
 		9827EC752A0E1FE900154343 /* OpenCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827EC742A0E1FE900154343 /* OpenCardView.swift */; };
 		98EE907D2A0A750A0042E7B0 /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EE907C2A0A750A0042E7B0 /* QuestionCardView.swift */; };
+		B20505A52A0F8453005AFB44 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20505A42A0F8453005AFB44 /* IntExtension.swift */; };
 		B22A97E52A08ED2900ECD178 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E32A08EC3C00ECD178 /* CustomColor.swift */; };
 		B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */; };
 		B22A97EA2A0910C000ECD178 /* PeriodSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */; };
@@ -60,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		790B9B682A0FCAF30034D893 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		791029D82A039C58009A5590 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		791C24562A08EA520009E4EA /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		791C24592A0933DE0009E4EA /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		9827EC722A0E1FBD00154343 /* ClosedCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedCardListView.swift; sourceTree = "<group>"; };
 		9827EC742A0E1FE900154343 /* OpenCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCardView.swift; sourceTree = "<group>"; };
 		98EE907C2A0A750A0042E7B0 /* QuestionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCardView.swift; sourceTree = "<group>"; };
+		B20505A42A0F8453005AFB44 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		B22A97E32A08EC3C00ECD178 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		B22A97E92A0910C000ECD178 /* PeriodSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodSegmentView.swift; sourceTree = "<group>"; };
@@ -138,12 +142,13 @@
 			isa = PBXGroup;
 			children = (
 				B22A97EB2A09117700ECD178 /* ColorExtension.swift */,
-				791C24592A0933DE0009E4EA /* DateExtension.swift */,
 				B22A97E72A090D1B00ECD178 /* UIColorExtension.swift */,
+				791C24592A0933DE0009E4EA /* DateExtension.swift */,
 				791C245D2A09530F0009E4EA /* ViewExtension.swift */,
 				B256C8C82A0A5D9800B0C62E /* UIScreenExtension.swift */,
 				799E8FC22A0CCE2A003F78F2 /* Calendar.swift */,
 				B2A03E632A0D880C005BF71D /* NSPredicateExtension.swift */,
+				B20505A42A0F8453005AFB44 /* IntExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 				799E8FA12A0A9508003F78F2 /* QuerySentenceManager.swift */,
 				B2A03E592A0D75FB005BF71D /* Answer+CoreDataClass.swift */,
 				B2A03E5B2A0D7619005BF71D /* Answer+CoreDataProperties.swift */,
+				790B9B682A0FCAF30034D893 /* UserDefaultsKey.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -380,6 +386,7 @@
 				794EB6AE2A03FF8900DA52B5 /* Question+CoreDataProperties.swift in Sources */,
 				791C245A2A0933DE0009E4EA /* DateExtension.swift in Sources */,
 				9827EC752A0E1FE900154343 /* OpenCardView.swift in Sources */,
+				B20505A52A0F8453005AFB44 /* IntExtension.swift in Sources */,
 				794EB6AA2A03F92600DA52B5 /* Hyoza.xcdatamodeld in Sources */,
 				B2A03E602A0D7A1B005BF71D /* PersistenceController+Answer.swift in Sources */,
 				799E8FC12A0CC175003F78F2 /* AttendanceManager.swift in Sources */,
@@ -391,6 +398,7 @@
 				79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */,
 				B256C8CD2A0A64D500B0C62E /* PublishCardify.swift in Sources */,
 				791C24572A08EA520009E4EA /* NotificationManager.swift in Sources */,
+				790B9B692A0FCAF30034D893 /* UserDefaultsKey.swift in Sources */,
 				799E8FA22A0A9508003F78F2 /* QuerySentenceManager.swift in Sources */,
 				B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */,
 				B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */,

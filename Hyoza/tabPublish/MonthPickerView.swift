@@ -7,19 +7,31 @@
 
 import SwiftUI
 
-enum Month: Int, CaseIterable, Identifiable {
+enum Month: Int, CaseIterable, Identifiable, Equatable {
     case jan = 1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
     var id: Self { self }
+    var start: Date {
+        self.rawValue.startOfMonth
+    }
+    
+    var end: Date {
+        self.rawValue.endOfMonth
+    }
 }
 
 struct MonthPickerView: View {
+    private enum K {
+        static let month = "월"
+    }
+    
     @Binding var selectedMonth: Month
+    
     var body: some View {
         HStack {
-            Text("월")
+            Text(K.month)
             Spacer()
-            Picker("Month", selection: $selectedMonth) {
-                ForEach(Month.allCases) { Text("\($0.rawValue)월") }
+            Picker(K.month, selection: $selectedMonth) {
+                ForEach(Month.allCases) { Text("\($0.rawValue)\(K.month)") }
             }
             .pickerStyle(.menu)
         }

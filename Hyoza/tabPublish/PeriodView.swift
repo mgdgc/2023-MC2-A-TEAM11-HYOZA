@@ -11,36 +11,36 @@ struct PeriodView: View {
     var cornerRadius: CGFloat
     var periodSelection: PeriodSelection
     
-    enum K {
+    private enum K {
         static let startText: LocalizedStringKey = "시작"
         static let endText: LocalizedStringKey = "종료"
+        static let pickerLocale: String = "ko-KR"
     }
-    
     
     @Binding var startDate: Date
     @Binding var endDate: Date
     
+    
     var body: some View {
         VStack {
-            DatePicker(
-                K.startText,
-                selection: $startDate,
-                in: ...endDate,
-                displayedComponents: [.date]
-            )
+            Group {
+                DatePicker(
+                    K.startText,
+                    selection: $startDate,
+                    in: ...endDate,
+                    displayedComponents: [.date]
+                )
+                
+                DatePicker(
+                    K.endText,
+                    selection: $endDate,
+                    in: startDate...,
+                    displayedComponents: [.date]
+                )
+            }
             .colorMultiply(Color.orange)
             .datePickerStyle(CompactDatePickerStyle())
-            .environment(\.locale, Locale(identifier: "ko-KR"))
-            
-            DatePicker(
-                K.endText,
-                selection: $endDate,
-                in: startDate...,
-                displayedComponents: [.date]
-            )
-            .colorMultiply(Color.orange)
-            .datePickerStyle(CompactDatePickerStyle())
-            .environment(\.locale, Locale(identifier: "ko-KR"))
+            .environment(\.locale, Locale(identifier: K.pickerLocale))
         }
         .disabled(periodSelection == .whole)
     }
