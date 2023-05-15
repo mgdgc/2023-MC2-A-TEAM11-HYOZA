@@ -13,72 +13,98 @@ struct OpenCardView: View {
     @State var imageToShareInQuestionCard: ImageWrapper? = nil
     
     @Binding var degree: Double
-    @Binding var selectedQuestion: Question?
+    @Binding var selectedQuestion: QuerySentence
     
     var body: some View {
+        NavigationView {
             GeometryReader { geo in
-                    if let selectedQuestion = selectedQuestion {
-                        VStack{
-                            HStack {
-                                CapsuleView(content: {
-                                    Text(selectedQuestion.difficultyString)
-                                        .font(.footnote)
-                                        .foregroundColor(.textOrange)
-                                        .padding([.leading, .trailing], 12)
-                                        .padding([.top, .bottom], 4)
-                                }, capsuleColor: .backGroundLightOrange)
-                                Spacer()
-                                Text(Date().fullString)
+                ZStack {
+                    Color.backGroundWhite
+                    VStack{
+                        HStack {
+                            CapsuleView(content: {
+                                Text(selectedQuestion.difficulty == .easy ? "쉬움" : "어려움")
                                     .font(.footnote)
-                                    .foregroundColor(.tapBarDarkGray)
-                                Spacer()
-                                Button(action: {
-                                    Task {
-                                        let viewToRender = self.frame(width: UIScreen.main.bounds.width)
-                                        
-                                        guard let image = await viewToRender.render(scale: displayScale) else {
-                                            return
-                                        }
-                                        imageToShareInQuestionCard = ImageWrapper(image: image)
-                                    }
-                                }) {
-                                    Image(systemName: "square.and.arrow.up")
-                                        .foregroundColor(.textOrange)
+                                    .foregroundColor(.textOrange)
+                                    .padding([.leading, .trailing], 12)
+                                    .padding([.top, .bottom], 4)
+                            }, capsuleColor: .backGroundLightOrange)
+                            Spacer()
+                            Text(Date().fullString)
+                                .font(.footnote)
+                                .foregroundColor(.tapBarDarkGray)
+                            Spacer()
+                            Button(action: {
+                                var tempView: some View = sharedCardView(question: selectedQuestion)
+                                let viewToRender = tempView.frame(width: UIScreen.main.bounds.width)
+                                
+                                guard let image = viewToRender.render(scale: displayScale) else {
+                                    return
                                 }
-                                .sheet(item: $imageToShareInQuestionCard) { imageToShareInQuestionCard in
-                                    ActivityViewControllerWrapper(items: [imageToShareInQuestionCard.image], activities: nil)
-                                }
+                                imageToShareInQuestionCard = ImageWrapper(image: image)
+                            }) {
+                                Image(systemName: "square.and.arrow.up")
+                                    .foregroundColor(.textOrange)
                             }
-                            Spacer()
-                            Text(selectedQuestion.wrappedQuestion)
-                                .font(.title)
-                                .foregroundColor(.textBlack)
-                                .bold()
-                            Spacer()
-                            NavigationLink {
-                                QnAView(data: selectedQuestion, isEditing: true)
-                            } label: {
-                                CapsuleView(content: {
-                                    Text("답변하기")
-                                        .bold()
-                                        .font(.title2)
-                                        .foregroundColor(.textWhite)
-                                        .padding([.top, .bottom], 20)
-                                        .frame(width: geo.size.width)
-                                }, capsuleColor: .backGroundOrange)
+                            .sheet(item: $imageToShareInQuestionCard) { imageToShareInQuestionCard in
+                                ActivityViewControllerWrapper(items: [imageToShareInQuestionCard.image], activities: nil)
                             }
                         }
-                        .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
+                        Spacer()
+                        Text(selectedQuestion.question)
+                            .font(.title)
+                            .foregroundColor(.textBlack)
+                            .bold()
+                        Spacer()
+//                        NavigationLink(destination: QnAView(isEditing: true)) {
+                            CapsuleView(content: {
+                                Text("답변하기")
+                                    .bold()
+                                    .font(.title2)
+                                    .foregroundColor(.textWhite)
+                                    .padding([.top, .bottom], 20)
+                                    .frame(width: geo.size.width)
+                            }, capsuleColor: .backGroundOrange)
+//                        }
                     }
+                }
+                .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
             }
+        }
+    }
+    
+    private func sharedCardView(question: QuerySentence) -> some View {
+        ZStack {
+            Color.backGroundWhite
+            VStack{
+                HStack {
+                    CapsuleView(content: {
+                        Text(question.difficulty == .easy ? "쉬움" : "어려움")
+                            .font(.footnote)
+                            .foregroundColor(.textOrange)
+                            .padding([.leading, .trailing], 12)
+                            .padding([.top, .bottom], 4)
+                    }, capsuleColor: .backGroundLightOrange)
+                    Spacer()
+                    Text(Date().fullString)
+                        .font(.footnote)
+                        .foregroundColor(.tapBarDarkGray)
+                    Spacer()
+                    
+                }
+                Spacer()
+                Text(question.question)
+                    .font(.title)
+                    .foregroundColor(.textBlack)
+                    .bold()
+                Spacer()
+            }
+        }
     }
 }
 
-
 struct OpenCardView_Previews: PreviewProvider {
     static var previews: some View {
-        let pc = PersistenceController.preview
-        OpenCardView(degree: .constant(90), selectedQuestion: .constant(pc.easyQuestions[0]))
-        OpenCardView(degree: .constant(0), selectedQuestion: .constant(pc.easyQuestions[0]))
+        OpenCardView(degree: .constant(90), selectedQuestion: .constant(QuerySentence(id: 3, question: "인생에서 가장 중요시하는 가치가 무엇이신가요?", difficulty: .hard)))
     }
 }
