@@ -45,24 +45,20 @@ struct ListView: View {
                                         .padding(4)
                                 }
                                 .padding([.leading, .trailing], 20)
-                                    
                             }
-                            
                         }
-                    }
-                    .padding(.top, 4)
-                    
-                    
+                    }.padding(.top, 4)
                 }
             }
             .background(Color.backgroundColor.ignoresSafeArea())
             .navigationTitle("질문 리스트")
             .navigationBarTitleDisplayMode(.large)
             .navigationBarTitleTextColor(.textColor)
+            .searchable(text: query,
+                        placement: .navigationBarDrawer(displayMode: .automatic),
+                        prompt: "검색")
+            
         }
-        .searchable(text: query,
-                    placement: .navigationBarDrawer(displayMode: .automatic),
-                    prompt: "검색")
     }
 }
 
@@ -88,12 +84,18 @@ private struct CellContents : View {
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
             
+
             Text(item.wrappedAnswer.answerDetail)
                 .font(.body)
                 .foregroundColor(.textBlack)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
         }
+        .foregroundColor(.textColor)
+        .multilineTextAlignment(.leading)
+        .lineLimit(2)
+        .padding(2)
+        .frame(width: viewWidth, alignment: .leading)
     }
 }
 

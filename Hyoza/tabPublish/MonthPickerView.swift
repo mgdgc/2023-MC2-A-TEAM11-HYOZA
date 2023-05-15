@@ -21,26 +21,39 @@ enum Month: Int, CaseIterable, Identifiable, Equatable {
 
 struct MonthPickerView: View {
     private enum K {
+        static let year = "년"
         static let month = "월"
     }
-    
+    var startYear: Int
+    @Binding var selectedYear: Int
     @Binding var selectedMonth: Month
     
     var body: some View {
-        HStack {
-            Text(K.month)
-            Spacer()
-            Picker(K.month, selection: $selectedMonth) {
-                ForEach(Month.allCases) { Text("\($0.rawValue)\(K.month)") }
+        VStack {
+            HStack {
+                Text(K.year)
+                Spacer()
+                Picker(K.year, selection: $selectedYear) {
+                    ForEach(startYear...Date().year, id:\.self) { Text("\(String($0)) \(K.year)") }
+                }
+                .pickerStyle(.menu)
             }
-            .pickerStyle(.menu)
+            HStack {
+                Text(K.month)
+                Spacer()
+                Picker(K.month, selection: $selectedMonth) {
+                    ForEach(Month.allCases) { Text("\($0.rawValue) \(K.month)") }
+                }
+                .pickerStyle(.menu)
+            }
         }
+        
         
     }
 }
 
 struct MonthPicker_Previews: PreviewProvider {
     static var previews: some View {
-        MonthPickerView(selectedMonth: .constant(.apr))
+        MonthPickerView(startYear: 2023, selectedYear: .constant(2023), selectedMonth: .constant(.apr))
     }
 }
