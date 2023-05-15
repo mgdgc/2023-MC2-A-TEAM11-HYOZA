@@ -14,15 +14,22 @@ struct OpenCardView: View {
     
     @Binding var degree: Double
     @Binding var selectedQuestion: Question?
+    @Binding var isAnswered: Bool
     
     var body: some View {
         if let selectedQuestion = selectedQuestion {
-            if selectedQuestion.answer != nil{
+            if isAnswered {
                 AnswerView(selectedQuestion: $selectedQuestion)
                     .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
+                    .onAppear {
+                        print("in answer view - current selected question: \(selectedQuestion), \nanswer: \(selectedQuestion.answer?.answerDetail)\nanswerIsNil: \(selectedQuestion.answer == nil)")
+                    }
             } else {
-                NoAnswerView(selectedQuestion: $selectedQuestion)
+                NoAnswerView(selectedQuestion: $selectedQuestion, isAnswered: $isAnswered)
                     .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
+                    .onAppear {
+                        print("in no answer view - current selected question: \(selectedQuestion), answer: \(selectedQuestion.answer?.answerDetail), answerIsNil: \(selectedQuestion.answer == nil)")
+                    }
             }
         }
         //        GeometryReader { geo in
@@ -92,6 +99,7 @@ struct NoAnswerView: View {
     @Environment(\.displayScale) var displayScale
     @State var imageToShareInQuestionCard: ImageWrapper? = nil
     @Binding var selectedQuestion: Question?
+    @Binding var isAnswered: Bool
     
     var body: some View {
         if let selectedQuestion = selectedQuestion {
@@ -112,6 +120,9 @@ struct NoAnswerView: View {
                         Spacer()
                         Button(action: {
                             Task {
+//                                func tempView() -> some View {
+//
+//                                }
                                 let viewToRender = self.frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height)
                                 
                                 guard let image = await viewToRender.render(scale: displayScale) else {
@@ -134,7 +145,7 @@ struct NoAnswerView: View {
                         .bold()
                     Spacer()
                     NavigationLink {
-                        QnAView(data: selectedQuestion, isEditing: true)
+                        QnAView(data: selectedQuestion, isAnswered: $isAnswered, isEditing: true)
                     } label: {
                         CapsuleView(content: {
                             Text("답변하기")
@@ -188,7 +199,7 @@ struct AnswerView: View {
 struct OpenCardView_Previews: PreviewProvider {
     static var previews: some View {
         let pc = PersistenceController.preview
-        OpenCardView(degree: .constant(90), selectedQuestion: .constant(pc.easyQuestions[0]))
-        OpenCardView(degree: .constant(0), selectedQuestion: .constant(pc.easyQuestions[0]))
+        OpenCardView(degree: .constant(90), selectedQuestion: .constant(pc.easyQuestions[0]), isAnswered: .constant(false))
+        OpenCardView(degree: .constant(0), selectedQuestion: .constant(pc.easyQuestions[0]), isAnswered: .constant(false))
     }
 }

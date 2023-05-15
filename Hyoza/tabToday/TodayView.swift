@@ -19,7 +19,7 @@ struct TodayView: View {
     @State var easyQuestions: [Question] = []
     @State var hardQuestions: [Question] = []
     @State var isContinueIconSmall: Bool = false
-    @State var selectedQuestion: Question? = nil
+//    @State var selectedQuestion: Question? = nil
     @State var openDegree: Double = 90
     @State var closedDegree: Double = 0
     
@@ -28,6 +28,8 @@ struct TodayView: View {
     @Binding var continueTextOpacity: Double
     @Binding var tempTextStorage: String?
     @Binding var isContinueIconAnimating: Bool
+    @Binding var selectedQuestion: Question?
+    @Binding var isAnswered: Bool
     
     var body: some View {
         NavigationStack {
@@ -53,7 +55,7 @@ struct TodayView: View {
                     ZStack {
                         if isQuestionBoxViewTapped {
                             CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
-                                QuestionCardView(openDegree: $openDegree, closedDegree: $closedDegree, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion)
+                                QuestionCardView(openDegree: $openDegree, closedDegree: $closedDegree, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion, isAnswered: $isAnswered)
                             }
                         } else {
                             CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
@@ -69,13 +71,18 @@ struct TodayView: View {
                 .padding(20)
             .background(Color.backGroundWhite.ignoresSafeArea())
             .onAppear() {
-                if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
-                   selectedQuestion == nil {
-                    selectedQuestion = _selectedQuestion
+                if selectedQuestion != nil {
                     closedDegree = -90
                     openDegree = 0
-                    isQuestionBoxViewTapped.toggle()
+                    isQuestionBoxViewTapped = true
                 }
+//                if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
+//                   selectedQuestion == nil {
+//                    selectedQuestion = _selectedQuestion
+//                    closedDegree = -90
+//                    openDegree = 0
+//                    isQuestionBoxViewTapped.toggle()
+//                }
             }
         }
     }
@@ -141,6 +148,6 @@ struct ContinueIconView: View {
 
 struct TodayView_Previews: PreviewProvider {
     static var previews: some View {
-        TodayView(continuousDayCount: .constant(0), continueText: .constant(nil), continueTextOpacity: .constant(1.0), tempTextStorage: .constant("작성을 시작해보세요!"), isContinueIconAnimating: .constant(false))
+        TodayView(continuousDayCount: .constant(0), continueText: .constant(nil), continueTextOpacity: .constant(1.0), tempTextStorage: .constant("작성을 시작해보세요!"), isContinueIconAnimating: .constant(false), selectedQuestion: .constant(nil), isAnswered: .constant(false))
     }
 }

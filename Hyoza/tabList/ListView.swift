@@ -19,6 +19,8 @@ struct ListView: View {
     @State private var searchText : String = ""
     @State private var answerText : String = "기본답변입니다."
     
+    @Binding var isAnswered: Bool
+    
     //코어데이터에서 호출하는 쿼리
     var query : Binding<String> {
         Binding {
@@ -42,7 +44,7 @@ struct ListView: View {
                         //MARK: 삭제예정 :코어데이터 생성을 위해 임의 배치
                         //아이템을 만들어주기 위한 RoundedRectangle
                         ForEach(items) { item in
-                            NavigationLink(destination : QnAView(data:item, isEditing: false)){
+                            NavigationLink(destination : QnAView(data:item, isAnswered: $isAnswered, isEditing: false)){
                                 RoundedRectangle(cornerRadius : 15)
                                 //viewWidth하는
                                     .frame(width: viewWidth, height: 160)
@@ -119,7 +121,7 @@ private let itemFormatter: DateFormatter = {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView()
+        ListView(isAnswered: .constant(false))
     }
 }
 

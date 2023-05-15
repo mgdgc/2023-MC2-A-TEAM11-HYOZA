@@ -13,6 +13,8 @@ struct QnAView: View {
     
     var data: Question
     
+    @Binding var isAnswered: Bool
+    
     @State var isEditing: Bool = false
     @State var textValue = ""
     @State var commentTextField = ""
@@ -79,6 +81,7 @@ struct QnAView: View {
                         }
                         persistenceController.updateAnswer(content: textValue, relateTo: data)
                         data.objectWillChange.send()
+                        isAnswered = true
                       
                     }) {
                         Text("완료")

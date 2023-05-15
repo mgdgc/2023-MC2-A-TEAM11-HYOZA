@@ -15,17 +15,19 @@ struct MainTabView: View {
     @State var continueTextOpacity: Double = 1.0
     @State var tempTextStorage: String? = nil
     @State var isContinueIconAnimating: Bool = false
+    @State var selectedQuestion: Question? = PersistenceController.shared.selectedQuestion
+    @State var isAnswered: Bool = false
     
     var body: some View {
         TabView(selection: $selection) {
-            TodayView(continuousDayCount: $continuousDayCount, continueText: $continueText, continueTextOpacity: $continueTextOpacity, tempTextStorage: $tempTextStorage, isContinueIconAnimating: $isContinueIconAnimating)
+            TodayView(continuousDayCount: $continuousDayCount, continueText: $continueText, continueTextOpacity: $continueTextOpacity, tempTextStorage: $tempTextStorage, isContinueIconAnimating: $isContinueIconAnimating, selectedQuestion: $selectedQuestion, isAnswered: $isAnswered)
                 .tabItem {
                     Image(systemName: "heart.square.fill")
                     Text("Today")
                 }
                 .tag(0)
             
-            ListView()
+            ListView(isAnswered: $isAnswered)
                 .tabItem {
                     Image(systemName: "books.vertical.fill")
                     Text("Today")
@@ -40,7 +42,9 @@ struct MainTabView: View {
                 .tag(2)
         }
         .onAppear {
+            isAnswered = !(PersistenceController.shared.selectedQuestion == nil)
             print(NSHomeDirectory())
+            print("선택된 질문: \(selectedQuestion)")
             continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
             
             switch continuousDayCount {
