@@ -77,16 +77,9 @@ struct QnAView: View {
                         } else {
                             print("텍스트를 입력해주세요.")
                         }
-                        <<<<<<< HEAD
-                        persistenceController.addAnswer(content: textValue, relateTo: data)
-                        persistenceController.addComment(detail: comment, relatedTo: data)
-                        
-                        
-                        
-                        =======
                         persistenceController.updateAnswer(content: textValue, relateTo: data)
                         data.objectWillChange.send()
-                        >>>>>>> d4aeccf6e636ea135debc119a36cafacd9e7508d
+                      
                     }) {
                         Text("완료")
                             .foregroundColor(isTextFieldEmpty ? .gray : .orange)
