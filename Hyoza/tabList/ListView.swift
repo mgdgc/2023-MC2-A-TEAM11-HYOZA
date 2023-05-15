@@ -41,12 +41,20 @@ struct ListView: View {
                         //아이템을 만들어주기 위한 RoundedRectangle
                         ForEach(items) { item in
                             NavigationLink(destination : QnAView(data:item, isEditing: false)){
-                                RoundedRectangle(cornerRadius : 15)
-                                    .frame(width: viewWidth, height: 160)
-                                    .foregroundColor(.white)
-                                    .shadow( color : .gray, radius: 5, y :5)
-                                    .opacity(0.3)
-                                    .overlay(CellContents(item : item))
+//                                RoundedRectangle(cornerRadius : 15)
+//                                    .frame(width: viewWidth)
+//                                    .foregroundColor(.white)
+//                                    .shadow( color : .gray, radius: 5, y :5)
+//                                    .opacity(0.3)
+//                                    .overlay(CellContents(item : item))
+//                                    .padding(.bottom, 20)
+                                CellContents(item : item)
+                                    .cardify(backgroundColor: .white,
+                                             cornerRadius: 15,
+                                             shadowColor: .black.opacity(0.1),
+                                             shadowRadius: 5,
+                                             corners: .allCorners
+                                           )
                                     .padding(.bottom, 20)
 
                             }
@@ -75,31 +83,28 @@ private struct CellContents : View {
     var body : some View{
         VStack(alignment : .leading) {
             Text(item.wrappedTimestamp, formatter : itemFormatter)
-                .font(.caption)
-                .foregroundColor(.textColor)
-                .frame(width: viewWidth , alignment: .leading)
-                .lineLimit(1)
-                .padding(.top, 15)
-            
-            Text(item.wrappedQuestion)
-                .fontWeight(.bold)
-                .font(.headline)
-                .foregroundColor(.textColor)
-                .frame(width: viewWidth, alignment: .leading)
-                .lineLimit(2)
-                .multilineTextAlignment(.leading)
-                .padding(.top, 5)
-            
-            Text(item.wrappedAnswer.answerDetail)
-                .fontWeight(.regular)
                 .font(.subheadline)
-                .foregroundColor(.textColor)
-                .frame(width: viewWidth, alignment: .leading)
-                .lineLimit(2)
-                .multilineTextAlignment(.leading)
-                .padding(.top, 5)
-            Spacer()
+                .bold()
+                .foregroundColor(.textSecondaryColor)
+                .padding(.bottom, 2)
+
+
+            Text(item.wrappedQuestion)
+                .bold()
+                .font(.body)
+                .padding(.bottom, 2)
+            
+
+            Text(item.wrappedAnswer.answerDetail)
+                .font(.body)
+                
+                
         }
+        .foregroundColor(.textColor)
+        .multilineTextAlignment(.leading)
+        .lineLimit(2)
+        .padding(2)
+        .frame(width: viewWidth, alignment: .leading)
     }
 }
 
