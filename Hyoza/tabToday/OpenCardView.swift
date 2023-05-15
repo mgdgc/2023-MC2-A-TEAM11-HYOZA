@@ -21,15 +21,15 @@ struct OpenCardView: View {
             if isAnswered {
                 AnswerView(selectedQuestion: $selectedQuestion)
                     .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
-                    .onAppear {
-                        print("in answer view - current selected question: \(selectedQuestion), \nanswer: \(selectedQuestion.answer?.answerDetail)\nanswerIsNil: \(selectedQuestion.answer == nil)")
-                    }
+//                    .onAppear {
+//                        print("in answer view - current selected question: \(selectedQuestion), \nanswer: \(selectedQuestion.answer?.answerDetail)\nanswerIsNil: \(selectedQuestion.answer == nil)")
+//                    }
             } else {
                 NoAnswerView(selectedQuestion: $selectedQuestion, isAnswered: $isAnswered)
                     .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
-                    .onAppear {
-                        print("in no answer view - current selected question: \(selectedQuestion), answer: \(selectedQuestion.answer?.answerDetail), answerIsNil: \(selectedQuestion.answer == nil)")
-                    }
+//                    .onAppear {
+//                        print("in no answer view - current selected question: \(selectedQuestion), answer: \(selectedQuestion.answer?.answerDetail), answerIsNil: \(selectedQuestion.answer == nil)")
+//                    }
             }
         }
         //        GeometryReader { geo in
@@ -170,12 +170,14 @@ struct AnswerView: View {
     var body: some View {
         if let question = selectedQuestion {
             if let answer = selectedQuestion?.answer {
-                Text(question.wrappedQuestion)
-                    .font(.title)
-                    .foregroundColor(.textBlack)
-                    .bold()
-                Spacer()
-                Text(answer.answerDetail)
+                VStack {
+                    Text(question.wrappedQuestion)
+                        .font(.title)
+                        .foregroundColor(.textBlack)
+                        .bold()
+                    Spacer()
+                    Text(answer.answerDetail)
+                }
             }
         }
     }

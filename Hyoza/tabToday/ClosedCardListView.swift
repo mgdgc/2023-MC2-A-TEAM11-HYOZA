@@ -62,6 +62,7 @@ struct ClosedCardListView: View {
                 if selectedQuestion == nil {
                     selectedQuestion = PersistenceController.shared.selectedQuestion
                 }
+                print("[ClosedCardListView][\(#function)]\(selectedQuestion)")
                 withAnimation(.linear(duration: 0.3)) {
                     closedDegree = -90
                 }

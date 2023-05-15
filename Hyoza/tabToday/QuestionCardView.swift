@@ -20,7 +20,7 @@ struct QuestionCardView: View {
             OpenCardView(degree: $openDegree, selectedQuestion: $selectedQuestion, isAnswered: $isAnswered)
                 .zIndex(closedDegree == -90 ? 1 : 0)
                 .onAppear {
-                    print(selectedQuestion?.answer)
+//                    print(selectedQuestion?.answer)
                 }
             ClosedCardListView(openDegree: $openDegree, closedDegree: $closedDegree, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion)
         }

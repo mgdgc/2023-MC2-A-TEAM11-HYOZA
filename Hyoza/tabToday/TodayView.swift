@@ -71,6 +71,7 @@ struct TodayView: View {
                 .padding(20)
             .background(Color.backGroundWhite.ignoresSafeArea())
             .onAppear() {
+                print("[TodayView][선택된 질문에 따라 카드 뒤집기 전]\(selectedQuestion)")
                 if selectedQuestion != nil {
                     closedDegree = -90
                     openDegree = 0

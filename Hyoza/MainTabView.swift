@@ -15,7 +15,7 @@ struct MainTabView: View {
     @State var continueTextOpacity: Double = 1.0
     @State var tempTextStorage: String? = nil
     @State var isContinueIconAnimating: Bool = false
-    @State var selectedQuestion: Question? = PersistenceController.shared.selectedQuestion
+    @State var selectedQuestion: Question? = nil
     @State var isAnswered: Bool = false
     
     var body: some View {
@@ -42,6 +42,7 @@ struct MainTabView: View {
                 .tag(2)
         }
         .onAppear {
+            selectedQuestion = PersistenceController.shared.selectedQuestion
             isAnswered = !(PersistenceController.shared.selectedQuestion == nil)
             print(NSHomeDirectory())
             print("선택된 질문: \(selectedQuestion)")
