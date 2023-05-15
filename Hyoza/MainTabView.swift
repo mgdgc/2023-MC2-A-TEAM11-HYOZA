@@ -57,9 +57,9 @@ struct MainTabView: View {
             
             if !isContinueIconAnimating {
                 self.isContinueIconAnimating = true
-                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     makeContinueIconSmall()
-                    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.7) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                         self.isContinueIconAnimating = false
                     }
                 }

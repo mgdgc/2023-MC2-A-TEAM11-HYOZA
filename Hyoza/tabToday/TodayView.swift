@@ -91,7 +91,7 @@ struct TodayView: View {
         withAnimation(.easeInOut(duration: 0.7)) {
             self.continueText = tempTextStorage
         }
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.7) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.continueTextOpacity = 1
         }
     }
@@ -99,9 +99,9 @@ struct TodayView: View {
     private func makeCoutinueIconLargeAndSmall() {
         self.isContinueIconAnimating = true
         makeContinueIconLarge()
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             makeContinueIconSmall()
-            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.7) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                 self.isContinueIconAnimating = false
             }
         }
