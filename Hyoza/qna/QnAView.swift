@@ -30,9 +30,6 @@ struct QnAView: View {
     
     var body: some View {
         ZStack {
-            //배경 색
-            Color.backgroundColor
-                .ignoresSafeArea()
             //contentView + ComentEditView
             VStack(alignment: .leading, spacing: 15) {
                 ScrollView {
@@ -42,6 +39,10 @@ struct QnAView: View {
                 commentEditView
             }
         }
+        .background(
+            Color.backgroundColor
+                .ignoresSafeArea()
+        )
         .navigationTitle("오늘의 질문")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
@@ -79,7 +80,7 @@ struct QnAView: View {
                         }
                         persistenceController.updateAnswer(content: textValue, relateTo: data)
                         data.objectWillChange.send()
-                      
+                        
                     }) {
                         Text("완료")
                             .foregroundColor(isTextFieldEmpty ? .gray : .orange)
@@ -90,7 +91,7 @@ struct QnAView: View {
                             Task {
                                 let viewToRender = contentView.frame(width: UIScreen.main.bounds.width)
                                 //TODO: 이 코드가 뭔지 꼭 공부할것
-                                guard let image = await viewToRender.render(scale: displayScale) else {return}
+                                guard let image = viewToRender.render(scale: displayScale) else {return}
                                 imageToShare = ImageWrapper(image: image)
                             }
                         }) {
@@ -121,26 +122,23 @@ struct QnAView: View {
     var contentView: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack{
-                
-                
-                Text(data.difficultyString)
-                    .foregroundColor(.orange)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(
-                        Rectangle()
-                            .cornerRadius(30)
-                            .foregroundColor(.orange)
-                            .opacity(0.2)
-                    )
+                CapsuleView(content: {
+                    Text(data.difficultyString)
+                        .font(.system(size: 17))
+                        .foregroundColor(.textOrange)
+                        .padding([.leading, .trailing], 12)
+                        .padding([.top, .bottom], 8)
+                }, capsuleColor: .backGroundLightOrange)
             }
             .padding([.top, .leading], 30)
             Text(data.wrappedQuestion)
-                .font(.system(size: 25))
+                .font(.title.bold())
+                .foregroundColor(.textBlack)
                 .padding(.horizontal, 30)
             Text(data.wrappedTimestamp.fullString)
+                .font(.subheadline)
+                .foregroundColor(.tapBarDarkGray)
                 .padding(.leading, 30)
-                .foregroundColor(.secondary)
             ZStack {
                 RoundedRectangle(cornerRadius: 30)
                     .frame(height: 60)
@@ -150,6 +148,8 @@ struct QnAView: View {
                         .onChange(of: textValue) { newValue in
                             isTextFieldEmpty = newValue.isEmpty
                         }
+                        .font(.body)
+                        .foregroundColor(.textBlack)
                         .multilineTextAlignment(.leading)
                         .opacity(isEditing ? 0.5 : 1)
                         .padding(.horizontal, 15)
@@ -157,6 +157,8 @@ struct QnAView: View {
                 else {
                     HStack {
                         Text(data.wrappedAnswer.answerDetail)
+                            .font(.body)
+                            .foregroundColor(.textBlack)
                         Spacer()
                     }
                     .padding(.horizontal, 15)
@@ -169,6 +171,8 @@ struct QnAView: View {
                 HStack {
                     Spacer()
                     Text(commentDetail)
+                        .font(.subheadline)
+                        .foregroundColor(.textBlack)
                         .padding(.all)
                         .background(
                             Rectangle()
@@ -227,7 +231,7 @@ struct QnAView: View {
                         .padding(.trailing, 35)
                     }
                 }
-            
+                
             }
         }
     }
