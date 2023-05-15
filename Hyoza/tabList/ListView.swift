@@ -77,20 +77,20 @@ private struct CellContents : View {
             HStack {
                 Text(item.wrappedTimestamp, formatter : itemFormatter)
                     .font(.subheadline.bold())
-                    .foregroundColor(.textLightGray)
+                    .foregroundColor(.tapBarDarkGray)
                     .lineLimit(1)
                 Spacer()
             }
             
             Text(item.wrappedQuestion)
                 .font(.body.bold())
-                .foregroundColor(.textColor)
+                .foregroundColor(.textBlack)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
             
             Text(item.wrappedAnswer.answerDetail)
                 .font(.body)
-                .foregroundColor(.textColor)
+                .foregroundColor(.textBlack)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
         }
