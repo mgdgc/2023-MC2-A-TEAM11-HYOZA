@@ -77,8 +77,16 @@ struct QnAView: View {
                         } else {
                             print("텍스트를 입력해주세요.")
                         }
+                        <<<<<<< HEAD
+                        persistenceController.addAnswer(content: textValue, relateTo: data)
+                        persistenceController.addComment(detail: comment, relatedTo: data)
+                        
+                        
+                        
+                        =======
                         persistenceController.updateAnswer(content: textValue, relateTo: data)
                         data.objectWillChange.send()
+                        >>>>>>> d4aeccf6e636ea135debc119a36cafacd9e7508d
                     }) {
                         Text("완료")
                             .foregroundColor(isTextFieldEmpty ? .gray : .orange)
@@ -120,18 +128,20 @@ struct QnAView: View {
     var contentView: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack{
-                Rectangle()
-                    .frame(width: 50, height: 30)
-                    .cornerRadius(30)
+                
+                
+                Text(data.difficultyString)
                     .foregroundColor(.orange)
-                    .opacity(0.2)
-                    .overlay(
-                        Text(data.difficultyString)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(
+                        Rectangle()
+                            .cornerRadius(30)
                             .foregroundColor(.orange)
+                            .opacity(0.2)
                     )
-                    .padding(.leading, 30)
-                    .padding(.top, 30)
             }
+            .padding([.top, .leading], 30)
             Text(data.wrappedQuestion)
                 .font(.system(size: 25))
                 .padding(.horizontal, 30)
@@ -195,6 +205,7 @@ struct QnAView: View {
     
     var commentEditView: some View {
         ZStack {
+            
             if data.answer?.comment == nil || data.answer?.comment == "" {
                 Rectangle()
                     .frame(width: UIScreen.screenWidth-40, height: 40)
@@ -220,7 +231,6 @@ struct QnAView: View {
                         Text("게시")
                             .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
                     }
-                    .padding(.trailing, 35)
                 }
             }
         }
