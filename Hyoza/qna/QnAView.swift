@@ -70,71 +70,73 @@ struct QnAView: View {
                     
                 },
             trailing: HStack {
-                    if isEditing {
-                        Button(action: {
-                            if !isTextFieldEmpty {
-                                isEditing = false
-                            } else {
-                                print("텍스트를 입력해주세요.")
-                            }
-                            persistenceController.addAnswer(content: textValue, relateTo: data)
-                            persistenceController.addComment(detail: comment, relatedTo: data)
-                            
-                            
-                            
-                        }) {
-                            Text("완료")
-                                .foregroundColor(isTextFieldEmpty ? .gray : .orange)
+                if isEditing {
+                    Button(action: {
+                        if !isTextFieldEmpty {
+                            isEditing = false
+                        } else {
+                            print("텍스트를 입력해주세요.")
                         }
-                    } else {
-                        HStack {
-                            Button(action: {
-                                Task {
-                                    let viewToRender = contentView.frame(width: UIScreen.main.bounds.width)
-                                    //TODO: 이 코드가 뭔지 꼭 공부할것
-                                    guard let image = await viewToRender.render(scale: displayScale) else {return}
-                                    imageToShare = ImageWrapper(image: image)
-                                }
-                            }) {
-                                Image(systemName: "square.and.arrow.up")
-                                    .foregroundColor(.orange)
+                        persistenceController.addAnswer(content: textValue, relateTo: data)
+                        persistenceController.addComment(detail: comment, relatedTo: data)
+                        
+                        
+                        
+                    }) {
+                        Text("완료")
+                            .foregroundColor(isTextFieldEmpty ? .gray : .orange)
+                    }
+                } else {
+                    HStack {
+                        Button(action: {
+                            Task {
+                                let viewToRender = contentView.frame(width: UIScreen.main.bounds.width)
+                                //TODO: 이 코드가 뭔지 꼭 공부할것
+                                guard let image = await viewToRender.render(scale: displayScale) else {return}
+                                imageToShare = ImageWrapper(image: image)
                             }
-                            .padding(.trailing)
-                            .sheet(item: $imageToShare) { imageToShare in
-                                ActivityViewControllerWrapper(items: [imageToShare.image],
-                                                              activities: nil)
+                        }) {
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(.orange)
+                        }
+                        .padding(.trailing)
+                        .sheet(item: $imageToShare) { imageToShare in
+                            ActivityViewControllerWrapper(items: [imageToShare.image],
+                                                          activities: nil)
+                        }
+                        Button(action: {
+                            isEditing = true
+                            isTextFieldEmpty = false
+                            textValue = data.wrappedAnswer.answerDetail
+                            if data.wrappedAnswer.comment != nil {
+                                comment = data.wrappedAnswer.comment ?? "Unknown Error"
                             }
-                            Button(action: {
-                                isEditing = true
-                                isTextFieldEmpty = false
-                                textValue = data.wrappedAnswer.answerDetail
-                                if data.wrappedAnswer.comment != nil {
-                                    comment = data.wrappedAnswer.comment ?? "Unknown Error"
-                                }
-                            }) {
-                                Image(systemName: "pencil")
-                                    .foregroundColor(.orange)
-                            }
+                        }) {
+                            Image(systemName: "pencil")
+                                .foregroundColor(.orange)
                         }
                     }
-                })
+                }
+            })
     }
     
     var contentView: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack{
-                Rectangle()
-                    .frame(width: 50, height: 30)
-                    .cornerRadius(30)
+                
+                
+                Text(data.difficultyString)
                     .foregroundColor(.orange)
-                    .opacity(0.2)
-                    .overlay(
-                        Text(data.difficultyString)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(
+                        Rectangle()
+                            .cornerRadius(30)
                             .foregroundColor(.orange)
+                            .opacity(0.2)
                     )
-                    .padding(.leading, 30)
-                    .padding(.top, 30)
             }
+            .padding([.top, .leading], 30)
             Text(data.wrappedQuestion)
                 .font(.system(size: 25))
                 .padding(.horizontal, 30)
@@ -144,7 +146,7 @@ struct QnAView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 30)
                     .frame(height: 60)
-                    .foregroundColor(.clear)                
+                    .foregroundColor(.clear)
                 if isEditing {
                     TextField("답변을 입력해 주세요.", text: $textValue, axis: .vertical)
                         .onChange(of: textValue) { newValue in
