@@ -41,8 +41,8 @@ struct QuestionBoxView: View {
     }
     
     func openQuestions() -> Void {
-        easyQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndEasy)
-        hardQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndHard)
+        easyQuestions = persistenceController.easyQuestions
+        hardQuestions = persistenceController.hardQuestions
         self.isQuestionBoxViewTapped.toggle()
     }
 }

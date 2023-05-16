@@ -105,7 +105,7 @@ class PersistenceController: ObservableObject {
     }
     
     // MARK: Save Context
-    func saveContext () {
+    private func saveContext () {
         let context = container.viewContext
         if context.hasChanges {
             do {
@@ -123,7 +123,7 @@ extension PersistenceController {
     var fileName: String { "question_samples" }
     var fileExtension: String { "json" }
     
-    func fetchQuestion() async throws {
+    private func fetchQuestion() async throws {
         guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: fileExtension) else {
             return
         }

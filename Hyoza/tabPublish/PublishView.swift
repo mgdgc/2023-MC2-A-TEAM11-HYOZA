@@ -17,15 +17,15 @@ struct PublishView: View {
         animation: .default)
     private var questions: FetchedResults<Question>
     
-    @State var titleText = ""
-    @State var periodSelection: PeriodSelection = .custom
-    @State var startDate: Date = Date()
-    @State var endDate: Date = Date()
-    @State var selectedMonth: Month = .may
-    @State var selectedYear: Int = (PersistenceController.shared.oldestAnsweredQuestion?.timestamp ?? Date()).year
+    @State private var titleText = ""
+    @State private var periodSelection: PeriodSelection = .custom
+    @State private var startDate: Date = Date()
+    @State private var endDate: Date = Date()
+    @State private var selectedMonth: Month = .may
+    @State private var selectedYear: Int = (PersistenceController.shared.oldestAnsweredQuestion?.timestamp ?? Date()).year
     
     
-    enum K {
+    private enum K {
         static let cornerRadius: CGFloat = 10
         static let title: String = "자서전 출판"
         static let leadingPadding: CGFloat = 20
@@ -69,7 +69,7 @@ struct PublishView: View {
     }
     
     
-    var header: some View {
+    private var header: some View {
         HStack {
             Text(K.title)
                 .font(.largeTitle)
@@ -81,7 +81,7 @@ struct PublishView: View {
     }
     
     
-    func segmentedSelectionDidChange(newValue: PeriodSelection) {
+    private func segmentedSelectionDidChange(newValue: PeriodSelection) {
         switch newValue {
         case .custom:
             startDate = Date().start
@@ -96,14 +96,14 @@ struct PublishView: View {
         fetchAfterDateChanged()
     }
     
-    var titleTextField: some View {
+    private var titleTextField: some View {
         TextField(K.textFieldTitle, text: $titleText)
             .background(.white)
             .cornerRadius(K.cornerRadius)
             .publishCardify()
     }
     
-    var periodView: some View {
+    private var periodView: some View {
         ZStack(alignment: .top) {
             PeriodView(
                 cornerRadius: K.cornerRadius,
@@ -127,20 +127,20 @@ struct PublishView: View {
         }
     }
     
-    func fetchAfterDateChanged() {
+    private func fetchAfterDateChanged() {
         withAnimation {
             questions.nsPredicate = .hasAnswer && .timestampIn(between: startDate, and: endDate)
         }
     }
     
-    var countLabel: some View {
+    private var countLabel: some View {
         Text(K.countLabel(questions.count))
             .font(.callout)
             .foregroundColor(.gray)
     }
     
     // ShareSheet를 열기 위한 변수로 사용하기 위해 Identifiable을 구현한 Wrapper
-    struct PDFWrapper: Identifiable {
+    private struct PDFWrapper: Identifiable {
         var id: UUID = UUID()
         var url: URL = FileManager.default.temporaryDirectory
     }
@@ -150,9 +150,9 @@ struct PublishView: View {
 }
 
 extension PublishView {
-    var publishButton: some View {
+    private var publishButton: some View {
         ButtonView (
-            buttonColor: questions.isEmpty ? .textThirdColor : .buttonColor,
+            buttonColor: (questions.isEmpty || titleText.isEmpty) ? .textThirdColor : .buttonColor,
             content: K.publishButtonTitle,
             action: shareToPdf
         )
@@ -161,18 +161,16 @@ extension PublishView {
         }
         .padding(.vertical, 20)
         .padding(.bottom, 20)
+        .disabled(questions.isEmpty || titleText.isEmpty)
     }
     
-    func shareToPdf() {
+    private func shareToPdf() {
         // 질문과 답변을 PDF Text로 변환
         var pdfTexts: [PDFText] = []
         
         pdfTexts.append(PDFText(string: titleText, attributes: PDFTextStyle.title, alignment: .center, indent: 0, spacing: .title))
         
-        print(questions.count)
-        
         for item in questions {
-            print(item.wrappedQuestion)
             pdfTexts.append(PDFText(string: item.wrappedQuestion, attributes: PDFTextStyle.question, alignment: .left, spacing: .question))
             
             if let answer = item.answer?.answer, let date = item.answer?.answerTime {
@@ -204,9 +202,3 @@ extension PublishView {
         }
     }
 }
-
-//struct PublishView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PublishView()
-//    }
-//}

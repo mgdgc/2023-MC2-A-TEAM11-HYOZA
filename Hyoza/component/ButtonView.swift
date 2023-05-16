@@ -49,9 +49,7 @@ struct ButtonView: View {
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        let selected = 3
-        ButtonView(content: (selected < 2 ? "다음" : "시작하기")) {
-            print("hehe")
-        }
+        var selected = 3
+        ButtonView(content: (selected < 2 ? "다음" : "시작하기"))
     }
 }

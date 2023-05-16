@@ -39,19 +39,19 @@ struct ResultBookView: View {
         }
     }
     
-    var bookLine: some View {
+    private var bookLine: some View {
         Rectangle()
             .fill(.white)
             .frame(width: K.narrowWidth)
     }
     
-    var titleText: some View {
+    private var titleText: some View {
         Text(title)
             .bold()
             .foregroundColor(.white)
     }
     
-    var height: CGFloat {
+    private var height: CGFloat {
         switch count{
         case ...(Int(K.maxHeight) - Int(K.defaultHeight)):
             return K.defaultHeight + CGFloat(count)
