@@ -19,6 +19,10 @@ struct ListView: View {
     @State private var searchText : String = ""
     @State private var answerText : String = "기본답변입니다."
     
+    init(){
+        UINavigationBar.appearance().layoutMargins.left = 20
+    }
+    
     //코어데이터에서 호출하는 쿼리
     var query : Binding<String> {
         Binding {
