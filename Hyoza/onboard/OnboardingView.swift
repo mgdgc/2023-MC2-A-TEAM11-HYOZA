@@ -15,21 +15,16 @@ struct OnboardingView: View {
     var body: some View {
         VStack(spacing: 0) {
             TabView(selection: $selected) {
-                Page1View()
-                    .tag(0)
-                
-                Page2View()
-                    .tag(1)
-                
-                Page3View()
-                    .tag(2)
+                Page1View().tag(0)
+                Page2View().tag(1)
+                Page3View().tag(2)
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .never))
             .padding(.top, 60)
             .onAppear(perform: {
-                UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(named: "SelectedColor")
-                UIPageControl.appearance().pageIndicatorTintColor = UIColor(named: "CapsuleColor")
+                UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.selectedColor
+                UIPageControl.appearance().pageIndicatorTintColor = UIColor.capsuleColor
             })
             
             ButtonView (content: (selected < 2 ? "다음" : "시작하기")) {
@@ -44,6 +39,7 @@ struct OnboardingView: View {
                     showOnboardingView = false
                 }
             }
+            .padding(20)
             
             Button {
                 // 최초 접속 여부 저장
@@ -52,14 +48,14 @@ struct OnboardingView: View {
                 showOnboardingView = false
             } label: {
                 Text("Skip").font(.system(size:15))
-                    .foregroundColor(Color("TextThirdColor"))
+                    .foregroundColor(Color.textThirdColor)
             }
             .opacity(selected < 2 ? 1 : 0)
             
         }
         .padding(.bottom, 40)
         .background(
-            Color("BackgroundColor")
+            Color.backgroundColor
                 .ignoresSafeArea()
         )
     }

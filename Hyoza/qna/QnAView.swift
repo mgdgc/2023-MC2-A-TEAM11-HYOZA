@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-// TODO: - 좌우 전체 마진 20으로 통일하기 (여기 포함 전반적인 뷰)
-
-// TODO: - 출판하기 버튼이 좀 더 넓었으면 좋겠다. (온보딩뷰와 같이)
-// TODO: - 출판하기 버튼 누르면 공유하기
-// TODO: - 질문 고르기 카드에서 글자와 타이틀이 조금 더 붙었으면
-// TODO: - 옹졸제이뷰 해결
-/// TODO: - Comment를 삭제하니까 padding이 한 세트 삭제됨. 있으면 2세트됨.
-// TODO: - 열어보기 뷰에서 버튼에 action function 넣기
-// TODO: - 오늘 QnA 카드 뷰 이미지 넣기
-
-
-
 struct QnAView: View {
     
     var data: Question
@@ -139,11 +127,11 @@ struct QnAView: View {
                 .padding(.top, 30)
                 Text(data.wrappedQuestion)
                     .font(.title.bold())
-                    .foregroundColor(.textBlack)
+                    .foregroundColor(.textColor)
                     
                 Text(data.wrappedTimestamp.fullString)
                     .font(.subheadline)
-                    .foregroundColor(.tapBarDarkGray)
+                    .foregroundColor(.textSecondaryColor)
             }
             
             Group {
@@ -154,13 +142,13 @@ struct QnAView: View {
                                 isTextFieldEmpty = newValue.isEmpty
                             }
                             .font(.body)
-                            .foregroundColor(.textBlack)
+                            .foregroundColor(.textColor)
                             .multilineTextAlignment(.leading)
                             .opacity(isEditing ? 0.5 : 1)
                     } else {
                         Text(data.wrappedAnswer.answerDetail)
                             .font(.body)
-                            .foregroundColor(.textBlack)
+                            .foregroundColor(.textColor)
                     }
                 }
             }
@@ -174,7 +162,7 @@ struct QnAView: View {
                     Spacer()
                     Text(commentDetail)
                         .font(.subheadline)
-                        .foregroundColor(.textBlack)
+                        .foregroundColor(.textColor)
                         .padding(.all)
                         .background(
                             Rectangle()

@@ -42,6 +42,10 @@ extension Date {
         "\(year)년 \(month)월 \(day)일"
     }
     
+    var numberOnlyString: String {
+        "\(year)\(String(format: "%02d", month))\(String(format: "%02d", day))"
+    }
+    
     var start: Date {
         Calendar.current.startOfDay(for: self)
     }

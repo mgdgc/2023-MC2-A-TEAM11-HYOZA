@@ -14,9 +14,9 @@ struct DifficultyCapsuleView: View {
         CapsuleView(content: {
             Text(difficulty)
                 .font(.subheadline)
-                .foregroundColor(.textOrange)
+                .foregroundColor(.textPointColor)
                 .padding([.leading, .trailing], 10)
                 .padding([.top, .bottom], 4)
-        }, capsuleColor: .backGroundLightOrange)
+        }, capsuleColor: .capsuleColor)
     }
 }

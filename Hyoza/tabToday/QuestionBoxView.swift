@@ -20,26 +20,30 @@ struct QuestionBoxView: View {
                 Text("오늘의 질문 꾸러미")
                     .font(.title)
                     .bold()
-                    .foregroundColor(.textBlack)
+                    .foregroundColor(.textColor)
                     .padding(.top, 30)
                 Button {
-                    easyQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndEasy)
-                    hardQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndHard)
-                    self.isQuestionBoxViewTapped.toggle()
-                    print("[QuestionBoxView - easyQuestions]\(easyQuestions)")
-                    print("[QuestionBoxView - hardQuestions]\(hardQuestions)")
+                   openQuestions()
                 } label: {
                     Image("questionBoxImage")
                         .resizable()
                         .scaledToFit()
-                        .foregroundColor(.backGroundLightOrange)
+                        .foregroundColor(.capsuleColor)
                         .padding(30)
                 }
-                ButtonView(content: "열어보기", action: {
-                    return
-                })
+            ButtonView(content: "열어보기") {
+                openQuestions()
+            }
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 20)
             }
             .frame(height: UIScreen.screenHeight * 0.6)
+    }
+    
+    func openQuestions() -> Void {
+        easyQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndEasy)
+        hardQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndHard)
+        self.isQuestionBoxViewTapped.toggle()
     }
 }
 
