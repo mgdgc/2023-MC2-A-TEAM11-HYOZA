@@ -17,27 +17,27 @@ struct QuestionBoxView: View {
     
     var body: some View {
         VStack {
-                Text("오늘의 질문 꾸러미")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.textColor)
-                    .padding(.top, 30)
-                Button {
-                   openQuestions()
-                } label: {
-                    Image("questionBoxImage")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(.capsuleColor)
-                        .padding(30)
-                }
+            Text("오늘의 질문 꾸러미")
+                .font(.title)
+                .bold()
+                .foregroundColor(.textColor)
+                .padding(.top, 30)
+            Button {
+                openQuestions()
+            } label: {
+                Image("questionBoxImage")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.capsuleColor)
+                    .padding(30)
+            }
             ButtonView(content: "열어보기") {
                 openQuestions()
             }
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 20)
-            }
-            .frame(height: UIScreen.screenHeight * 0.6)
+            .padding(.horizontal, 20)
+            .padding(.bottom, 20)
+        }
+        .frame(height: UIScreen.screenHeight * 0.6)
     }
     
     func openQuestions() -> Void {

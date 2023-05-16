@@ -88,7 +88,13 @@ struct QnAView: View {
                     HStack {
                         Button(action: {
                             Task {
-                                let viewToRender = contentView.frame(width: UIScreen.main.bounds.width)
+                                let viewToRender =
+                                HStack {
+                                    contentView
+                                    Spacer()
+                                }
+                                .frame(width: UIScreen.main.bounds.width)
+                                .padding(20)
                                 //TODO: 이 코드가 뭔지 꼭 공부할것
                                 guard let image = viewToRender.render(scale: displayScale) else {return}
                                 imageToShare = ImageWrapper(image: image)
@@ -128,7 +134,7 @@ struct QnAView: View {
                 Text(data.wrappedQuestion)
                     .font(.title.bold())
                     .foregroundColor(.textColor)
-                    
+                
                 Text(data.wrappedTimestamp.fullString)
                     .font(.subheadline)
                     .foregroundColor(.textSecondaryColor)

@@ -41,7 +41,8 @@ struct NoAnswerView: View {
         if let selectedQuestion = selectedQuestion {
             GeometryReader { geo in
                 VStack{
-                    OpenCardTitleView(difficulty: selectedQuestion.difficultyString)
+                    OpenCardTitleView(difficulty: selectedQuestion.difficultyString,
+                                      targetView: self)
                     Spacer()
                     Text(selectedQuestion.wrappedQuestion)
                         .font(.title)
@@ -69,6 +70,7 @@ struct OpenCardTitleView: View {
     let difficulty: String
     let horizontalPadding: CGFloat = 10
     let topPadding: CGFloat = 10
+    let targetView: any View
     
     var body: some View {
         ZStack {
@@ -76,7 +78,7 @@ struct OpenCardTitleView: View {
                 DifficultyCapsuleView(difficulty: difficulty)
                     .padding(.leading, horizontalPadding)
                 Spacer()
-                ShareButtonView(content: AnyView(self))
+                ShareButtonView(content: AnyView(targetView))
                     .padding(.trailing, horizontalPadding)
             }
             HStack {
@@ -102,7 +104,8 @@ struct AnswerView: View {
                 QnAView(data: todayAnsweredQuestion, isEditing: false)
             } label: {
                 VStack{
-                    OpenCardTitleView(difficulty: todayAnsweredQuestion.difficultyString)
+                    OpenCardTitleView(difficulty: todayAnsweredQuestion.difficultyString,
+                                      targetView: self)
                     Spacer()
                     Text(todayAnsweredQuestion.wrappedQuestion)
                         .font(.title)
