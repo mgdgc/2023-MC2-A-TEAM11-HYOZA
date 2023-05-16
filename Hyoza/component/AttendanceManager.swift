@@ -12,6 +12,8 @@ class AttendanceManager {
     static let udLastAttended = UserDefaultsKey.udLastAttended.rawValue
     static let udFirstAttended = UserDefaultsKey.udFirstAttended.rawValue
     
+    static let notificationAttendanceUpdate = NSNotification.Name("attendance_update")
+    
     func getFirstAttendedDate() -> Date? {
         return UserDefaults.standard.object(forKey: AttendanceManager.udFirstAttended) as? Date
     }
@@ -64,5 +66,4 @@ class AttendanceManager {
             return false
         }
     }
-    
 }

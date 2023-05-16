@@ -69,6 +69,11 @@ struct TodayView: View {
                 }
                 Spacer()
             }
+            .onChange(of: selectedQuestion,
+                      perform: { _ in
+                
+                continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
+            })
             .padding(20)
             .background(Color.backgroundColor.ignoresSafeArea())
             .onAppear() {

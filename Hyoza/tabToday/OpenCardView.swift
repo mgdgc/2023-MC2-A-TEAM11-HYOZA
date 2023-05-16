@@ -21,6 +21,10 @@ struct OpenCardView: View {
             if todayAnsweredQuestion != nil {
                 AnswerView(todayAnsweredQuestion: $todayAnsweredQuestion)
                     .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
+                    .onAppear() {
+                        _ = AttendanceManager().updateAttendance()
+                        NotificationCenter.default.post(name: AttendanceManager.notificationAttendanceUpdate, object: nil)
+                    }
             } else {
                 NoAnswerView(selectedQuestion: $selectedQuestion)
                     .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))

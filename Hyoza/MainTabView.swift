@@ -17,6 +17,8 @@ struct MainTabView: View {
     @State var isContinueIconAnimating: Bool = false
     @State var selectedQuestion: Question? = nil
     
+    private let publisher = NotificationCenter.default.publisher(for: AttendanceManager.notificationAttendanceUpdate)
+    
     var body: some View {
         TabView(selection: $selection) {
             TodayView(continuousDayCount: $continuousDayCount, continueText: $continueText, continueTextOpacity: $continueTextOpacity, tempTextStorage: $tempTextStorage, isContinueIconAnimating: $isContinueIconAnimating, selectedQuestion: $selectedQuestion)
@@ -42,19 +44,8 @@ struct MainTabView: View {
         }
         .onAppear {
             selectedQuestion = PersistenceController.shared.selectedQuestion
-            continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
             
-            switch continuousDayCount {
-            case 0:
-                tempTextStorage = "작성을 시작해보세요!"
-                continueText = tempTextStorage
-            case 1...:
-                tempTextStorage = "연속 작성 \(continuousDayCount)일째 돌파!"
-                continueText = tempTextStorage
-            default:
-                tempTextStorage = "무언가 잘못됐어요 :("
-                continueText = tempTextStorage
-            }
+            setAttendance()
             
             if !isContinueIconAnimating {
                 self.isContinueIconAnimating = true
@@ -66,6 +57,9 @@ struct MainTabView: View {
                 }
             }
         }
+        .onReceive(publisher) { output in
+            setAttendance()
+        }
     }
     
     private func makeContinueIconSmall() {
@@ -73,6 +67,20 @@ struct MainTabView: View {
         withAnimation(.easeInOut(duration: 0.7)) {
             self.continueText = nil
         }
+    }
+    
+    private func setAttendance() {
+        continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
+        
+        switch continuousDayCount {
+        case 0:
+            tempTextStorage = "작성을 시작해보세요!"
+        case 1...:
+            tempTextStorage = "연속 작성 \(continuousDayCount)일째 돌파!"
+        default:
+            tempTextStorage = "무언가 잘못됐어요 :("
+        }
+        continueText = tempTextStorage
     }
 }
 
