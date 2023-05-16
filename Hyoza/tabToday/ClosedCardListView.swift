@@ -15,28 +15,28 @@ struct ClosedCardListView: View {
     @Binding var selectedQuestion: Question?
     
     var body: some View {
-//        VStack {
+        //        VStack {
         VStack(spacing: .zero) {
-                Text("오늘의 질문을 골라주세요")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.textColor)
-                    .padding(.top, 30)
-                Text("질문은 하루에 하나만 열어볼 수 있어요!")
-                    .font(.subheadline)
-                    .foregroundColor(.textSecondaryColor)
-                    .padding(.top, 12)
-                if easyQuestions.count >= 2 && hardQuestions.count >= 1 {
-                    VStack {
-                        closedCardView(question: easyQuestions[0], questionNumber: 1)
-                        closedCardView(question: hardQuestions[0], questionNumber: 2)
-                        closedCardView(question: easyQuestions[1], questionNumber: 3)
-                    }
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 16)
+            Text("오늘의 질문을 골라주세요")
+                .font(.title)
+                .bold()
+                .foregroundColor(.textColor)
+                .padding(.top, 30)
+            Text("질문은 하루에 하나만 열어볼 수 있어요!")
+                .font(.subheadline)
+                .foregroundColor(.textSecondaryColor)
+                .padding(.top, 12)
+            if easyQuestions.count >= 2 && hardQuestions.count >= 1 {
+                VStack {
+                    closedCardView(question: easyQuestions[0], questionNumber: 1)
+                    closedCardView(question: hardQuestions[0], questionNumber: 2)
+                    closedCardView(question: easyQuestions[1], questionNumber: 3)
                 }
+                .padding(.horizontal, 6)
+                .padding(.vertical, 16)
             }
-//            .padding(20)s
+        }
+        //            .padding(20)s
         .rotation3DEffect(Angle(degrees: closedDegree), axis: (0, 1, 0))
     }
     
