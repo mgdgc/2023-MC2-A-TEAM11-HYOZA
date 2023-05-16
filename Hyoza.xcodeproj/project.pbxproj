@@ -22,15 +22,12 @@
 		794EB6AE2A03FF8900DA52B5 /* Question+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EB6AC2A03FF8900DA52B5 /* Question+CoreDataProperties.swift */; };
 		794EB6B12A03FFCB00DA52B5 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EB6B02A03FFCB00DA52B5 /* Persistence.swift */; };
 		799E8F9D2A0A94D7003F78F2 /* question_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = 799E8F9C2A0A94D7003F78F2 /* question_samples.json */; };
-		799E8FA02A0A94FA003F78F2 /* QuerySentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8F9F2A0A94FA003F78F2 /* QuerySentence.swift */; };
-		799E8FA22A0A9508003F78F2 /* QuerySentenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8FA12A0A9508003F78F2 /* QuerySentenceManager.swift */; };
 		799E8FBF2A0CBDD7003F78F2 /* PDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8FBE2A0CBDD7003F78F2 /* PDFGenerator.swift */; };
 		799E8FC12A0CC175003F78F2 /* AttendanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8FC02A0CC175003F78F2 /* AttendanceManager.swift */; };
 		799E8FC32A0CCE2A003F78F2 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E8FC22A0CCE2A003F78F2 /* Calendar.swift */; };
 		79D7C5DA2A00ED3500AC8B6F /* HyozaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D7C5D92A00ED3500AC8B6F /* HyozaApp.swift */; };
 		79D7C5DE2A00ED3700AC8B6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */; };
 		79D7C5E12A00ED3700AC8B6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D7C5E02A00ED3700AC8B6F /* Preview Assets.xcassets */; };
-		9809A3042A097AD100AB8995 /* ColorWithHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3032A097AD100AB8995 /* ColorWithHex.swift */; };
 		9809A3062A0988A600AB8995 /* QuestionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A3052A0988A600AB8995 /* QuestionBoxView.swift */; };
 		9827EC732A0E1FBD00154343 /* ClosedCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827EC722A0E1FBD00154343 /* ClosedCardListView.swift */; };
 		9827EC752A0E1FE900154343 /* OpenCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827EC742A0E1FE900154343 /* OpenCardView.swift */; };
@@ -81,8 +78,6 @@
 		794EB6AC2A03FF8900DA52B5 /* Question+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Question+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		794EB6B02A03FFCB00DA52B5 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		799E8F9C2A0A94D7003F78F2 /* question_samples.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = question_samples.json; sourceTree = "<group>"; };
-		799E8F9F2A0A94FA003F78F2 /* QuerySentence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuerySentence.swift; sourceTree = "<group>"; };
-		799E8FA12A0A9508003F78F2 /* QuerySentenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuerySentenceManager.swift; sourceTree = "<group>"; };
 		799E8FBE2A0CBDD7003F78F2 /* PDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGenerator.swift; sourceTree = "<group>"; };
 		799E8FC02A0CC175003F78F2 /* AttendanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceManager.swift; sourceTree = "<group>"; };
 		799E8FC22A0CCE2A003F78F2 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
@@ -91,7 +86,6 @@
 		79D7C5DD2A00ED3700AC8B6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79D7C5E02A00ED3700AC8B6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		79D7C5EC2A00ED5A00AC8B6F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		9809A3032A097AD100AB8995 /* ColorWithHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorWithHex.swift; sourceTree = "<group>"; };
 		9809A3052A0988A600AB8995 /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
 		9827EC722A0E1FBD00154343 /* ClosedCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedCardListView.swift; sourceTree = "<group>"; };
 		9827EC742A0E1FE900154343 /* OpenCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCardView.swift; sourceTree = "<group>"; };
@@ -164,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				794DB9EA2A07E38600635B58 /* TodayView.swift */,
-				9809A3032A097AD100AB8995 /* ColorWithHex.swift */,
 				9809A3052A0988A600AB8995 /* QuestionBoxView.swift */,
 				98EE907C2A0A750A0042E7B0 /* QuestionCardView.swift */,
 				9827EC722A0E1FBD00154343 /* ClosedCardListView.swift */,
@@ -217,7 +210,6 @@
 				B2A03E612A0D7A2C005BF71D /* PersistenceController+Question.swift */,
 				794EB6AB2A03FF8900DA52B5 /* Question+CoreDataClass.swift */,
 				794EB6AC2A03FF8900DA52B5 /* Question+CoreDataProperties.swift */,
-				799E8FA12A0A9508003F78F2 /* QuerySentenceManager.swift */,
 				B2A03E592A0D75FB005BF71D /* Answer+CoreDataClass.swift */,
 				B2A03E5B2A0D7619005BF71D /* Answer+CoreDataProperties.swift */,
 				790B9B682A0FCAF30034D893 /* UserDefaultsKey.swift */,
@@ -236,7 +228,6 @@
 		799E8F9E2A0A94FA003F78F2 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				799E8F9F2A0A94FA003F78F2 /* QuerySentence.swift */,
 				B2A03E652A0D9013005BF71D /* QuestionProperties.swift */,
 				B2A03E672A0D9054005BF71D /* QuestionError.swift */,
 			);
@@ -409,7 +400,6 @@
 				B256C8CD2A0A64D500B0C62E /* PublishCardify.swift in Sources */,
 				791C24572A08EA520009E4EA /* NotificationManager.swift in Sources */,
 				790B9B692A0FCAF30034D893 /* UserDefaultsKey.swift in Sources */,
-				799E8FA22A0A9508003F78F2 /* QuerySentenceManager.swift in Sources */,
 				B22A97E82A090D1B00ECD178 /* UIColorExtension.swift in Sources */,
 				B22A97EE2A0912AD00ECD178 /* PeriodView.swift in Sources */,
 				B22A97EC2A09117700ECD178 /* ColorExtension.swift in Sources */,
@@ -435,13 +425,11 @@
 				794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */,
 				98EE907D2A0A750A0042E7B0 /* QuestionCardView.swift in Sources */,
 				B256C8CB2A0A621D00B0C62E /* MonthPickerView.swift in Sources */,
-				9809A3042A097AD100AB8995 /* ColorWithHex.swift in Sources */,
 				C9DD7C272A0B790C007C1973 /* ActivityViewControllerWrapper.swift in Sources */,
 				794DB9ED2A07E38E00635B58 /* ListView.swift in Sources */,
 				799E8FBF2A0CBDD7003F78F2 /* PDFGenerator.swift in Sources */,
 				9809A3062A0988A600AB8995 /* QuestionBoxView.swift in Sources */,
 				791C245E2A09530F0009E4EA /* ViewExtension.swift in Sources */,
-				799E8FA02A0A94FA003F78F2 /* QuerySentence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

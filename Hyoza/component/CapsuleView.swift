@@ -10,7 +10,7 @@ import SwiftUI
 struct CapsuleView<Content>: View where Content: View {
     
     @ViewBuilder var content: () -> Content
-    var capsuleColor: Color = Color("AccentColor")
+    var capsuleColor: Color = Color.accentColor
     
     var body: some View {
         content()
