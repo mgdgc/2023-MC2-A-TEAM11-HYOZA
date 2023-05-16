@@ -44,8 +44,8 @@ struct QnAView: View {
             VStack(alignment: .leading, spacing: 15) {
                 ScrollView {
                     contentView
+                        .padding(.horizontal, 20)
                 }
-                .padding(.horizontal, 20)
                 Spacer()
                 commentEditView
                     .padding(.horizontal, 20)
@@ -144,10 +144,10 @@ struct QnAView: View {
                 Text(data.wrappedTimestamp.fullString)
                     .font(.subheadline)
                     .foregroundColor(.tapBarDarkGray)
-                ZStack {
-                    RoundedRectangle(cornerRadius: 30)
-                        .frame(height: 60)
-                        .foregroundColor(.clear)
+            }
+            
+            Group {
+                ZStack(alignment: .leading) {
                     if isEditing {
                         TextField("답변을 입력해 주세요.", text: $textValue, axis: .vertical)
                             .onChange(of: textValue) { newValue in
@@ -157,17 +157,13 @@ struct QnAView: View {
                             .foregroundColor(.textBlack)
                             .multilineTextAlignment(.leading)
                             .opacity(isEditing ? 0.5 : 1)
-                    }
-                    else {
-                        HStack {
-                            Text(data.wrappedAnswer.answerDetail)
-                                .font(.body)
-                                .foregroundColor(.textBlack)
-                            Spacer()
-                        }
+                    } else {
+                        Text(data.wrappedAnswer.answerDetail)
+                            .font(.body)
+                            .foregroundColor(.textBlack)
                     }
                 }
-            }.padding(.leading, 20)
+            }
             
             
             /// comment view
@@ -206,19 +202,12 @@ struct QnAView: View {
         ZStack {
             if isEditing == false {
                 if data.answer?.comment == nil || data.answer?.comment == "" {
-                    Rectangle()
-                        .frame(width: UIScreen.screenWidth-40, height: 40)
-                        .cornerRadius(100)
-                        .padding(.all)
-                        .foregroundColor(.white)
-                        .shadow(radius: 5)
-                        .opacity(0.5)
                     HStack {
                         TextField("나의 한 마디 작성하기", text: $commentTextField)
-                            .padding(.leading, 40)
                             .onChange(of: commentTextField) { newValue in
                                 isCommetFieldEmpty = newValue.isEmpty
                             }
+                        Spacer()
                         Button(action: {
                             comment = commentTextField
                             if !isCommetFieldEmpty && comment != "" {
@@ -230,8 +219,16 @@ struct QnAView: View {
                             Text("게시")
                                 .foregroundColor(isCommetFieldEmpty ? .gray : .orange)
                         }
-                        .padding(.trailing, 35)
                     }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                    .background(
+                        RoundedRectangle(cornerRadius: .infinity)
+                            .fill(.white)
+                            .shadow(radius: 5)
+                            .opacity(0.5)
+                    )
+                    .padding(.bottom, 24)
                 }
                 
             }
