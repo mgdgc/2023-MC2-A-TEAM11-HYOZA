@@ -160,6 +160,7 @@ extension PublishView {
             ActivityViewControllerWrapper(items: [data.url], activities: [])
         }
         .padding(.vertical, 20)
+        .padding(.bottom, 20)
     }
     
     func shareToPdf() {
