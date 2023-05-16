@@ -21,7 +21,7 @@ extension PersistenceController {
         }
     }
     
-    func filteredQuestion(which questionStatus: QuestionStatus) -> [Question] {
+    private func filteredQuestion(which questionStatus: QuestionStatus) -> [Question] {
         let questionRequest: NSFetchRequest<Question> = Question.fetchRequest()
         
         switch questionStatus {
@@ -72,12 +72,11 @@ extension PersistenceController {
         questionRequest.predicate = .wasAnsweredToday
         return try? container.viewContext.fetch(questionRequest).first
     }
+    
+    enum QuestionStatus {
+        case isNotChoosenAndEasy
+        case isNotChoosenAndHard
+        case hasAnswer
+    }
 }
-
-enum QuestionStatus {
-    case isNotChoosenAndEasy
-    case isNotChoosenAndHard
-    case hasAnswer
-}
-
 

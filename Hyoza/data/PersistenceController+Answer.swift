@@ -11,7 +11,7 @@ import CoreData
 // MARK: - Convenient methods for managing answers.
 //
 extension PersistenceController {
-    func addAnswer(content answerDetail: String, relateTo question: Question) {
+    private func addAnswer(content answerDetail: String, relateTo question: Question) {
         if let context = question.managedObjectContext {
             context.performAndWait {
                     let answer = Answer(context: context)
