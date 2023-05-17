@@ -24,21 +24,21 @@ struct MainTabView: View {
             TodayView(continuousDayCount: $continuousDayCount, continueText: $continueText, continueTextOpacity: $continueTextOpacity, tempTextStorage: $tempTextStorage, isContinueIconAnimating: $isContinueIconAnimating, selectedQuestion: $selectedQuestion)
                 .tabItem {
                     Image(systemName: "heart.square.fill")
-                    Text("Today")
+                    Text("오늘의 질문")
                 }
                 .tag(0)
             
             ListView()
                 .tabItem {
                     Image(systemName: "books.vertical.fill")
-                    Text("History")
+                    Text("질문 리스트")
                 }
                 .tag(1)
             
             PublishView()
                 .tabItem {
                     Image(systemName: "text.book.closed.fill")
-                    Text("Publish")
+                    Text("출판하기")
                 }
                 .tag(2)
         }

@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 struct PublishView: View {
-    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Question.timestamp, ascending:false)],
         predicate: .hasAnswer,
@@ -27,10 +26,10 @@ struct PublishView: View {
     
     private enum K {
         static let cornerRadius: CGFloat = 10
-        static let title: String = "자서전 출판"
+        static let title: String = "출판하기"
         static let leadingPadding: CGFloat = 20
         static let topPadding: CGFloat = 90
-        static let textFieldTitle: String = "제목"
+        static let textFieldTitle: String = "제목을 입력해 주세요."
         static func countLabel(_ count: Int) -> String {
             "\(count)개의 질문"
         }
